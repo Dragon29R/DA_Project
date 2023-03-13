@@ -79,6 +79,12 @@ build CMakeFiles/Projeto.dir/Graph.cpp.obj: CXX_COMPILER__Projeto_Debug C$:/User
   OBJECT_DIR = CMakeFiles\Projeto.dir
   OBJECT_FILE_DIR = CMakeFiles\Projeto.dir
 
+build CMakeFiles/Projeto.dir/Manager.cpp.obj: CXX_COMPILER__Projeto_Debug C$:/Users/Utilizador/Desktop/Projeto/Manager.cpp || cmake_object_order_depends_target_Projeto
+  DEP_FILE = CMakeFiles\Projeto.dir\Manager.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\Projeto.dir
+  OBJECT_FILE_DIR = CMakeFiles\Projeto.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Projeto
@@ -87,7 +93,7 @@ build CMakeFiles/Projeto.dir/Graph.cpp.obj: CXX_COMPILER__Projeto_Debug C$:/User
 #############################################
 # Link the executable Projeto.exe
 
-build Projeto.exe: CXX_EXECUTABLE_LINKER__Projeto_Debug CMakeFiles/Projeto.dir/main.cpp.obj CMakeFiles/Projeto.dir/VertexEdge.cpp.obj CMakeFiles/Projeto.dir/UFDS.cpp.obj CMakeFiles/Projeto.dir/Heap.cpp.obj CMakeFiles/Projeto.dir/Graph.cpp.obj
+build Projeto.exe: CXX_EXECUTABLE_LINKER__Projeto_Debug CMakeFiles/Projeto.dir/main.cpp.obj CMakeFiles/Projeto.dir/VertexEdge.cpp.obj CMakeFiles/Projeto.dir/UFDS.cpp.obj CMakeFiles/Projeto.dir/Heap.cpp.obj CMakeFiles/Projeto.dir/Graph.cpp.obj CMakeFiles/Projeto.dir/Manager.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Projeto.dir

@@ -1,7 +1,12 @@
 # ninja log v5
 19	328	7004322624493259	CMakeFiles/Projeto.dir/UFDS.cpp.obj	f3dccea2f13f97ed
-3	455	7004322625763345	CMakeFiles/Projeto.dir/main.cpp.obj	7a2e291707893c6a
+3	574	7004358580405019	CMakeFiles/Projeto.dir/main.cpp.obj	7a2e291707893c6a
 8	384	7004322738984042	CMakeFiles/Projeto.dir/Heap.cpp.obj	bf768e9eca5814d3
 3	760	7004322742764005	CMakeFiles/Projeto.dir/VertexEdge.cpp.obj	f188dc53f2da5154
 3	710	7004322891953400	CMakeFiles/Projeto.dir/Graph.cpp.obj	5f650a9b30c3dce5
-711	926	7004322894093399	Projeto.exe	27ba6f108e0885c1
+9	183	7004353448387343	CMakeFiles/Projeto.dir/Stations.cpp.obj	2a749fcba3b841ef
+574	759	7004358582225311	Projeto.exe	2b39b535cd115a3
+4	524	7004410458181735	build.ninja	a1ced5357afe1b8f
+19	217	7004410462424449	CMakeFiles/Projeto.dir/Manager.cpp.obj	53ab7841e9c55f07
+9	1403	7004410474391001	CMakeFiles/Projeto.dir/main.cpp.obj	7a2e291707893c6a
+1404	1794	7004410478229518	Projeto.exe	78337265984ad140
