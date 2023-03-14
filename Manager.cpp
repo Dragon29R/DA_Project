@@ -16,7 +16,7 @@ void Manager::ReadStations() {
 
     getline(file,line,'\n'); //skip the first line
 
-    int id = 0;
+    int id = 1;
 
     while(file.good()){
         network.addVertex(id);
@@ -24,18 +24,16 @@ void Manager::ReadStations() {
         stringstream partition(line);
 
         getline(partition,name, ',');
-        network.getVertexSet()[id]->setName(name);
+        network.findVertex(id)->setName(name);
         getline(partition,district,',');
-        network.getVertexSet()[id]->setDistrict(district);
+        network.findVertex(id)->setDistrict(district);
         getline(partition,municipality,',');
-        network.getVertexSet()[id]->setMunicipality(municipality);
+        network.findVertex(id)->setMunicipality(municipality);
         getline(partition,township,',');
-        network.getVertexSet()[id]->setTownship(township);
+        network.findVertex(id)->setTownship(township);
         getline(partition,train_line,',');
-        network.getVertexSet()[id]->setTrainLine(train_line);
+        network.findVertex(id)->setTrainLine(train_line);
 
-        cout << network.getVertexSet()[id]->getName(); + " " + id;
-        cout << '\n';
         id++;
     }
 }
