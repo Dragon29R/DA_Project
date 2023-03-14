@@ -10,5 +10,5 @@ using namespace std;
 int main() {
     Manager manager;
     manager.ReadStations();
-    cout<<manager.network.findVertex(53)->getName();
+    manager.ReadNetworks();
 }
