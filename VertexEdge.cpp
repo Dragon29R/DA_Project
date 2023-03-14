@@ -125,6 +125,38 @@ void Vertex::deleteEdge(Edge *edge) {
     delete edge;
 }
 
+void Vertex::setName(string name) {
+    this->name = name;
+}
+void Vertex::setDistrict(string district) {
+    this->district = district;
+}
+void Vertex::setMunicipality(string municipality) {
+    this->municipality = municipality;
+}
+void Vertex::setTownship(string township){
+    this->township = township;
+}
+void Vertex::setTrainLine(string trainline){
+    this->train_line = trainline;
+}
+string Vertex::getName() {
+    return this->name;
+}
+string Vertex::getDistrict() {
+    return this->district;
+}
+string Vertex::getMunicipality(){
+    return this->municipality;
+}
+string Vertex::getTownship() {
+    return this->township;
+}
+string Vertex::getTrainLine() {
+    return this->train_line;
+}
+
+
 /********************** Edge  ****************************/
 
 Edge::Edge(Vertex *orig, Vertex *dest, double w): orig(orig), dest(dest), weight(w) {}

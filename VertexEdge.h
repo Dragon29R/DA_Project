@@ -7,7 +7,8 @@
 #include <limits>
 #include <algorithm>
 #include "MutablePriorityQueue.h"
-
+#include <string>
+using namespace std;
 class Edge;
 
 #define INF std::numeric_limits<double>::max()
@@ -20,13 +21,13 @@ public:
     bool operator<(Vertex & vertex) const; // // required by MutablePriorityQueue
 
     int getId() const;
-    std::vector<Edge *> getAdj() const;
+    vector<Edge *> getAdj() const;
     bool isVisited() const;
     bool isProcessing() const;
     unsigned int getIndegree() const;
     double getDist() const;
     Edge *getPath() const;
-    std::vector<Edge *> getIncoming() const;
+    vector<Edge *> getIncoming() const;
 
     void setId(int info);
     void setVisited(bool visited);
@@ -39,6 +40,18 @@ public:
     void removeOutgoingEdges();
 
     friend class MutablePriorityQueue<Vertex>;
+
+    void setName(string name);
+    void setDistrict(string district);
+    void setMunicipality(string municipality);
+    void setTownship(string township);
+    void setTrainLine(string trainline);
+
+    string getName();
+    string getDistrict();
+    string getMunicipality();
+    string getTownship();
+    string getTrainLine();
 
 protected:
     int id;                // identifier
@@ -57,7 +70,7 @@ protected:
 
     void deleteEdge(Edge *edge);
 
-    
+    string name, district, municipality, township, train_line;
 };
 
 /********************** Edge  ****************************/
@@ -76,6 +89,10 @@ public:
     void setSelected(bool selected);
     void setReverse(Edge *reverse);
     void setFlow(double flow);
+
+    void setService(string service);
+    string getService();
+
 protected:
     Vertex * dest; // destination vertex
     double weight; // edge weight, can also be used for capacity
@@ -88,6 +105,8 @@ protected:
     Edge *reverse = nullptr;
 
     double flow; // for flow-related problems
+
+    std::string service;
 };
 
 #endif /* DA_TP_CLASSES_VERTEX_EDGE */
