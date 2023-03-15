@@ -35,6 +35,7 @@ void Manager::ReadStations() {
         getline(partition,train_line,',');
         network.findVertex(id)->setTrainLine(train_line);
 
+        network.findVertex(id)->setIndegree(0);
         id++;
     }
 }
@@ -48,9 +49,8 @@ void Manager::ReadNetworks() {
     }
 
     string line, stationA, stationB, service;
-    int capacity;
-    Vertex* source;
-    Vertex* target;
+    string capacity;
+    int idA, idB;
 
     getline(file, line, '\n'); //skip the first line
 
@@ -60,16 +60,17 @@ void Manager::ReadNetworks() {
 
         getline(partition, stationA, ',');
         getline(partition, stationB, ',');
-        partition >> capacity;
+        getline(partition, capacity, ',');
         getline(partition, service, ',');
 
-        for(auto v: network.getVertexSet()){
-            if(v->getName()==stationA) source = v;
-            if(v->getName()==stationB) target = v;
+        for(auto v: network.getVertexSet()) {
+            if (v->getName() == stationA) {
+                idA = v->getId();
+            }
+            if (v->getName() == stationB){
+                idB = v->getId();
+            }
         }
-
-        Edge* edge = source->addEdge(target, capacity);
-        edge->setService(service);
-
+        network.addBidirectionalEdge(idA,idB,stod(capacity));
     }
 }

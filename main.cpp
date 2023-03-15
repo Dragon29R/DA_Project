@@ -11,4 +11,5 @@ int main() {
     Manager manager;
     manager.ReadStations();
     manager.ReadNetworks();
+
 }

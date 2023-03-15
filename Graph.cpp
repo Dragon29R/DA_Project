@@ -51,6 +51,7 @@ bool Graph::addEdge(const int &sourc, const int &dest, double w) {
     if (v1 == nullptr || v2 == nullptr)
         return false;
     v1->addEdge(v2, w);
+
     return true;
 }
 
