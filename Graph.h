@@ -29,7 +29,7 @@ public:
      * Returns true if successful, and false if the source or destination vertex does not exist.
      */
     bool addEdge(const int &sourc, const int &dest, double w);
-    bool addBidirectionalEdge(const int &sourc, const int &dest, double w);
+    bool addBidirectionalEdge(const int &sourc, const int &dest, double w, string service);
 
     int getNumVertex() const;
     std::vector<Vertex *> getVertexSet() const;

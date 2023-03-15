@@ -50,11 +50,12 @@ void Manager::ReadNetworks() {
 
     string line, stationA, stationB, service;
     string capacity;
-    int idA, idB;
+
 
     getline(file, line, '\n'); //skip the first line
-
+    int counter=0;
     while (file.good()) {
+        int idA=0, idB=0;
         getline(file, line, '\n');
         stringstream partition(line);
 
@@ -71,6 +72,6 @@ void Manager::ReadNetworks() {
                 idB = v->getId();
             }
         }
-        network.addBidirectionalEdge(idA,idB,stod(capacity));
+        network.addBidirectionalEdge(idA,idB,stod(capacity),service);
     }
 }

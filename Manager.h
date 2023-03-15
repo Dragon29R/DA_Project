@@ -22,6 +22,7 @@ public:
 
     Graph network;
 
+
 };
 
 #endif //PROJETO_MANAGER_H

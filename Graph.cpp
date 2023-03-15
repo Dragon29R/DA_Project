@@ -55,13 +55,15 @@ bool Graph::addEdge(const int &sourc, const int &dest, double w) {
     return true;
 }
 
-bool Graph::addBidirectionalEdge(const int &sourc, const int &dest, double w) {
+bool Graph::addBidirectionalEdge(const int &sourc, const int &dest, double w, string service) {
     auto v1 = findVertex(sourc);
     auto v2 = findVertex(dest);
     if (v1 == nullptr || v2 == nullptr)
         return false;
     auto e1 = v1->addEdge(v2, w);
+    e1->setService(service);
     auto e2 = v2->addEdge(v1, w);
+    e2->setService(service);
     e1->setReverse(e2);
     e2->setReverse(e1);
     return true;
