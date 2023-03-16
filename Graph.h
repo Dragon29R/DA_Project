@@ -33,6 +33,7 @@ public:
 
     int getNumVertex() const;
     std::vector<Vertex *> getVertexSet() const;
+    ;
 protected:
     std::vector<Vertex *> vertexSet;    // vertex set
 

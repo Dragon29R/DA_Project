@@ -2,6 +2,7 @@
 
 #include "Graph.h"
 
+
 int Graph::getNumVertex() const {
     return vertexSet.size();
 }

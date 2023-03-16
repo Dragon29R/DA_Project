@@ -5,6 +5,7 @@
 #include <sstream>
 #include <fstream>
 #include <iostream>
+#include <algorithm>
 #include "Graph.h"
 #include "Heap.h"
 #include "UFDS.h"
@@ -12,17 +13,35 @@
 
 class Manager{
 private:
+    double maxflow=0;
 
+    struct StationPair {
+        string source;
+        string dest;
+        double maxFlow;
+    };
+
+    void CreateResidual(Graph &g);
+    void Testandvisit(queue<Vertex *> &q, Edge *e, Vertex *w, double residual);
+    bool FindAugmentingPath(Vertex *s, Vertex *t);
+    double FindMinResidualAlongPath(Vertex *s, Vertex *t);
+    void AugmentedFlowAlongPath(Vertex *s, Vertex *t, double f);
+    void UpdateMaxFlow(double flow){maxflow +=flow;}
+
+    static bool CompareStationPairs(const StationPair& a, const StationPair& b);
 public:
+
+    Graph network;
+
     Manager();
 
     void ReadStations();
 
     void ReadNetworks();
 
-    Graph network;
+    double MaxTrainsBetweenStations(string source,string dest);
 
-
+    void FindMostTrainsBetweenStations();
 };
 
 #endif //PROJETO_MANAGER_H
