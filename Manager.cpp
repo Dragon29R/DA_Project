@@ -1,4 +1,3 @@
-#include <unordered_map>
 #include "Manager.h"
 using namespace std;
 Manager::Manager() {
@@ -78,7 +77,7 @@ void Manager::ReadNetworks() {
 }
 
 double Manager::MaxTrainsBetweenStations(string source, string dest) {
-    int idA = 0, idB = 0;
+    int idA = -1, idB = -1;
     for (Vertex* v : network.getVertexSet()){
         if (v->getName() == source){
             idA = v->getId();
@@ -87,7 +86,7 @@ double Manager::MaxTrainsBetweenStations(string source, string dest) {
             idB = v->getId();
         }
     }
-    if(idA==0 or idB==0){
+    if(idA==-1 or idB==-1){
         cout << "Estações Inválidas";
         return 0;
     }
@@ -169,36 +168,9 @@ void Manager::AugmentedFlowAlongPath(Vertex* s, Vertex* t, double f){
     return;
 }                  //AUX
 
-bool Manager::CompareStationPairs(const StationPair& a, const StationPair& b) {
-    return a.maxFlow > b.maxFlow;
-}
+
 void Manager::FindMostTrainsBetweenStations() {
-    vector<StationPair> pairs;
-    for (Vertex* source : network.getVertexSet()) {
-        for (Vertex* dest : network.getVertexSet()) {
-            if (source != dest) {
-                maxflow = 0;
-                double maxFlow = MaxTrainsBetweenStations(source->getName(), dest->getName());
-                cout << source->getId();
-                StationPair pair = {source->getName(), dest->getName(), maxFlow};
-                pairs.push_back(pair);
-            }
-        }
-    }
-    sort(pairs.begin(), pairs.end(), CompareStationPairs);
-    double maxFlow = pairs.front().maxFlow;
-    vector<StationPair> mostPairs;
-    for (const auto& pair : pairs) {
-        if (pair.maxFlow == maxFlow) {
-            mostPairs.push_back(pair);
-        } else {
-            break;
-        }
-    }
-    std::cout << "Pairs with the most amount of trains required:\n";
-    for (const auto& pair : mostPairs) {
-        std::cout << " - " << pair.source << " -> " << pair.dest << " (" << pair.maxFlow << " trains)\n";
-    }
+
 }
 
 

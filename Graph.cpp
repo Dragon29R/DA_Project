@@ -1,4 +1,3 @@
-// By: Gonçalo Leão
 
 #include "Graph.h"
 

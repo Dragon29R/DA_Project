@@ -13,13 +13,8 @@
 
 class Manager{
 private:
-    double maxflow=0;
+    double maxflow=0;  // EX 2
 
-    struct StationPair {
-        string source;
-        string dest;
-        double maxFlow;
-    };
 
     void CreateResidual(Graph &g);
     void Testandvisit(queue<Vertex *> &q, Edge *e, Vertex *w, double residual);
@@ -28,7 +23,6 @@ private:
     void AugmentedFlowAlongPath(Vertex *s, Vertex *t, double f);
     void UpdateMaxFlow(double flow){maxflow +=flow;}
 
-    static bool CompareStationPairs(const StationPair& a, const StationPair& b);
 public:
 
     Graph network;
@@ -41,7 +35,7 @@ public:
 
     double MaxTrainsBetweenStations(string source,string dest);
 
-    void FindMostTrainsBetweenStations();
+    void FindMostTrainsBetweenStations();  //EX3
 };
 
 #endif //PROJETO_MANAGER_H
