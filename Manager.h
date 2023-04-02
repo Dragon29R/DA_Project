@@ -15,16 +15,19 @@ class Manager{
 private:
     double maxflow=0;  // EX 2
 
-
-    void CreateResidual(Graph &g);
-    void Testandvisit(queue<Vertex *> &q, Edge *e, Vertex *w, double residual);
-    bool FindAugmentingPath(Vertex *s, Vertex *t);
-    double FindMinResidualAlongPath(Vertex *s, Vertex *t);
-    void AugmentedFlowAlongPath(Vertex *s, Vertex *t, double f);
-    void UpdateMaxFlow(double flow){maxflow +=flow;}
+    static void Testandvisit(queue<Vertex *> &q, Edge *e, Vertex *w, double residual); //AUX
+    bool FindAugmentingPath(Vertex *s, Vertex *t); //AUX
+    double FindMinResidualAlongPath(Vertex *s, Vertex *t); //AUX
+    void AugmentedFlowAlongPath(Vertex *s, Vertex *t, double f); //AUX
+    void UpdateMaxFlow(double flow){maxflow +=flow;} //AUX
+    double MaxTrainsBetweenStationsID(int id1, int id2);//AUX
 
 public:
-
+    struct StationPair {
+        int s1;
+        int s2;
+        int MaxTrains;
+    };
     Graph network;
 
     Manager();
@@ -33,9 +36,11 @@ public:
 
     void ReadNetworks();
 
-    double MaxTrainsBetweenStations(string source,string dest);
+    double MaxTrainsBetweenStations(string source,string dest); //2.1
 
-    void FindMostTrainsBetweenStations();  //EX3
+    double FindMaxFlowinStation(string dest);  //2.4
+
+    vector<Manager::StationPair> MaxTrainsPairs(); //2.2
 };
 
 #endif //PROJETO_MANAGER_H

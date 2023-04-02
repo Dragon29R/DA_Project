@@ -53,7 +53,6 @@ void Manager::ReadNetworks() {
 
 
     getline(file, line, '\n'); //skip the first line
-    int counter=0;
     while (file.good()) {
         int idA=0, idB=0;
         getline(file, line, '\n');
@@ -85,13 +84,17 @@ double Manager::MaxTrainsBetweenStations(string source, string dest) {
         if (v->getName() == dest){
             idB = v->getId();
         }
+        if(idA!=-1 and idB!=-1) break;
     }
     if(idA==-1 or idB==-1){
         cout << "Estações Inválidas";
         return 0;
     }
-    Graph g;
-    CreateResidual(g);
+    for(auto v : network.getVertexSet() ){
+        for ( auto e : v->getAdj()){
+            e->setFlow(0);
+        }
+    }
     auto s = network.findVertex(idA);
     auto t = network.findVertex(idB);
     while(FindAugmentingPath(s,t)){
@@ -101,17 +104,6 @@ double Manager::MaxTrainsBetweenStations(string source, string dest) {
     }
     return maxflow;
 }
-void Manager::CreateResidual(Graph &g) {
-    for(auto v: network.getVertexSet()) {
-        g.addVertex(v->getId());
-        for (auto e: v->getAdj()) {
-            e->setFlow(0);
-            Vertex* u = e->getDest();
-            g.addVertex(u->getId());
-            g.addEdge(v->getId(), u->getId(), e->getWeight());
-        }
-    }
-}                                               //AUX
 void Manager::Testandvisit(queue<Vertex *>& q, Edge *e, Vertex *w, double residual) {
     if( ! w->isVisited() && residual>0){
         w->setVisited(true);
@@ -119,7 +111,7 @@ void Manager::Testandvisit(queue<Vertex *>& q, Edge *e, Vertex *w, double residu
         q.push(w);
     }
     return;
-}  //AUX
+}
 bool Manager::FindAugmentingPath(Vertex* s, Vertex* t){
     for( Vertex*  v : network.getVertexSet()){
         v->setVisited(false);
@@ -138,7 +130,7 @@ bool Manager::FindAugmentingPath(Vertex* s, Vertex* t){
         }
     }
     return t->isVisited();
-}                                //AUX
+}
 double Manager::FindMinResidualAlongPath(Vertex* s, Vertex* t){
     double f  = INT_MAX;
     for ( Vertex* v = t ; v!=s ;){
@@ -152,7 +144,7 @@ double Manager::FindMinResidualAlongPath(Vertex* s, Vertex* t){
         }
     }
     return f;
-}                        //AUX
+}
 void Manager::AugmentedFlowAlongPath(Vertex* s, Vertex* t, double f){
     for( auto v = t ; v != s ;){
         Edge* e = v->getPath();
@@ -166,11 +158,63 @@ void Manager::AugmentedFlowAlongPath(Vertex* s, Vertex* t, double f){
         }
     }
     return;
-}                  //AUX
+}
 
 
-void Manager::FindMostTrainsBetweenStations() {
+double Manager::FindMaxFlowinStation(std::string dest) {
+    network.addVertex(9999);
+    network.findVertex(9999)->setName("SuperSource");
+    for(auto v: network.getVertexSet()){
+        if(v->getAdj().size()==1) {
+            network.addBidirectionalEdge(9999,v->getId(),999,"");
+        }
+    }
+    return MaxTrainsBetweenStations("SuperSource",dest);
+}
 
+double Manager::MaxTrainsBetweenStationsID(int id1, int id2) {
+    auto s = network.findVertex(id1);
+    auto t = network.findVertex(id2);
+    for(auto v : network.getVertexSet() ){
+        for ( auto e : v->getAdj()){
+            e->setFlow(0);
+        }
+    }
+    while(FindAugmentingPath(s,t)){
+        auto f = FindMinResidualAlongPath(s,t);
+        AugmentedFlowAlongPath(s,t,f);
+        UpdateMaxFlow(f);
+    }
+    return maxflow;
+}
+
+vector<Manager::StationPair> Manager::MaxTrainsPairs() {
+    vector<StationPair> Pairs;
+    StationPair pair;
+    pair.MaxTrains=0;
+    Pairs.push_back(pair);
+    for(int i=1;i<=network.getVertexSet().size();i++){
+        pair.s1=i;
+        for(int j=i+1;j<=network.getVertexSet().size();j++){
+            maxflow=0;
+            pair.s2=j;
+            pair.MaxTrains = MaxTrainsBetweenStationsID(i,j);
+            if(Pairs[0].MaxTrains<pair.MaxTrains){
+                Pairs.clear();
+                Pairs.push_back(pair);
+            }
+            else if (Pairs[0].MaxTrains==pair.MaxTrains) Pairs.push_back(pair);
+        }
+
+    }
+    for(auto p:Pairs){
+        cout<<network.findVertex(p.s1)->getName();
+        cout<< " -- ";
+        cout<<network.findVertex(p.s2)->getName();
+        cout<<" flow: ";
+        cout<<p.MaxTrains<<endl;
+    }
+    return Pairs;
 }
 
 
