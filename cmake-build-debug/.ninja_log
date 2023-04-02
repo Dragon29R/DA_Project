@@ -1,0 +1,16 @@
+# ninja log v5
+34	539	7007648067975223	CMakeFiles/Projeto.dir/UFDS.cpp.obj	f3dccea2f13f97ed
+3	575	7021670443362410	CMakeFiles/Projeto.dir/main.cpp.obj	7a2e291707893c6a
+3	1295	7021666123725322	CMakeFiles/Projeto.dir/Manager.cpp.obj	53ab7841e9c55f07
+935	1380	7007648076341956	CMakeFiles/Projeto.dir/Heap.cpp.obj	bf768e9eca5814d3
+9	1048	7007648073049939	CMakeFiles/Projeto.dir/VertexEdge.cpp.obj	f188dc53f2da5154
+12	832	7016395705118829	CMakeFiles/Projeto.dir/Graph.cpp.obj	5f650a9b30c3dce5
+576	755	7021670445112348	Projeto.exe	78337265984ad140
+4	524	7021681322609922	build.ninja	a1ced5357afe1b8f
+15	365	7021681448899400	CMakeFiles/Projeto.dir/UFDS.cpp.obj	f3dccea2f13f97ed
+4	784	7021681452999406	CMakeFiles/Projeto.dir/main.cpp.obj	7a2e291707893c6a
+11	808	7021681453219407	CMakeFiles/Projeto.dir/VertexEdge.cpp.obj	f188dc53f2da5154
+808	1127	7021681456549396	CMakeFiles/Projeto.dir/Heap.cpp.obj	bf768e9eca5814d3
+365	1294	7021681458249383	CMakeFiles/Projeto.dir/Manager.cpp.obj	53ab7841e9c55f07
+785	1440	7021681459709376	CMakeFiles/Projeto.dir/Graph.cpp.obj	5f650a9b30c3dce5
+1440	1625	7021681461529512	Projeto.exe	78337265984ad140
