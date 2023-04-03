@@ -60,9 +60,9 @@ public:
 
     double FindMaxFlowinStation(string dest);  //2.4
 
-    double MinCostMaxFlow(string source,string dest);
+    double MinCostMaxFlow(string source,string dest); //3.1
 
-    double BlackListed(vector<pair<int,int>> blacklists,string source,string target); //4.1
+    double BlackListed(vector<pair<string,string>> blacklists,string source,string target); //4.1
 
 
 };

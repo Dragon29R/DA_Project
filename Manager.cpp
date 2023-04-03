@@ -110,10 +110,10 @@ bool Manager::FindAugmentingPath(Vertex* s, Vertex* t){
         Vertex* v = q.front();
         q.pop();
         for( Edge* e : v->getAdj()){
-            Testandvisit(q,e,e->getDest(),e->getWeight() - e->getFlow());
+            if(e->isSelected())Testandvisit(q,e,e->getDest(),e->getWeight() - e->getFlow());
         }
         for(Edge* e : v->getIncoming()){
-            Testandvisit(q,e,e->getOrig(),e->getFlow());
+            if(e->isSelected())Testandvisit(q,e,e->getOrig(),e->getFlow());
         }
     }
     return t->isVisited();
@@ -344,8 +344,40 @@ double Manager::MinCostMaxFlow(string source, string dest) {
 }
 
 
-double Manager::BlackListed(vector<pair<int, int>> blacklists, string source, string target) {
-    return 0;
+double Manager::BlackListed(vector<pair<string, string>> blacklists, string source, string target) {
+    int idS = network.findVertexName(source);
+    int idT = network.findVertexName(target);
+    if(idS==-1 or idT==-1)return -1;
+    for(auto p:blacklists){
+        int id1 = network.findVertexName(p.first);
+        int id2 = network.findVertexName(p.second);
+        if(id1==-1 or id2==-1)return -1;
+        for(auto e : network.findVertex(id1)->getAdj()){
+            if(e->getDest()->getId()==id2){e->setSelected(false);break;}
+        }
+        for(auto e : network.findVertex(id2)->getAdj()){
+            if(e->getDest()->getId()==id1){e->setSelected(false);break;}
+        }
+    }
+    double flow = MaxTrainsBetweenStationsID(idS,idT);
+    for(auto p:blacklists) {
+        int id1 = network.findVertexName(p.first);
+        int id2 = network.findVertexName(p.second);
+        if (id1 == -1 or id2 == -1)return -1;
+        for (auto e: network.findVertex(id1)->getAdj()) {
+            if (e->getDest()->getId() == id2) {
+                e->setSelected(true);
+                break;
+            }
+        }
+        for (auto e: network.findVertex(id2)->getAdj()) {
+            if (e->getDest()->getId() == id1) {
+                e->setSelected(true);
+                break;
+            }
+        }
+    }
+    return flow;
 }
 
 

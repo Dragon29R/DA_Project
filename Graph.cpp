@@ -69,8 +69,10 @@ bool Graph::addBidirectionalEdge(const int &sourc, const int &dest, double w, st
         return false;
     auto e1 = v1->addEdge(v2, w);
     e1->setService(service);
+    e1->setSelected(true);
     auto e2 = v2->addEdge(v1, w);
     e2->setService(service);
+    e2->setSelected(true);
     e1->setReverse(e2);
     e2->setReverse(e1);
     return true;
