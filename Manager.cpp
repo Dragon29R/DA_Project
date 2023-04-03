@@ -70,6 +70,7 @@ void Manager::ReadNetworks() {
 }
 
 double Manager::MaxTrainsBetweenStations(string source, string dest) {
+    maxflow=0;
     int idA = -1, idB = -1;
     idA=network.findVertexName(source);
     idB=network.findVertexName(dest);

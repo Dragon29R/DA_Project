@@ -16,8 +16,7 @@ int main() {
     blacklists.push_back({"Lisboa Oriente","Santarém"});
     blacklists.push_back({"Lisboa Oriente","Lisboa Santa Apolónia"});
 
-
-    cout<<manager.MaxTrainsBetweenStations("Porto Campanhã","Lisboa Oriente")<<endl;
-    cout<<manager.BlackListed(blacklists,"Porto Campanhã","Lisboa Oriente");
+    cout<<manager.MaxTrainsBetweenStations("Lisboa Rossio","Porto Campanhã")<<endl;
+    cout<<manager.MaxTrainsBetweenStations("Porto Campanhã","Lisboa Oriente");
     return 0;
 }
