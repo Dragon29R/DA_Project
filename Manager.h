@@ -29,13 +29,12 @@ public:
     };
     Graph network;
 private:
-    double maxflow=0;  // EX 2
 
     static void Testandvisit(queue<Vertex *> &q, Edge *e, Vertex *w, double residual); //AUX
     bool FindAugmentingPath(Vertex *s, Vertex *t); //AUX
     double FindMinResidualAlongPath(Vertex *s, Vertex *t); //AUX
     void AugmentedFlowAlongPath(Vertex *s, Vertex *t, double f); //AUX
-    void UpdateMaxFlow(double flow){maxflow +=flow;} //AUX
+
     double MaxTrainsBetweenStationsID(int id1, int id2);//AUX
     vector<Vertex*> getVerticesWithMunicipality(string muni);
     vector<Vertex*> getVerticesWithDistrict(string dis);
@@ -63,6 +62,8 @@ public:
     double MinCostMaxFlow(string source,string dest); //3.1
 
     double BlackListed(vector<pair<string,string>> blacklists,string source,string target); //4.1
+
+    vector<stuff> MostAffectedStations(); //4.2
 
 
 };

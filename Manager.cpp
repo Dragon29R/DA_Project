@@ -70,7 +70,7 @@ void Manager::ReadNetworks() {
 }
 
 double Manager::MaxTrainsBetweenStations(string source, string dest) {
-    maxflow=0;
+    double maxflow=0;
     int idA = -1, idB = -1;
     idA=network.findVertexName(source);
     idB=network.findVertexName(dest);
@@ -88,7 +88,7 @@ double Manager::MaxTrainsBetweenStations(string source, string dest) {
     while(FindAugmentingPath(s,t)){
         auto f = FindMinResidualAlongPath(s,t);
         AugmentedFlowAlongPath(s,t,f);
-        UpdateMaxFlow(f);
+        maxflow+=f;
     }
     return maxflow;
 }
@@ -172,7 +172,7 @@ double Manager::FindMaxFlowinStation(std::string dest) {
 }
 
 double Manager::MaxTrainsBetweenStationsID(int id1, int id2) {
-    maxflow=0;
+    double maxflow=0;
     auto s = network.findVertex(id1);
     auto t = network.findVertex(id2);
     for(auto v : network.getVertexSet() ){
@@ -183,7 +183,7 @@ double Manager::MaxTrainsBetweenStationsID(int id1, int id2) {
     while(FindAugmentingPath(s,t)){
         auto f = FindMinResidualAlongPath(s,t);
         AugmentedFlowAlongPath(s,t,f);
-        UpdateMaxFlow(f);
+        maxflow+=f;
     }
     return maxflow;
 }
@@ -196,7 +196,7 @@ vector<Manager::StationPair> Manager::MaxTrainsPairs() {
     for(int i=1;i<=network.getVertexSet().size();i++){
         pair.s1=i;
         for(int j=i+1;j<=network.getVertexSet().size();j++){
-            maxflow=0;
+            double maxflow=0;
             pair.s2=j;
             pair.MaxTrains = MaxTrainsBetweenStationsID(i,j);
             if(Pairs[0].MaxTrains<pair.MaxTrains){
