@@ -11,6 +11,6 @@ int main() {
     Manager manager;
     manager.ReadStations();
     manager.ReadNetworks();
-    vector<Manager::StationPair> res = manager.MaxTrainsPairs();
+    cout << manager.MaxTrainsBetweenStations("Guimarães","Porto Campanhã");
     return 0;
 }

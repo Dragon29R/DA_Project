@@ -173,6 +173,7 @@ double Manager::FindMaxFlowinStation(std::string dest) {
 }
 
 double Manager::MaxTrainsBetweenStationsID(int id1, int id2) {
+    maxflow=0;
     auto s = network.findVertex(id1);
     auto t = network.findVertex(id2);
     for(auto v : network.getVertexSet() ){
@@ -216,5 +217,129 @@ vector<Manager::StationPair> Manager::MaxTrainsPairs() {
     }
     return Pairs;
 }
+
+bool compareMunicipalities(const Manager::Municipality& a, const Manager::Municipality& b) {
+    return a.flow > b.flow;
+}
+vector<Manager::Municipality> Manager::getAllMunicipalities(){
+    vector<Manager::Municipality> res;
+    for (auto v : network.getVertexSet()) {
+        if(v->getMunicipality()=="")continue;
+        bool exists = false;
+        for (auto& m : res) {
+            if (m.name == v->getMunicipality()) {
+                exists = true;
+                break;
+            }
+        }
+        if (!exists) {
+            Municipality m1;
+            m1.name = v->getMunicipality();
+            m1.flow = 0;
+            res.push_back(m1);
+        }
+    }
+    return res;
+}
+vector<Vertex *> Manager::getVerticesWithMunicipality(string muni) {
+    vector<Vertex*> sets;
+    for (auto v: network.getVertexSet()) {
+        if (v->getMunicipality() == muni) {
+            sets.push_back(v);
+        }
+    }
+    return sets;
+}
+vector<Manager::Municipality> Manager::TopkMunicipalities(int n) {
+    vector<Manager::Municipality> res = getAllMunicipalities();
+    for (auto& m : res) {
+        vector<Vertex*> vertices = getVerticesWithMunicipality(m.name);
+        double max_flow = 0;
+        for (int i = 0; i < vertices.size(); i++) {
+            for (int j = i + 1; j < vertices.size(); j++) {
+                double local_flow;
+                local_flow = MaxTrainsBetweenStationsID(vertices[i]->getId(), vertices[j]->getId());
+                max_flow+=local_flow;
+            }
+        }
+        m.flow = max_flow;
+    }
+    sort(res.begin(), res.end(), compareMunicipalities);
+    if(n>res.size()){
+        for(auto m:res){
+            cout<<m.name;
+            cout<< " " + to_string(m.flow)<<endl;
+        }
+        return res;
+    }
+    for(int i=0;i<n;i++){
+        cout<<res[i].name;
+        cout<<res[i].flow<<endl;
+    }
+    return res;
+}
+
+bool compareDistricts(const Manager::District& a, const Manager::District& b) {
+    return a.flow > b.flow;
+}
+vector<Vertex *> Manager::getVerticesWithDistrict(string dis) {
+    vector<Vertex*> sets;
+    for (auto v: network.getVertexSet()) {
+        if (v->getDistrict() == dis) {
+            sets.push_back(v);
+        }
+    }
+    return sets;
+}
+vector<Manager::District> Manager::getAllDistricts() {
+    vector<Manager::District> res;
+    for (auto v : network.getVertexSet()) {
+        if(v->getDistrict()=="")continue;
+        bool exists = false;
+        for (auto& m : res) {
+            if (m.name == v->getDistrict()) {
+                exists = true;
+                break;
+            }
+        }
+        if (!exists) {
+            District d1;
+            d1.name = v->getDistrict();
+            d1.flow = 0;
+            res.push_back(d1);
+        }
+    }
+    return res;
+}
+vector<Manager::District> Manager::TopkDistricts(int n) {
+    vector<Manager::District> res = getAllDistricts();
+    for (auto& d : res) {
+        vector<Vertex*> vertices = getVerticesWithDistrict(d.name);
+        double max_flow = 0;
+        for (int i = 0; i < vertices.size(); i++) {
+            for (int j = i + 1; j < vertices.size(); j++) {
+                double local_flow;
+                local_flow = MaxTrainsBetweenStationsID(vertices[i]->getId(), vertices[j]->getId());
+                max_flow+=local_flow;
+            }
+        }
+        d.flow = max_flow;
+    }
+    sort(res.begin(), res.end(), compareDistricts);
+    if(n>res.size()){
+        for(auto d:res){
+            cout<<d.name;
+            cout<< " " + to_string(d.flow)<<endl;
+        }
+        return res;
+    }
+    for(int i=0;i<n;i++){
+        cout<<res[i].name;
+        cout<< " " + to_string(res[i].flow);
+    }
+    return res;
+}
+
+
 
 

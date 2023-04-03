@@ -12,6 +12,21 @@
 #include "VertexEdge.h"
 
 class Manager{
+public:
+    struct StationPair {
+        int s1;
+        int s2;
+        int MaxTrains;
+    };
+    struct Municipality{
+        string name;
+        double flow;
+    };
+    struct District{
+        string name;
+        double flow;
+    };
+    Graph network;
 private:
     double maxflow=0;  // EX 2
 
@@ -21,14 +36,14 @@ private:
     void AugmentedFlowAlongPath(Vertex *s, Vertex *t, double f); //AUX
     void UpdateMaxFlow(double flow){maxflow +=flow;} //AUX
     double MaxTrainsBetweenStationsID(int id1, int id2);//AUX
+    vector<Vertex*> getVerticesWithMunicipality(string muni);
+    vector<Vertex*> getVerticesWithDistrict(string dis);
+    vector<Manager::Municipality> getAllMunicipalities();
+    vector<Manager::District> getAllDistricts();
+
 
 public:
-    struct StationPair {
-        int s1;
-        int s2;
-        int MaxTrains;
-    };
-    Graph network;
+
 
     Manager();
 
@@ -38,9 +53,14 @@ public:
 
     double MaxTrainsBetweenStations(string source,string dest); //2.1
 
+    vector<Manager::StationPair> MaxTrainsPairs(); //2.2
+
+    vector<Manager::Municipality> TopkMunicipalities(int n); //2.3
+    vector<Manager::District> TopkDistricts(int n); //2.3
+
     double FindMaxFlowinStation(string dest);  //2.4
 
-    vector<Manager::StationPair> MaxTrainsPairs(); //2.2
+
 };
 
 #endif //PROJETO_MANAGER_H
