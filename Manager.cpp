@@ -164,12 +164,23 @@ void Manager::AugmentedFlowAlongPath(Vertex* s, Vertex* t, double f){
 double Manager::FindMaxFlowinStation(std::string dest) {
     network.addVertex(9999);
     network.findVertex(9999)->setName("SuperSource");
+    vector<int> sources;
     for(auto v: network.getVertexSet()){
         if(v->getAdj().size()==1) {
+            sources.push_back(v->getId());
             network.addBidirectionalEdge(9999,v->getId(),999,"");
         }
     }
-    return MaxTrainsBetweenStations("SuperSource",dest);
+
+    double flow = MaxTrainsBetweenStations("SuperSource",dest);
+    auto rem = network.findVertex(9999);
+    for(auto v:sources){
+        rem->removeEdge(v);
+    }
+    for(auto v=network.getVertexSet().begin();v!=network.getVertexSet().end();v++){
+        if((*v)->getId()==9999) network.getVertexSet().erase(v);
+    }
+    return flow;
 }
 
 double Manager::MaxTrainsBetweenStationsID(int id1, int id2) {
