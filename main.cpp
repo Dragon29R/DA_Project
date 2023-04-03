@@ -11,6 +11,6 @@ int main() {
     Manager manager;
     manager.ReadStations();
     manager.ReadNetworks();
-    cout << manager.FindMaxFlowinStation("Porto Campanhã");
+    cout << manager.FindMaxFlowinStation("Aguda");
     return 0;
 }

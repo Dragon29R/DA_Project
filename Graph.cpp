@@ -29,6 +29,13 @@ int Graph::findVertexIdx(const int &id) const {
             return i;
     return -1;
 }
+int Graph::findVertexName(const string name){
+
+    for(auto v:vertexSet){
+        if(v->getName()==name)return v->getId();
+    }
+    return -1;
+}
 /*
  *  Adds a vertex with a given content or info (in) to a graph (this).
  *  Returns true if successful, and false if a vertex with that content already exists.

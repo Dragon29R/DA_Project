@@ -6,6 +6,7 @@
 #include <fstream>
 #include <iostream>
 #include <algorithm>
+#include <limits>
 #include "Graph.h"
 #include "Heap.h"
 #include "UFDS.h"
@@ -20,11 +21,11 @@ public:
     };
     struct Municipality{
         string name;
-        double flow;
+        int flow;
     };
     struct District{
         string name;
-        double flow;
+        int flow;
     };
     Graph network;
 private:
@@ -40,7 +41,6 @@ private:
     vector<Vertex*> getVerticesWithDistrict(string dis);
     vector<Manager::Municipality> getAllMunicipalities();
     vector<Manager::District> getAllDistricts();
-
 
 public:
 
@@ -59,6 +59,10 @@ public:
     vector<Manager::District> TopkDistricts(int n); //2.3
 
     double FindMaxFlowinStation(string dest);  //2.4
+
+    double MinCostMaxFlow(string source,string dest);
+
+    double BlackListed(vector<pair<int,int>> blacklists,string source,string target); //4.1
 
 
 };

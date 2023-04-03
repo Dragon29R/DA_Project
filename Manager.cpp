@@ -63,29 +63,16 @@ void Manager::ReadNetworks() {
         getline(partition, capacity, ',');
         getline(partition, service, ',');
 
-        for(auto v: network.getVertexSet()) {
-            if (v->getName() == stationA) {
-                idA = v->getId();
-            }
-            if (v->getName() == stationB){
-                idB = v->getId();
-            }
-        }
+        idA=network.findVertexName(stationA);
+        idB=network.findVertexName(stationB);
         network.addBidirectionalEdge(idA,idB,stod(capacity),service);
     }
 }
 
 double Manager::MaxTrainsBetweenStations(string source, string dest) {
     int idA = -1, idB = -1;
-    for (Vertex* v : network.getVertexSet()){
-        if (v->getName() == source){
-            idA = v->getId();
-        }
-        if (v->getName() == dest){
-            idB = v->getId();
-        }
-        if(idA!=-1 and idB!=-1) break;
-    }
+    idA=network.findVertexName(source);
+    idB=network.findVertexName(dest);
     if(idA==-1 or idB==-1){
         cout << "Estações Inválidas";
         return 0;
@@ -285,7 +272,7 @@ vector<Manager::Municipality> Manager::TopkMunicipalities(int n) {
     }
     for(int i=0;i<n;i++){
         cout<<res[i].name;
-        cout<<res[i].flow<<endl;
+        cout<<" " + to_string(res[i].flow)  <<endl;
     }
     return res;
 }
@@ -329,7 +316,7 @@ vector<Manager::District> Manager::TopkDistricts(int n) {
         double max_flow = 0;
         for (int i = 0; i < vertices.size(); i++) {
             for (int j = i + 1; j < vertices.size(); j++) {
-                double local_flow;
+                int local_flow;
                 local_flow = MaxTrainsBetweenStationsID(vertices[i]->getId(), vertices[j]->getId());
                 max_flow+=local_flow;
             }
@@ -346,10 +333,21 @@ vector<Manager::District> Manager::TopkDistricts(int n) {
     }
     for(int i=0;i<n;i++){
         cout<<res[i].name;
-        cout<< " " + to_string(res[i].flow);
+        cout<< " " + to_string(res[i].flow) <<endl;
     }
     return res;
 }
+
+
+double Manager::MinCostMaxFlow(string source, string dest) {
+    return 0;
+}
+
+
+double Manager::BlackListed(vector<pair<int, int>> blacklists, string source, string target) {
+    return 0;
+}
+
 
 
 
