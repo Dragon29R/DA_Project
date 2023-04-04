@@ -67,6 +67,11 @@ public:
     vector<int> MostAffectedStations(); //4.2
 
 
+    vector<Graph::AfectedStation> Report_On_Stations_After_Failure(vector<pair<string, string>> blacklists);
+
+    double FindMaxFlowinStationInFailure(string dest);
+
+    vector<Graph::AfectedStation> Report_On_Stations_After_Failure(int top, vector<pair<string, string>> blacklists);
 };
 
 #endif //PROJETO_MANAGER_H

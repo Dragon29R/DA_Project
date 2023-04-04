@@ -100,3 +100,18 @@ Graph::~Graph() {
     deleteMatrix(distMatrix, vertexSet.size());
     deleteMatrix(pathMatrix, vertexSet.size());
 }
+bool Graph::removeVertex(const int &id) {
+    for (auto it = vertexSet.begin(); it != vertexSet.end(); it++) {
+        if ((*it)->getId() == id) {
+            auto v = *it;
+            v->removeOutgoingEdges();
+            for (auto u : vertexSet) {
+                u->removeEdge(v->getId());
+            }
+            vertexSet.erase(it);
+            delete v;
+            return true;
+        }
+    }
+    return false;
+}
