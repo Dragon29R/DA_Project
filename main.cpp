@@ -12,8 +12,7 @@ int main() {
     manager.ReadStations();
     manager.ReadNetworks();
     vector<pair<string,string>> blacklists;
-    blacklists.push_back({"Lisboa Oriente","Entroncamento"});
-    blacklists.push_back({"Lisboa Oriente","Santarém"});
-    blacklists.push_back({"Lisboa Oriente","Lisboa Santa Apolónia"});
+    blacklists.push_back({"Porto Campanhã","Espinho"});
+    cout<< manager.MinCostMaxFlow("Lisboa Oriente","Porto Campanhã");
     return 0;
 }

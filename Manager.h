@@ -30,16 +30,17 @@ public:
     Graph network;
 private:
 
-    static void Testandvisit(queue<Vertex *> &q, Edge *e, Vertex *w, double residual); //AUX
-    bool FindAugmentingPath(Vertex *s, Vertex *t); //AUX
-    double FindMinResidualAlongPath(Vertex *s, Vertex *t); //AUX
-    void AugmentedFlowAlongPath(Vertex *s, Vertex *t, double f); //AUX
-
-    double MaxTrainsBetweenStationsID(int id1, int id2);//AUX
+    static void Testandvisit(queue<Vertex *> &q, Edge *e, Vertex *w, double residual);
+    bool FindAugmentingPath(Vertex *s, Vertex *t);
+    double FindMinResidualAlongPath(Vertex *s, Vertex *t);
+    void AugmentedFlowAlongPath(Vertex *s, Vertex *t, double f);
+    double MaxTrainsBetweenStationsID(int id1, int id2);
     vector<Vertex*> getVerticesWithMunicipality(string muni);
     vector<Vertex*> getVerticesWithDistrict(string dis);
     vector<Manager::Municipality> getAllMunicipalities();
     vector<Manager::District> getAllDistricts();
+    vector<Vertex *> Prim();
+    bool FindAugmentingPathDijkstra(Vertex *s,Vertex *t, double &min);
 
 public:
 
@@ -63,7 +64,7 @@ public:
 
     double BlackListed(vector<pair<string,string>> blacklists,string source,string target); //4.1
 
-    vector<stuff> MostAffectedStations(); //4.2
+    vector<int> MostAffectedStations(); //4.2
 
 
 };

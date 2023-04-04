@@ -339,12 +339,6 @@ vector<Manager::District> Manager::TopkDistricts(int n) {
     return res;
 }
 
-
-double Manager::MinCostMaxFlow(string source, string dest) {
-    return 0;
-}
-
-
 double Manager::BlackListed(vector<pair<string, string>> blacklists, string source, string target) {
     int idS = network.findVertexName(source);
     int idT = network.findVertexName(target);
@@ -382,6 +376,85 @@ double Manager::BlackListed(vector<pair<string, string>> blacklists, string sour
 }
 
 
+bool Manager::FindAugmentingPathDijkstra(Vertex *s, Vertex *t, double &min) {
+
+    return t->isVisited();
+}
+double Manager::MinCostMaxFlow(string source, string dest) {
+    priority_queue<Vertex*> pq;
+    int ids = network.findVertexName(source);
+    Vertex* S = network.findVertex(ids);
+    for( Vertex*  v : network.getVertexSet()){
+        v->setVisited(false);
+        v->setDist(INT_MAX);
+        v->setPath(nullptr);
+    }
+    S->setDist(0);
+    pq.push(S);
+    int idd = network.findVertexName(dest);
+    while(!pq.empty()){
+
+        Vertex* v = pq.top();
+        pq.pop();
+        if(v->isVisited()){
+            continue;
+        }
+        v->setVisited(true);
+        if(v->getId()==idd){
+            break;
+        }
+        for (Edge *e : v->getAdj()) {
+            Vertex *w = e->getDest();
+            double weight;
+            if(e->getService()=="STANDARD")weight=2;
+            else weight=4;
+            if (v->getDist() + weight < w->getDist()) {
+                w->setDist(v->getDist() + weight);
+                w->setPath(e);
+                pq.push(w);
+            }
+        }
+    }
+    int Standard_lines = 0;
+    int ALFA_lines = 0;
+    double bottleneck_capacity = INT_MAX;
+    Edge *e = network.findVertex(idd)->getPath();
+    while (e != nullptr) {
+        cout << e->getOrig()->getName() << "-----";
+        cout << e->getDest()->getName() + " capacity: " + to_string(e->getWeight()) + e->getService()<<endl;
+        if (e->getWeight() < bottleneck_capacity) {
+            bottleneck_capacity = e->getWeight();
+        }
+        if(e->getService()=="STANDARD")Standard_lines++;
+        else ALFA_lines++;
+        e = e->getOrig()->getPath();
+    }
+    cout<< bottleneck_capacity<<endl;
+    return (Standard_lines*2 + ALFA_lines*4)*bottleneck_capacity;
+}
 
 
+
+
+/*double flow=0;
+    double min = INT_MAX;
+    int idA = -1, idB = -1;
+    idA=network.findVertexName(source);
+    idB=network.findVertexName(dest);
+    if(idA==-1 or idB==-1){
+        cout << "Estações Inválidas";
+        return 0;
+    }
+    for(auto v : network.getVertexSet() ){
+        for ( auto e : v->getAdj()){
+            e->setFlow(0);
+        }
+    }
+    auto s = network.findVertex(idA);
+    auto t = network.findVertex(idB);
+    while(FindAugmentingPathDijkstra(s,t,min)){
+        auto f = FindMinResidualAlongPath(s,t);
+        AugmentedFlowAlongPath(s,t,f);
+        flow+=f;
+    }*/
 
