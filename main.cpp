@@ -334,6 +334,7 @@ void ShowReport_On_Stations_After_Failure(Manager &manager) { //4.2
     cout << "Before:  After:  Station:" << endl;
     cout << "______________________________________" << endl;
     for (Graph::AfectedStation s : affectedStations) {
+        if(s.numTrainsBefore-s.numTrainsAfter==0)continue;
         cout << left << setw(5) << s.numTrainsBefore << setw(4) << "->" << setw(8) << s.numTrainsAfter << s.station->getName() << endl;
     }
     cout << endl;
