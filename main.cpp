@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include <iomanip>
+#include <math.h>
 #include "Graph.h"
 #include "Heap.h"
 #include "UFDS.h"
@@ -178,7 +179,7 @@ void ShowMaxTrainsBetweenStations(Manager &manager) { //2.1
         return;
     }
 
-    cout << "The maximum amount of trains that can travel simultaneously between " << source << " and " << dest << "  at current capacity is: " << n << endl << endl;
+    cout << "The maximum amount of trains that can travel simultaneously between " << source << " and " << dest << " at current capacity is: " << n << endl << endl;
 }
 
 void ShowMaxTrainsPairs(Manager &manager) { //2.2
@@ -213,10 +214,11 @@ void ShowTopkMunicipalities(Manager &manager) { //2.3
 
     vector<Manager::Municipality> municipalities = manager.TopkMunicipalities(n);
 
-    cout << "Trains:" << setw(10) << "City:" << endl;
-    for (Manager::Municipality m : municipalities) {
-        cout << "_______________________________" << endl;
-        cout << m.flow << setw(10) << m.name << endl;
+    cout << left << setw(10) << "Index:" << setw(10) << "Trains:" << "Municipality:" << endl;
+    cout << "___________________________________________" << endl;
+    for (int i = 0; i < municipalities.size(); i++) {
+        Manager::Municipality m = municipalities[i];
+        cout << i + 1 << setw(9 - (int) log10(i + 1)) << "." << setw(10) << m.flow << m.name << endl;
     }
     cout << endl;
 }
@@ -235,10 +237,11 @@ void ShowTopkDistricts(Manager &manager) { //2.3
 
     vector<Manager::District> districts = manager.TopkDistricts(n);
 
-    cout << "Trains:" << setw(10) << "City:" << endl;
-    for (Manager::District d : districts) {
-        cout << "_______________________________" << endl;
-        cout << d.flow << setw(10) << d.name << endl;
+    cout << left << setw(10) << "Index:" << setw(10) << "Trains:" << "District:" << endl;
+    cout << "___________________________________________" << endl;
+    for (int i = 0; i < districts.size(); i++) {
+        Manager::District d = districts[i];
+        cout << i + 1 << setw(9 - (int) log10(i + 1)) << "." << setw(10) << d.flow << d.name << endl;
     }
     cout << endl;
 }
