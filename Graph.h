@@ -12,6 +12,11 @@
 
 class Graph {
 public:
+    struct AfectedStation{
+        Vertex* station;
+        double numTrainsBefore;
+        double numTrainsAfter;
+    };
     ~Graph();
     /*
     * Auxiliary function to find a vertex with a given ID.
@@ -35,6 +40,14 @@ public:
     std::vector<Vertex *> getVertexSet() const;
 
     int findVertexName(const string name);
+
+    bool removeVertex(const int &id);
+
+    vector<Vertex *> getStationsOnMunicipality(string muni);
+
+    vector<Vertex *> getStationsOnDistrict(string district);
+
+    vector<Vertex *> getStationsOnTown(string town);
 
 protected:
     std::vector<Vertex *> vertexSet;    // vertex set

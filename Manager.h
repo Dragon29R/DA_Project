@@ -39,8 +39,13 @@ private:
     vector<Vertex*> getVerticesWithDistrict(string dis);
     vector<Manager::Municipality> getAllMunicipalities();
     vector<Manager::District> getAllDistricts();
-    vector<Vertex *> Prim();
-    bool FindAugmentingPathDijkstra(Vertex *s,Vertex *t, double &min);
+    bool FindAugmentingPathDistrict(Vertex *s, Vertex *t);
+    double MaxTrainsBetweenStationsIDDistrict(int id1, int id2);
+    double MaxTrainsBetweenStationsIDMunicipy(int id1, int id2);
+    bool FindAugmentingPathMunicipy(Vertex *s, Vertex *t);
+
+    bool findArgumentingPathDijkstra(Vertex* s,Vertex* t,int &price);
+    void testAndVisitDisjka(MutablePriorityQueue<Vertex>& q,Edge* e ,Vertex* w ,double residual , int dist_init);
 
 public:
 
@@ -64,7 +69,7 @@ public:
 
     double BlackListed(vector<pair<string,string>> blacklists,string source,string target); //4.1
 
-    vector<int> MostAffectedStations(); //4.2
+    vector<Graph::AfectedStation> Report_On_Stations_After_Failure(int top, vector<pair<string, string>> blacklists);
 
 
 };

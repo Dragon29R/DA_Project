@@ -1,4 +1,3 @@
-
 #include "Graph.h"
 
 
@@ -99,4 +98,40 @@ void deleteMatrix(double **m, int n) {
 Graph::~Graph() {
     deleteMatrix(distMatrix, vertexSet.size());
     deleteMatrix(pathMatrix, vertexSet.size());
+}
+bool Graph::removeVertex(const int &id) {
+    for (auto it = vertexSet.begin(); it != vertexSet.end(); it++) {
+        if ((*it)->getId() == id) {
+            auto v = *it;
+            v->removeOutgoingEdges();
+            for (auto u : vertexSet) {
+                u->removeEdge(v->getId());
+            }
+            vertexSet.erase(it);
+            delete v;
+            return true;
+        }
+    }
+    return false;
+}
+vector<Vertex*> Graph::getStationsOnDistrict(string district){
+    vector<Vertex*> stations;
+    for(auto v:vertexSet){
+        if(v->getDistrict()==district)stations.push_back(v);
+    }
+    return stations;
+}
+vector<Vertex*> Graph::getStationsOnMunicipality(string muni) {
+    vector<Vertex*> stations;
+    for(auto v:vertexSet){
+        if(v->getMunicipality()==muni)stations.push_back(v);
+    }
+    return stations;
+}
+vector<Vertex*> Graph::getStationsOnTown(string town) {
+    vector<Vertex*> stations;
+    for(auto v:vertexSet){
+        if(v->getTownship()==town)stations.push_back(v);
+    }
+    return stations;
 }
