@@ -459,7 +459,7 @@ double Manager::BlackListed(vector<pair<string, string>> blacklists, string sour
 }
 
 double Manager::MinCostMaxFlow(string source, string dest) {
-    priority_queue<Vertex*> pq;
+    priority_queue<pair<double,Vertex*>> pq;
     int ids=-1, idd=-1;
     ids = network.findVertexName(source);
     idd = network.findVertexName(dest);
@@ -471,28 +471,28 @@ double Manager::MinCostMaxFlow(string source, string dest) {
         v->setPath(nullptr);
     }
     S->setDist(0);
-    pq.push(S);
+    pq.push({0,S});
 
     while(!pq.empty()){
 
-        Vertex* v = pq.top();
+        pair<double,Vertex*> v = pq.top();
         pq.pop();
-        if(v->isVisited()){
+        if(v.second->isVisited()){
             continue;
         }
-        v->setVisited(true);
-        if(v->getId()==idd){
+        v.second->setVisited(true);
+        if(v.second->getId()==idd){
             break;
         }
-        for (Edge *e : v->getAdj()) {
+        for (Edge *e : v.second->getAdj()) {
             Vertex *w = e->getDest();
             double weight;
             if(e->getService()=="STANDARD")weight=2;
             else weight=4;
-            if (v->getDist() + weight < w->getDist()) {
-                w->setDist(v->getDist() + weight);
+            if (v.second->getDist() + weight < w->getDist()) {
+                w->setDist(v.second->getDist() + weight);
                 w->setPath(e);
-                pq.push(w);
+                pq.push({v.second->getDist() + weight,w});
             }
         }
     }
@@ -501,8 +501,8 @@ double Manager::MinCostMaxFlow(string source, string dest) {
     double bottleneck_capacity = INT_MAX;
     Edge *e = network.findVertex(idd)->getPath();
     while (e != nullptr) {
-        //cout << e->getOrig()->getName() << "-----";
-        //cout << e->getDest()->getName() + " capacity: " + to_string(e->getWeight()) + e->getService()<<endl;
+        cout << e->getOrig()->getName() << "-----";
+        cout << e->getDest()->getName() + " capacity: " + to_string(e->getWeight()) + e->getService()<<endl;
         if (e->getWeight() < bottleneck_capacity) {
             bottleneck_capacity = e->getWeight();
         }
@@ -510,7 +510,7 @@ double Manager::MinCostMaxFlow(string source, string dest) {
         else ALFA_lines++;
         e = e->getOrig()->getPath();
     }
-    //cout<< bottleneck_capacity<<endl;
+    cout<< bottleneck_capacity<<endl;
     return (Standard_lines*2 + ALFA_lines*4)*bottleneck_capacity;
 }
 
