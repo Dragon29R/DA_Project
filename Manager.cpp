@@ -260,7 +260,7 @@ double Manager::MaxTrainsBetweenStationsIDMunicipy(int id1, int id2) {
     }
     return maxflow;
 }
-bool Manager::FindAugmentingPathMunicipy(Vertex *s, Vertex *t) {
+bool Manager::FindAugmentingPathMunicipy(Vertex *s, Vertex *t){
     for(Vertex* v : network.getVertexSet())
         v->setVisited(false);
 
