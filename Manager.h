@@ -44,6 +44,9 @@ private:
     double MaxTrainsBetweenStationsIDMunicipy(int id1, int id2);
     bool FindAugmentingPathMunicipy(Vertex *s, Vertex *t);
 
+    bool findArgumentingPathDijkstra(Vertex* s,Vertex* t,int &price);
+    void testAndVisitDisjka(MutablePriorityQueue<Vertex>& q,Edge* e ,Vertex* w ,double residual , int dist_init);
+
 public:
 
 

@@ -458,60 +458,72 @@ double Manager::BlackListed(vector<pair<string, string>> blacklists, string sour
     return flow;
 }
 
-double Manager::MinCostMaxFlow(string source, string dest) {
-    priority_queue<pair<double,Vertex*>> pq;
-    int ids=-1, idd=-1;
-    ids = network.findVertexName(source);
-    idd = network.findVertexName(dest);
-    if(ids ==-1 or idd == -1) return -1;
-    Vertex* S = network.findVertex(ids);
+bool Manager::findArgumentingPathDijkstra(Vertex *s, Vertex *t, int &price) {
     for( Vertex*  v : network.getVertexSet()){
         v->setVisited(false);
-        v->setDist(INT_MAX);
-        v->setPath(nullptr);
+        v->setDist(INT16_MAX);
     }
-    S->setDist(0);
-    pq.push({0,S});
+    s->setVisited(true);
+    MutablePriorityQueue<Vertex> q;
+    s->setDist(0);
+    q.insert(s);
+    while(!q.empty() && !t->isVisited()){
+        Vertex* v = q.extractMin();
+        for( Edge* e : v->getAdj()){
+            testAndVisitDisjka(q,e,e->getDest(),e->getWeight() - e->getFlow(),v->getDist());
+        }
+        for(Edge* e : v->getIncoming()){
+            testAndVisitDisjka(q,e,e->getOrig(),e->getFlow(),v->getDist());
+        }
+    }
+    //cout<<"\nprice min :"<<t->getDist()<<"\n";
+    if(t->getDist()<price){
+        price = t->getDist();
+    }
+    if(t->getDist()>price){
+        return false;
+    }
 
-    while(!pq.empty()){
+    return t->isVisited();
+}
+void Manager::testAndVisitDisjka(MutablePriorityQueue<Vertex>& q,Edge* e ,Vertex* w ,double residual , int dist_init){
+    if( ! w->isVisited() && residual>0){
+        w->setVisited(true);
+        w->setPath(e);
+        if(e->getService() == "STANDARD"){
+            w->setDist(dist_init+2);
+        }else{
+            w->setDist(dist_init+4);
+        }
 
-        pair<double,Vertex*> v = pq.top();
-        pq.pop();
-        if(v.second->isVisited()){
-            continue;
-        }
-        v.second->setVisited(true);
-        if(v.second->getId()==idd){
-            break;
-        }
-        for (Edge *e : v.second->getAdj()) {
-            Vertex *w = e->getDest();
-            double weight;
-            if(e->getService()=="STANDARD")weight=2;
-            else weight=4;
-            if (v.second->getDist() + weight < w->getDist()) {
-                w->setDist(v.second->getDist() + weight);
-                w->setPath(e);
-                pq.push({v.second->getDist() + weight,w});
-            }
+        q.insert(w);
+    }
+    return;
+}
+double Manager::MinCostMaxFlow(string source, string dest) {
+    int s = network.findVertexName(source);
+    Vertex* sourc = network.findVertex(s);
+    int d = network.findVertexName(dest);
+    Vertex* des = network.findVertex(d);
+    int price = INT16_MAX;
+    if(sourc == nullptr || des == nullptr || sourc == des)
+        return -1;
+    for(auto v : network.getVertexSet() ){
+        for ( auto e : v->getAdj()){
+            e->setFlow(0);
         }
     }
-    int Standard_lines = 0;
-    int ALFA_lines = 0;
-    double bottleneck_capacity = INT_MAX;
-    Edge *e = network.findVertex(idd)->getPath();
-    while (e != nullptr) {
-        cout << e->getOrig()->getName() << "-----";
-        cout << e->getDest()->getName() + " capacity: " + to_string(e->getWeight()) + e->getService()<<endl;
-        if (e->getWeight() < bottleneck_capacity) {
-            bottleneck_capacity = e->getWeight();
-        }
-        if(e->getService()=="STANDARD")Standard_lines++;
-        else ALFA_lines++;
-        e = e->getOrig()->getPath();
+    while(findArgumentingPathDijkstra(sourc,des,price)){
+        int f = FindMinResidualAlongPath(sourc,des);
+        AugmentedFlowAlongPath(sourc,des,f);
     }
-    cout<< bottleneck_capacity<<endl;
-    return (Standard_lines*2 + ALFA_lines*4)*bottleneck_capacity;
+    int bottleneck_capacity = 0;
+    for(auto i : des->getIncoming()){
+        bottleneck_capacity +=i->getFlow();
+    }
+    cout<< "The price for each train is: "+ to_string(price) +". The total price is: "+ to_string(price*bottleneck_capacity)  <<endl;
+    return bottleneck_capacity;
+
 }
 
 vector<Graph::AfectedStation> Manager::Report_On_Stations_After_Failure(int top, vector<pair<string, string>> blacklists) {
@@ -564,6 +576,9 @@ vector<Graph::AfectedStation> Manager::Report_On_Stations_After_Failure(int top,
 
     return result;
 }
+
+
+
 
 
 
