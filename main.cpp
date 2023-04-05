@@ -47,7 +47,7 @@ int main() {
 void MainMenu(Manager &manager) {
     while (true) {
         //Get input
-        int input;
+        string input;
         do {
             cout << "Main Menu" << endl;
             cout << "Select one of the following options: " << endl;
@@ -59,21 +59,21 @@ void MainMenu(Manager &manager) {
             cout << "Type option: ";
             cin >> input;
             cout << endl;
-            if (!(input == 1 || input == 2 || input == 3 || input== 4 || input == 9))
+            if (!(input == "1" || input == "2" || input == "3" || input== "4" || input == "9"))
                 cout <<  "Option " << input << " doesn't exist. Try again." << endl;
-        } while (!(input == 1 || input == 2 || input == 3 || input== 4 || input == 9));
+        } while (!(input == "1" || input == "2" || input == "3" || input== "4" || input == "9"));
 
         //Menu options
-        if (input == 1)
+        if (input == "1")
             BasicServiceMetricsMenu(manager);
-        else if (input == 2)
+        else if (input == "2")
             OperationCostOptimizationMenu(manager);
-        else if (input == 3)
+        else if (input == "3")
             ReliabilityMenu(manager);
-        else if (input == 4) {
+        else if (input == "4") {
             ListingMenu(manager);
         }
-        else if (input == 9) {
+        else if (input == "9") {
             cout << "Program successfully closed" << endl;
             return;
         }
@@ -83,7 +83,7 @@ void MainMenu(Manager &manager) {
 void BasicServiceMetricsMenu(Manager &manager) {
     while (true) {
         //Get input
-        int input;
+        string input;
         do {
             cout << "Basic Service Metrics Menu" << endl;
             cout << "Select one of the following options: " << endl;
@@ -96,22 +96,22 @@ void BasicServiceMetricsMenu(Manager &manager) {
             cout << "Type option: ";
             cin >> input;
             cout << endl;
-            if (!(input == 1 || input == 2 || input == 3 || input == 4 || input == 5 || input == 9))
+            if (!(input == "1" || input == "2" || input == "3" || input == "4" || input == "5" || input == "9"))
                 cout <<  "Option " << input << " doesn't exist. Try again." << endl;
-        } while (!(input == 1 || input == 2 || input == 3 || input == 4 || input == 5 || input == 9));
+        } while (!(input == "1" || input == "2" || input == "3" || input == "4" || input == "5" || input == "9"));
 
         //Menu options
-        if (input == 1)
+        if (input == "1")
             ShowMaxTrainsBetweenStations(manager);
-        else if (input == 2)
+        else if (input == "2")
             ShowMaxTrainsPairs(manager);
-        else if (input == 3)
+        else if (input == "3")
             ShowTopkMunicipalities(manager);
-        else if (input == 4)
+        else if (input == "4")
             ShowTopkDistricts(manager);
-        else if (input == 5)
+        else if (input == "5")
             ShowFindMaxFlowinStation(manager);
-        else if (input == 9)
+        else if (input == "9")
             return;
     }
 }
@@ -119,7 +119,7 @@ void BasicServiceMetricsMenu(Manager &manager) {
 void OperationCostOptimizationMenu(Manager &manager) {
     while (true) {
         //Get input
-        int input;
+        string input;
         do {
             cout << "Operation Cost Optimization Menu" << endl;
             cout << "Select one of the following options: " << endl;
@@ -129,14 +129,14 @@ void OperationCostOptimizationMenu(Manager &manager) {
             cout << "Type option: ";
             cin >> input;
             cout << endl;
-            if (!(input == 1 || input == 9))
+            if (!(input == "1" || input == "9"))
                 cout <<  "Option " << input << " doesn't exist. Try again." << endl;
-        } while (!(input == 1 || input == 9));
+        } while (!(input == "1" || input == "9"));
 
         //Menu options
-        if (input == 1)
+        if (input == "1")
             ShowMinCostMaxFlow(manager);
-        else if (input == 9)
+        else if (input == "9")
             return;
     }
 }
@@ -144,7 +144,7 @@ void OperationCostOptimizationMenu(Manager &manager) {
 void ReliabilityMenu(Manager &manager) {
     while (true) {
         //Get input
-        int input;
+        string input;
         do {
             cout << "Reliability and Sensitivity to Line Failures Menu" << endl;
             cout << "Select one of the following options: " << endl;
@@ -154,16 +154,16 @@ void ReliabilityMenu(Manager &manager) {
             cout << "Type option: ";
             cin >> input;
             cout << endl;
-            if (!(input == 1 || input == 2 || input == 9))
+            if (!(input == "1" || input == "2" || input == "9"))
                 cout <<  "Option " << input << " doesn't exist. Try again." << endl;
-        } while (!(input == 1 || input == 2 || input == 9));
+        } while (!(input == "1" || input == "2" || input == "9"));
 
         //Menu options
-        if (input == 1)
+        if (input == "1")
             ShowBlackListed(manager);
-        else if (input == 2)
+        else if (input == "2")
             ShowReport_On_Stations_After_Failure(manager);
-        else if (input == 9)
+        else if (input == "9")
             return;
     }
 }
