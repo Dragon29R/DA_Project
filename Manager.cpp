@@ -244,6 +244,50 @@ vector<Vertex *> Manager::getVerticesWithMunicipality(string muni) {
     }
     return sets;
 }
+double Manager::MaxTrainsBetweenStationsIDMunicipy(int id1, int id2) {
+    double maxflow=0;
+    auto s = network.findVertex(id1);
+    auto t = network.findVertex(id2);
+    for(auto v : network.getVertexSet() ){
+        for ( auto e : v->getAdj()){
+            e->setFlow(0);
+        }
+    }
+    while(FindAugmentingPathMunicipy(s,t)){
+        auto f = FindMinResidualAlongPath(s,t);
+        AugmentedFlowAlongPath(s,t,f);
+        maxflow+=f;
+    }
+    return maxflow;
+}
+bool Manager::FindAugmentingPathMunicipy(Vertex *s, Vertex *t) {
+    for(Vertex* v : network.getVertexSet())
+        v->setVisited(false);
+
+    s->setVisited(true);
+
+    std::queue<Vertex*>q;
+    q.push(s);
+
+    while(!q.empty() && !t->isVisited()) {
+        Vertex* v = q.front();
+        q.pop();
+
+        for (Edge* e : v->getAdj()) {
+            if (e->isSelected() and e->getDest()->getMunicipality()==s->getMunicipality()) {
+                Testandvisit(q, e, e->getDest(), e->getWeight() - e->getFlow());
+            }
+        }
+
+        for (Edge* e : v->getIncoming()) {
+            if (e->isSelected() and e->getDest()->getMunicipality()==s->getMunicipality()) {
+                Testandvisit(q, e, e->getOrig(), e->getFlow());
+            }
+        }
+    }
+
+    return t->isVisited();
+}
 vector<Manager::Municipality> Manager::TopkMunicipalities(int n) {
     vector<Manager::Municipality> res = getAllMunicipalities();
     for (auto& m : res) {
@@ -252,7 +296,7 @@ vector<Manager::Municipality> Manager::TopkMunicipalities(int n) {
         for (int i = 0; i < vertices.size(); i++) {
             for (int j = i + 1; j < vertices.size(); j++) {
                 double local_flow;
-                local_flow = MaxTrainsBetweenStationsID(vertices[i]->getId(), vertices[j]->getId());
+                local_flow = MaxTrainsBetweenStationsIDMunicipy(vertices[i]->getId(), vertices[j]->getId());
                 max_flow+=local_flow;
             }
         }
@@ -299,6 +343,50 @@ vector<Manager::District> Manager::getAllDistricts() {
     }
     return res;
 }
+double Manager::MaxTrainsBetweenStationsIDDistrict(int id1, int id2) {
+    double maxflow=0;
+    auto s = network.findVertex(id1);
+    auto t = network.findVertex(id2);
+    for(auto v : network.getVertexSet() ){
+        for ( auto e : v->getAdj()){
+            e->setFlow(0);
+        }
+    }
+    while(FindAugmentingPathDistrict(s,t)){
+        auto f = FindMinResidualAlongPath(s,t);
+        AugmentedFlowAlongPath(s,t,f);
+        maxflow+=f;
+    }
+    return maxflow;
+}
+bool Manager::FindAugmentingPathDistrict(Vertex *s, Vertex *t) {
+    for(Vertex* v : network.getVertexSet())
+        v->setVisited(false);
+
+    s->setVisited(true);
+
+    std::queue<Vertex*>q;
+    q.push(s);
+
+    while(!q.empty() && !t->isVisited()) {
+        Vertex* v = q.front();
+        q.pop();
+
+        for (Edge* e : v->getAdj()) {
+            if (e->isSelected() and e->getDest()->getDistrict()==s->getDistrict()) {
+                Testandvisit(q, e, e->getDest(), e->getWeight() - e->getFlow());
+            }
+        }
+
+        for (Edge* e : v->getIncoming()) {
+            if (e->isSelected() and e->getDest()->getDistrict()==s->getDistrict()) {
+                Testandvisit(q, e, e->getOrig(), e->getFlow());
+            }
+        }
+    }
+
+    return t->isVisited();
+}
 vector<Manager::District> Manager::TopkDistricts(int n) {
     vector<Manager::District> res = getAllDistricts();
     for (auto& d : res) {
@@ -307,7 +395,7 @@ vector<Manager::District> Manager::TopkDistricts(int n) {
         for (int i = 0; i < vertices.size(); i++) {
             for (int j = i + 1; j < vertices.size(); j++) {
                 int local_flow;
-                local_flow = MaxTrainsBetweenStationsID(vertices[i]->getId(), vertices[j]->getId());
+                local_flow = MaxTrainsBetweenStationsIDDistrict(vertices[i]->getId(), vertices[j]->getId());
                 max_flow+=local_flow;
             }
         }
@@ -356,11 +444,6 @@ double Manager::BlackListed(vector<pair<string, string>> blacklists, string sour
         }
     }
     return flow;
-}
-
-bool Manager::FindAugmentingPathDijkstra(Vertex *s, Vertex *t, double &min) {
-
-    return t->isVisited();
 }
 
 double Manager::MinCostMaxFlow(string source, string dest) {
@@ -470,3 +553,11 @@ vector<Graph::AfectedStation>  Manager::Report_On_Stations_After_Failure(int top
     }
     return result;
 }
+
+
+
+
+
+
+
+
