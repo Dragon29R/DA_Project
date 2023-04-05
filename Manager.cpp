@@ -305,6 +305,12 @@ vector<Manager::Municipality> Manager::TopkMunicipalities(int n) {
     sort(res.begin(), res.end(), compareMunicipalities);
 
     vector<Manager::Municipality> res2;
+    if(n>res.size()){
+        for(auto i: res){
+            res2.push_back(i);
+        }
+        return res2;
+    }
     for (int i = 0; i < n; i++)
         res2.push_back(res[i]);
 
@@ -404,6 +410,12 @@ vector<Manager::District> Manager::TopkDistricts(int n) {
     sort(res.begin(), res.end(), compareDistricts);
 
     vector<Manager::District> res2;
+    if(n>res.size()){
+        for(auto i: res){
+            res2.push_back(i);
+        }
+        return res2;
+    }
     for (int i = 0; i < n; i++)
         res2.push_back(res[i]);
 
@@ -499,58 +511,54 @@ double Manager::MinCostMaxFlow(string source, string dest) {
     return (Standard_lines*2 + ALFA_lines*4)*bottleneck_capacity;
 }
 
-vector<Graph::AfectedStation>  Manager::Report_On_Stations_After_Failure(int top,vector<pair<string, string>> blacklists) {
+vector<Graph::AfectedStation> Manager::Report_On_Stations_After_Failure(int top, vector<pair<string, string>> blacklists) {
 
     vector<Graph::AfectedStation> report;
     vector<Vertex*> station;
     vector<double> numTrainsBefore;
     vector<double> numTrainsAfter;
 
-    for(auto v: network.getVertexSet()){
-        for(auto e: v->getAdj()){
+    for (auto v : network.getVertexSet()) {
+        for (auto e : v->getAdj()) {
             e->setSelected(true);
-
         }
     }
-    for(auto v: network.getVertexSet()){
 
+    for (auto v : network.getVertexSet()) {
         numTrainsBefore.push_back(FindMaxFlowinStation(v->getName()));
         station.push_back(v);
-
     }
 
-    for(auto p:blacklists){
+    for (auto p : blacklists) {
         int id1 = network.findVertexName(p.first);
         int id2 = network.findVertexName(p.second);
-        if(id1==-1 or id2==-1)return report;
-        for(auto e : network.findVertex(id1)->getAdj()){
-            if(e->getDest()->getId()==id2){e->setSelected(false);break;}
-        }
-        for(auto e : network.findVertex(id2)->getAdj()){
-            if(e->getDest()->getId()==id1){e->setSelected(false);break;}
-        }
+        if(id1 == -1 or id2 == -1) return report;
+
+        for (auto e : network.findVertex(id1)->getAdj())
+            if (e->getDest()->getId() == id2) {e->setSelected(false); break;}
+
+        for (auto e : network.findVertex(id2)->getAdj())
+            if (e->getDest()->getId() == id1) {e->setSelected(false); break;}
     }
 
-
-    for(int i=0; i<station.size();i++){
-
+    for (int i = 0; i < station.size(); i++)
         numTrainsAfter.push_back(FindMaxFlowinStation(station[i]->getName()));
-    }
-    for(int i=0;i<station.size();i++){
+
+    for (int i = 0; i < station.size(); i++)
         report.push_back(Graph::AfectedStation({station[i],numTrainsBefore[i],numTrainsAfter[i]}));
 
-    }
-    auto f =[](Graph::AfectedStation i1, Graph::AfectedStation i2)  {return i1.numTrainsBefore-i1.numTrainsAfter>i2.numTrainsBefore-i2.numTrainsAfter;};
-    std::sort(report.begin(), report.end(),f);
-    for(auto v: network.getVertexSet()){
-        for(auto e: v->getAdj()){
+    auto f = [](Graph::AfectedStation i1, Graph::AfectedStation i2){return i1.numTrainsBefore - i1.numTrainsAfter > i2.numTrainsBefore - i2.numTrainsAfter;};
+    std::sort(report.begin(), report.end(), f);
+    for (auto v : network.getVertexSet()){
+        for (auto e : v->getAdj()) {
             e->setSelected(true);
         }
     }
+
     vector<Graph::AfectedStation> result;
-    for (auto it = report.begin(); it != report.begin() + top; ++it) {
+    for (auto it = report.begin(); it != report.begin() + top; ++it)
         result.push_back(*it);
-    }
+
     return result;
 }
 

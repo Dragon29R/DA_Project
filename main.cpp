@@ -29,7 +29,10 @@ void ShowMinCostMaxFlow(Manager &manager); //3.1
 
 //Reliability Menu
 void ShowBlackListed(Manager &manager); //4.1
-void ShowMostAffectedStations(Manager &manager); //4.2
+void ShowReport_On_Stations_After_Failure(Manager &manager); //4.2
+
+//Util
+vector<pair<string, string>> GetBlacklist();
 
 int main() {
     Manager manager;
@@ -139,8 +142,8 @@ void ReliabilityMenu(Manager &manager) {
         do {
             cout << "Reliability and Sensitivity to Line Failures Menu" << endl;
             cout << "Select one of the following options: " << endl;
-            cout << " 1. ShowBlackListed." << endl;
-            cout << " 2. ShowMostAffectedStations." << endl;
+            cout << " 1. Show maximum simultaneous trains in incomplete network." << endl;
+            cout << " 2. Show most affected stations by blacklist." << endl;
             cout << " 9. Go back to previous menu." << endl;
             cout << "Type option: ";
             cin >> input;
@@ -153,7 +156,7 @@ void ReliabilityMenu(Manager &manager) {
         if (input == 1)
             ShowBlackListed(manager);
         else if (input == 2)
-            ShowMostAffectedStations(manager);
+            ShowReport_On_Stations_After_Failure(manager);
         else if (input == 9)
             return;
     }
@@ -282,6 +285,50 @@ void ShowBlackListed(Manager &manager) { //4.1
     getline(cin >> ws, target);
     cout << endl;
 
+    vector<pair<string, string>> blacklist = GetBlacklist();
+
+    double res = manager.BlackListed(blacklist, source, target);
+
+    if (res == -1) {
+        cout << "One of the stations was not found." << endl;
+        return;
+    }
+
+    cout << "Removing the blacklisted connections from the network. The maximum number of trains that can simultaneously travel between " << source << " and " << target << " is " << res << "." << endl << endl;
+}
+
+void ShowReport_On_Stations_After_Failure(Manager &manager) { //4.2
+    int n;
+    cout << "Type how many stations you want to see below or 0 to go back:" << endl;
+    do {
+        cout << "n: ";
+        cin >> n;
+        cout << endl;
+
+        if (n == 0)
+            return;
+    } while (n < 0);
+
+    vector<pair<string, string>> blacklist = GetBlacklist();
+
+    vector<Graph::AfectedStation> affectedStations = manager.Report_On_Stations_After_Failure(n, blacklist);
+
+    if (affectedStations.empty()) {
+        cout << "One of the stations was not found." << endl;
+        return;
+    }
+
+    cout << "The top " << n << " most affected stations are:" << endl;
+    cout << "______________________________________" << endl;
+    cout << "Before:  After:  Station:" << endl;
+    cout << "______________________________________" << endl;
+    for (Graph::AfectedStation s : affectedStations) {
+        cout << left << setw(5) << s.numTrainsBefore << setw(4) << "->" << setw(8) << s.numTrainsAfter << s.station->getName() << endl;
+    }
+    cout << endl;
+}
+
+vector<pair<string, string>> GetBlacklist() {
     vector<pair<string, string>> blacklist;
 
     bool isFirst = true;
@@ -295,7 +342,7 @@ void ShowBlackListed(Manager &manager) { //4.1
             isFirst = false;
 
         string input;
-        cout << "Enter first station: " << endl;
+        cout << "Enter first station: ";
         getline(cin >> ws, input);
         cout << endl;
 
@@ -303,7 +350,7 @@ void ShowBlackListed(Manager &manager) { //4.1
             break;
         tmpPair.first = input;
 
-        cout << "Enter second station: " << endl;
+        cout << "Enter second station: ";
         getline(cin >> ws, input);
         cout << endl;
 
@@ -314,16 +361,5 @@ void ShowBlackListed(Manager &manager) { //4.1
         blacklist.push_back(tmpPair);
     }
 
-    double res = manager.BlackListed(blacklist, source, target);
-
-    if (res == -1) {
-        cout << "One of the stations was not found." << endl;
-        return;
-    }
-
-    cout << "Removing the blacklisted connections from the network. The maximum number of trains that can simultaneously travel between " << source << " and " << target << " is " << res << "." << endl << endl;
-}
-
-void ShowMostAffectedStations(Manager &manager) { //4.2
-
+    return blacklist;
 }
