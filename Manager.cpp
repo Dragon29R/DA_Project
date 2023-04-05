@@ -460,7 +460,10 @@ double Manager::BlackListed(vector<pair<string, string>> blacklists, string sour
 
 double Manager::MinCostMaxFlow(string source, string dest) {
     priority_queue<Vertex*> pq;
-    int ids = network.findVertexName(source);
+    int ids=-1, idd=-1;
+    ids = network.findVertexName(source);
+    idd = network.findVertexName(dest);
+    if(ids ==-1 or idd == -1) return -1;
     Vertex* S = network.findVertex(ids);
     for( Vertex*  v : network.getVertexSet()){
         v->setVisited(false);
@@ -469,7 +472,7 @@ double Manager::MinCostMaxFlow(string source, string dest) {
     }
     S->setDist(0);
     pq.push(S);
-    int idd = network.findVertexName(dest);
+
     while(!pq.empty()){
 
         Vertex* v = pq.top();
