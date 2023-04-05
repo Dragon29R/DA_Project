@@ -39,8 +39,6 @@ private:
     vector<Vertex*> getVerticesWithDistrict(string dis);
     vector<Manager::Municipality> getAllMunicipalities();
     vector<Manager::District> getAllDistricts();
-    vector<Vertex *> Prim();
-    bool FindAugmentingPathDijkstra(Vertex *s,Vertex *t, double &min);
 
 public:
 
@@ -63,13 +61,6 @@ public:
     double MinCostMaxFlow(string source,string dest); //3.1
 
     double BlackListed(vector<pair<string,string>> blacklists,string source,string target); //4.1
-
-    vector<int> MostAffectedStations(); //4.2
-
-
-    vector<Graph::AfectedStation> Report_On_Stations_After_Failure(vector<pair<string, string>> blacklists);
-
-    double FindMaxFlowinStationInFailure(string dest);
 
     vector<Graph::AfectedStation> Report_On_Stations_After_Failure(int top, vector<pair<string, string>> blacklists);
 };
