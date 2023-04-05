@@ -161,7 +161,7 @@ double Manager::FindMaxFlowinStation(std::string dest) {
     network.findVertex(9999)->setName("SuperSource");
     vector<int> sources;
     for(auto v: network.getVertexSet()){
-        if(v->getAdj().size()==1) {
+        if(v->getAdj().size()==1 && v->getName()!=dest){
             sources.push_back(v->getId());
             network.addBidirectionalEdge(9999,v->getId(),999,"");
         }

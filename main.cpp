@@ -164,13 +164,15 @@ void ReliabilityMenu(Manager &manager) {
 }
 
 void ShowMaxTrainsBetweenStations(Manager &manager) { //2.1
-    string source, dest;
-
+    string name1, name2, name3, name4;
     cout << "Enter source station's name: ";
-    getline(cin >> ws, source);
-
+    cin >> name1;
+    getline(cin,name2);
     cout << "Enter destination station's name: ";
-    getline(cin >> ws, dest);
+    cin >> name3;
+    getline(cin,name4);
+    string source = name1+name2;
+    string dest = name3+name4;
     cout << endl;
 
     double n = manager.MaxTrainsBetweenStations(source, dest);
@@ -249,10 +251,12 @@ void ShowTopkDistricts(Manager &manager) { //2.3
 
 void ShowFindMaxFlowinStation(Manager &manager) { //2.4
     string station;
+    string name1,name2;
     cout << "Enter the station's name: ";
-    getline(cin >> ws, station);
+    cin >> name1;
+    getline(cin , name2);
     cout << endl;
-
+    station = name1+name2;
     double res = manager.FindMaxFlowinStation(station);
 
     if (res == -1) {
@@ -264,13 +268,15 @@ void ShowFindMaxFlowinStation(Manager &manager) { //2.4
 }
 
 void ShowMinCostMaxFlow(Manager &manager) {
-    string source, dest;
-
+    string name1, name2, name3, name4;
     cout << "Enter source station's name: ";
-    getline(cin >> ws, source);
-
+    cin >> name1;
+    getline(cin,name2);
     cout << "Enter destination station's name: ";
-    getline(cin >> ws, dest);
+    cin >> name3;
+    getline(cin,name4);
+    string source = name1+name2;
+    string dest = name3+name4;
     cout << endl;
 
     double res = manager.MinCostMaxFlow(source, dest);
@@ -279,13 +285,15 @@ void ShowMinCostMaxFlow(Manager &manager) {
 }
 
 void ShowBlackListed(Manager &manager) { //4.1
-    string source, target;
-
+    string name1, name2, name3, name4;
     cout << "Enter source station's name: ";
-    getline(cin >> ws, source);
-
-    cout << "Enter target station's name: ";
-    getline(cin >> ws, target);
+    cin >> name1;
+    getline(cin,name2);
+    cout << "Enter destination station's name: ";
+    cin >> name3;
+    getline(cin,name4);
+    string source = name1+name2;
+    string target = name3+name4;
     cout << endl;
 
     vector<pair<string, string>> blacklist = GetBlacklist();
@@ -344,9 +352,11 @@ vector<pair<string, string>> GetBlacklist() {
         else
             isFirst = false;
 
-        string input;
+        string name1,name2,input;
         cout << "Enter first station: ";
-        getline(cin >> ws, input);
+        cin >> name1;
+        getline(cin,name2);
+        input = name1 + name2;
         cout << endl;
 
         if (input == "9")
@@ -354,7 +364,9 @@ vector<pair<string, string>> GetBlacklist() {
         tmpPair.first = input;
 
         cout << "Enter second station: ";
-        getline(cin >> ws, input);
+        cin >> name1;
+        getline(cin,name2);
+        input=name1+name2;
         cout << endl;
 
         if (input == "9")
