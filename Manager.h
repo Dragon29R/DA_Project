@@ -39,10 +39,7 @@ private:
     vector<Vertex*> getVerticesWithDistrict(string dis);
     vector<Manager::Municipality> getAllMunicipalities();
     vector<Manager::District> getAllDistricts();
-    double MaxTrainsBetweenStationsIDMunicipy(int id1, int id2);
-    bool FindAugmentingPathMunicipy(Vertex *s, Vertex *t);
-    double MaxTrainsBetweenStationsIDDistrict(int id1, int id2);
-    bool FindAugmentingPathDistrict(Vertex *s, Vertex *t);
+
 public:
 
 
@@ -65,7 +62,7 @@ public:
 
     double BlackListed(vector<pair<string,string>> blacklists,string source,string target); //4.1
 
-    vector<Graph::AfectedStation> Report_On_Stations_After_Failure(int top, vector<pair<string, string>> blacklists);//4.2
+    vector<Graph::AfectedStation> Report_On_Stations_After_Failure(int top, vector<pair<string, string>> blacklists);
 };
 
 #endif //PROJETO_MANAGER_H
