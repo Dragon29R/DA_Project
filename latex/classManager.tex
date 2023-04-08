@@ -1,0 +1,377 @@
+\hypertarget{classManager}{}\doxysection{Manager Class Reference}
+\label{classManager}\index{Manager@{Manager}}
+
+
+{\ttfamily \#include $<$Manager.\+h$>$}
+
+
+
+Collaboration diagram for Manager\+:
+% FIG 0
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structManager_1_1District}{District}}
+\item 
+struct \mbox{\hyperlink{structManager_1_1Municipality}{Municipality}}
+\item 
+struct \mbox{\hyperlink{structManager_1_1StationPair}{Station\+Pair}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classManager_a1658ff9f18e38ccd9cb8b0b371b9c20b}{Manager}} ()
+\item 
+void \mbox{\hyperlink{classManager_a4053dde3f142267914528304b3c3a0ee}{Read\+Stations}} ()
+\begin{DoxyCompactList}\small\item\em Time complexity\+: O(\+V$^\wedge$2) being V the number of vertexes in the graph in this case the number of stations Reads the stations from the file and adds them to the graph. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classManager_a65b160b48ed1a068c3effd94c4f24209}{Read\+Networks}} ()
+\begin{DoxyCompactList}\small\item\em Time complexity\+: O(\+E $\ast$ V) being E the number of edges in the graph and V the number of vertexes in the graph Reads the edges from the networks file and adds them to the graph. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classManager_a222c046454b9a53a20c67649f86d5d11}{Max\+Trains\+Between\+Stations}} (string source, string dest)
+\begin{DoxyCompactList}\small\item\em Time complexity\+: O(\+V$\ast$\+E$^\wedge$2) being V the number of vertexes in the graph Finds the maximum flow between two stations. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{structManager_1_1StationPair}{Manager\+::\+Station\+Pair}} $>$ \mbox{\hyperlink{classManager_ac5cc08c984888b2cf45150005e7a1376}{Max\+Trains\+Pairs}} ()
+\begin{DoxyCompactList}\small\item\em Time complexity\+: O(\+V$\ast$\+V$\ast$\+E$^\wedge$2 ) being V the number of vertexes in the graph and E the number of edges in the graph Finds the maximum flow between two stations. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{structManager_1_1Municipality}{Manager\+::\+Municipality}} $>$ \mbox{\hyperlink{classManager_a4fd100451f77a43f4546a41c758539f8}{Topk\+Municipalities}} (int n)
+\begin{DoxyCompactList}\small\item\em Time complexity\+: O(\+M $\ast$ V$^\wedge$3 $\ast$ E$^\wedge$2 ) being V the number of vertexes in the graph and E the number of edges in the graph Finds the top k municipalities with the most flow between themselves. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{structManager_1_1District}{Manager\+::\+District}} $>$ \mbox{\hyperlink{classManager_ae830463ad9bdf49d7019accaa6a0a557}{Topk\+Districts}} (int n)
+\begin{DoxyCompactList}\small\item\em Time complexity\+: O(\+D $\ast$ V$^\wedge$3 $\ast$ E$^\wedge$2 ) being V the number of vertexes in the graph and E the number of edges and D the number of districts in the graph Finds the top k municipalities with the most flow between themselves. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classManager_af3683a17d108b2cbb54454ba250f620d}{Find\+Max\+Flowin\+Station}} (string dest)
+\begin{DoxyCompactList}\small\item\em Time complexity\+: O(V$\ast$\+E$^\wedge$2 + V$^\wedge$2) being V the number of vertexes in the graph and E the number of edges in the graph Finds the maximum flow Station. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classManager_a48b1d0c467c1e4e90e90e4f213830a14}{Min\+Cost\+Max\+Flow}} (string source, string dest)
+\begin{DoxyCompactList}\small\item\em Time complexity\+: O((E+V) $\ast$ log(\+V) $\ast$ V ) \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classManager_ac692b8c8d3693e5c78ccd226e6d2252f}{Black\+Listed}} (vector$<$ pair$<$ string, string $>$$>$ blacklists, string source, string target)
+\begin{DoxyCompactList}\small\item\em Time complexity\+: O(V$\ast$\+E$^\wedge$2 + B$\ast$V) being V the number of vertexes in the graph and E the number of edges in the graph and B being the blackslists s size finds the maximum flow between two stations without using the blacklists edges. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{structGraph_1_1AfectedStation}{Graph\+::\+Afected\+Station}} $>$ \mbox{\hyperlink{classManager_abbb0fabecdc795ff63444a0bd5880935}{Report\+\_\+\+On\+\_\+\+Stations\+\_\+\+After\+\_\+\+Failure}} (int top, vector$<$ pair$<$ string, string $>$$>$ blacklists)
+\begin{DoxyCompactList}\small\item\em Time complexity\+: O(V $\ast$ (V $\ast$ E $^\wedge$ 2 + V $^\wedge$ 2) ) being V the number of vertexes in the graph and E the number of edges in the graph. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classGraph}{Graph}} \mbox{\hyperlink{classManager_a716df90efe99e99e8ebb1ac8a83db795}{network}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classManager_a9e6041417f98f1fa84ef2e0a5e6c25dd}{Find\+Augmenting\+Path}} (\mbox{\hyperlink{classVertex}{Vertex}} $\ast$s, \mbox{\hyperlink{classVertex}{Vertex}} $\ast$t)
+\begin{DoxyCompactList}\small\item\em Time complexity\+: O(V+E) being V the number of vertexes in the graph and E the number of edges in the graph Finds an augmenting path from the source to the sink. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classManager_addad81a4510767a988e40d2a3c87418c}{Find\+Min\+Residual\+Along\+Path}} (\mbox{\hyperlink{classVertex}{Vertex}} $\ast$s, \mbox{\hyperlink{classVertex}{Vertex}} $\ast$t)
+\begin{DoxyCompactList}\small\item\em Time complexity\+: O(\+V) being V the number of vertexes in the graph Finds the minimum residual along the path. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classManager_a7c687e6c90a5110c35d7ccddc4687301}{Augmented\+Flow\+Along\+Path}} (\mbox{\hyperlink{classVertex}{Vertex}} $\ast$s, \mbox{\hyperlink{classVertex}{Vertex}} $\ast$t, double f)
+\begin{DoxyCompactList}\small\item\em Time complexity\+: O(\+V) being V the number of vertexes in the graph updates the flow along the path. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classManager_ab0b17f9b7cd975a133169ed727c6bd71}{Max\+Trains\+Between\+Stations\+ID}} (int id1, int id2)
+\begin{DoxyCompactList}\small\item\em Time complexity\+: O(\+V$\ast$\+E$^\wedge$2 ) being V the number of vertexes in the graph and E the number of edges in the graph Finds the maximum flow between two stations. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{classVertex}{Vertex}} $\ast$ $>$ \mbox{\hyperlink{classManager_a9efa41195d5849e8606167d3e57168b7}{get\+Vertices\+With\+Municipality}} (string muni)
+\begin{DoxyCompactList}\small\item\em Time complexity\+: O(\+V) being V the number of vertexes in the graph. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{classVertex}{Vertex}} $\ast$ $>$ \mbox{\hyperlink{classManager_a3acf13e0f7502b61bf252448f519f13f}{get\+Vertices\+With\+District}} (string dis)
+\begin{DoxyCompactList}\small\item\em Time complexity\+: O(\+V) being V the number of vertexes in the graph. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{structManager_1_1Municipality}{Manager\+::\+Municipality}} $>$ \mbox{\hyperlink{classManager_af533ec543a3525c48f2607a843a39cea}{get\+All\+Municipalities}} ()
+\begin{DoxyCompactList}\small\item\em Time complexity\+: O(\+V$\ast$\+M) being V the number of vertexes in the graph and M the number municipalities. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{structManager_1_1District}{Manager\+::\+District}} $>$ \mbox{\hyperlink{classManager_a78ec3860b3549c2360e1671d9cab3e1b}{get\+All\+Districts}} ()
+\begin{DoxyCompactList}\small\item\em Time complexity\+: O(\+V$\ast$\+D ) being V the number of vertexes in the graph and D the number of Districts in the graph. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classManager_a36ee2223c0beb2a0863a2dc7d3cd7116}{Find\+Augmenting\+Path\+District}} (\mbox{\hyperlink{classVertex}{Vertex}} $\ast$s, \mbox{\hyperlink{classVertex}{Vertex}} $\ast$t)
+\begin{DoxyCompactList}\small\item\em Time complexity\+: O(V + E ) being V the number of vertexes in the graph and E the number of edges in the graph Finds the augmenting without leaving the district of source. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classManager_ad2a947988e12ca7d430bbed4205fa18f}{Max\+Trains\+Between\+Stations\+I\+D\+District}} (int id1, int id2)
+\begin{DoxyCompactList}\small\item\em Time complexity\+: O(\+V$\ast$\+E$^\wedge$2 ) being V the number of vertexes in the graph and E the number of edges in the graph Finds the maximum flow between two stations without leaving the \mbox{\hyperlink{structManager_1_1District}{District}} of source. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classManager_ac9f5f210653ab1c269d026f10f90f1d2}{Max\+Trains\+Between\+Stations\+I\+D\+Municipy}} (int id1, int id2)
+\begin{DoxyCompactList}\small\item\em Time complexity\+: O(\+V$\ast$\+E$^\wedge$2 ) being V the number of vertexes in the graph and E the number of edges in the graph Finds the maximum flow between two stations without leaving the municipality of source. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classManager_a109b62ea31996c49bc990714dea92967}{Find\+Augmenting\+Path\+Municipy}} (\mbox{\hyperlink{classVertex}{Vertex}} $\ast$s, \mbox{\hyperlink{classVertex}{Vertex}} $\ast$t)
+\begin{DoxyCompactList}\small\item\em Time complexity\+: O(V + E ) being V the number of vertexes in the graph and E the number of edges in the graph Finds the augmenting without leaving the municipality of source. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classManager_adb090cd30a94f2b2e12b280728dfcbe7}{find\+Argumenting\+Path\+Dijkstra}} (\mbox{\hyperlink{classVertex}{Vertex}} $\ast$s, \mbox{\hyperlink{classVertex}{Vertex}} $\ast$t, int \&price)
+\begin{DoxyCompactList}\small\item\em Time complexity\+: O((E+V) $\ast$ log(\+V)) being V the number of vertexes in the graph and E the number of edges in the graph Finds the augmenting path with the minimum price. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classManager_a4d5996b1213d378d1540fa7d54a31de8}{test\+And\+Visit\+Disjka}} (\mbox{\hyperlink{classMutablePriorityQueue}{Mutable\+Priority\+Queue}}$<$ \mbox{\hyperlink{classVertex}{Vertex}} $>$ \&q, \mbox{\hyperlink{classEdge}{Edge}} $\ast$e, \mbox{\hyperlink{classVertex}{Vertex}} $\ast$w, double residual, int dist\+\_\+init)
+\begin{DoxyCompactList}\small\item\em Time complexity\+: O(log(\+V)) being V the number of vertexes in the graph tests if the vertex w is visited and if the residual is bigger than 0. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classManager_a86dc343a70ac5a4b95b7178986d0d18a}{Testandvisit}} (queue$<$ \mbox{\hyperlink{classVertex}{Vertex}} $\ast$ $>$ \&q, \mbox{\hyperlink{classEdge}{Edge}} $\ast$e, \mbox{\hyperlink{classVertex}{Vertex}} $\ast$w, double residual)
+\begin{DoxyCompactList}\small\item\em Time complexity\+: O(1) Tests if the vertex w is visited and if the residual is greater than 0. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classManager_a1658ff9f18e38ccd9cb8b0b371b9c20b}\label{classManager_a1658ff9f18e38ccd9cb8b0b371b9c20b}} 
+\index{Manager@{Manager}!Manager@{Manager}}
+\index{Manager@{Manager}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{Manager()}{Manager()}}
+{\footnotesize\ttfamily Manager\+::\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classManager_a7c687e6c90a5110c35d7ccddc4687301}\label{classManager_a7c687e6c90a5110c35d7ccddc4687301}} 
+\index{Manager@{Manager}!AugmentedFlowAlongPath@{AugmentedFlowAlongPath}}
+\index{AugmentedFlowAlongPath@{AugmentedFlowAlongPath}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{AugmentedFlowAlongPath()}{AugmentedFlowAlongPath()}}
+{\footnotesize\ttfamily void Manager\+::\+Augmented\+Flow\+Along\+Path (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{t,  }\item[{double}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Time complexity\+: O(\+V) being V the number of vertexes in the graph updates the flow along the path. 
+
+\mbox{\Hypertarget{classManager_ac692b8c8d3693e5c78ccd226e6d2252f}\label{classManager_ac692b8c8d3693e5c78ccd226e6d2252f}} 
+\index{Manager@{Manager}!BlackListed@{BlackListed}}
+\index{BlackListed@{BlackListed}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{BlackListed()}{BlackListed()}}
+{\footnotesize\ttfamily double Manager\+::\+Black\+Listed (\begin{DoxyParamCaption}\item[{vector$<$ pair$<$ string, string $>$$>$}]{blacklists,  }\item[{string}]{source,  }\item[{string}]{target }\end{DoxyParamCaption})}
+
+
+
+Time complexity\+: O(V$\ast$\+E$^\wedge$2 + B$\ast$V) being V the number of vertexes in the graph and E the number of edges in the graph and B being the blackslists s size finds the maximum flow between two stations without using the blacklists edges. 
+
+\mbox{\Hypertarget{classManager_adb090cd30a94f2b2e12b280728dfcbe7}\label{classManager_adb090cd30a94f2b2e12b280728dfcbe7}} 
+\index{Manager@{Manager}!findArgumentingPathDijkstra@{findArgumentingPathDijkstra}}
+\index{findArgumentingPathDijkstra@{findArgumentingPathDijkstra}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{findArgumentingPathDijkstra()}{findArgumentingPathDijkstra()}}
+{\footnotesize\ttfamily bool Manager\+::find\+Argumenting\+Path\+Dijkstra (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{t,  }\item[{int \&}]{price }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Time complexity\+: O((E+V) $\ast$ log(\+V)) being V the number of vertexes in the graph and E the number of edges in the graph Finds the augmenting path with the minimum price. 
+
+\mbox{\Hypertarget{classManager_a9e6041417f98f1fa84ef2e0a5e6c25dd}\label{classManager_a9e6041417f98f1fa84ef2e0a5e6c25dd}} 
+\index{Manager@{Manager}!FindAugmentingPath@{FindAugmentingPath}}
+\index{FindAugmentingPath@{FindAugmentingPath}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{FindAugmentingPath()}{FindAugmentingPath()}}
+{\footnotesize\ttfamily bool Manager\+::\+Find\+Augmenting\+Path (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Time complexity\+: O(V+E) being V the number of vertexes in the graph and E the number of edges in the graph Finds an augmenting path from the source to the sink. 
+
+\mbox{\Hypertarget{classManager_a36ee2223c0beb2a0863a2dc7d3cd7116}\label{classManager_a36ee2223c0beb2a0863a2dc7d3cd7116}} 
+\index{Manager@{Manager}!FindAugmentingPathDistrict@{FindAugmentingPathDistrict}}
+\index{FindAugmentingPathDistrict@{FindAugmentingPathDistrict}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{FindAugmentingPathDistrict()}{FindAugmentingPathDistrict()}}
+{\footnotesize\ttfamily bool Manager\+::\+Find\+Augmenting\+Path\+District (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Time complexity\+: O(V + E ) being V the number of vertexes in the graph and E the number of edges in the graph Finds the augmenting without leaving the district of source. 
+
+\mbox{\Hypertarget{classManager_a109b62ea31996c49bc990714dea92967}\label{classManager_a109b62ea31996c49bc990714dea92967}} 
+\index{Manager@{Manager}!FindAugmentingPathMunicipy@{FindAugmentingPathMunicipy}}
+\index{FindAugmentingPathMunicipy@{FindAugmentingPathMunicipy}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{FindAugmentingPathMunicipy()}{FindAugmentingPathMunicipy()}}
+{\footnotesize\ttfamily bool Manager\+::\+Find\+Augmenting\+Path\+Municipy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Time complexity\+: O(V + E ) being V the number of vertexes in the graph and E the number of edges in the graph Finds the augmenting without leaving the municipality of source. 
+
+\mbox{\Hypertarget{classManager_af3683a17d108b2cbb54454ba250f620d}\label{classManager_af3683a17d108b2cbb54454ba250f620d}} 
+\index{Manager@{Manager}!FindMaxFlowinStation@{FindMaxFlowinStation}}
+\index{FindMaxFlowinStation@{FindMaxFlowinStation}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{FindMaxFlowinStation()}{FindMaxFlowinStation()}}
+{\footnotesize\ttfamily double Manager\+::\+Find\+Max\+Flowin\+Station (\begin{DoxyParamCaption}\item[{string}]{dest }\end{DoxyParamCaption})}
+
+
+
+Time complexity\+: O(V$\ast$\+E$^\wedge$2 + V$^\wedge$2) being V the number of vertexes in the graph and E the number of edges in the graph Finds the maximum flow Station. 
+
+\mbox{\Hypertarget{classManager_addad81a4510767a988e40d2a3c87418c}\label{classManager_addad81a4510767a988e40d2a3c87418c}} 
+\index{Manager@{Manager}!FindMinResidualAlongPath@{FindMinResidualAlongPath}}
+\index{FindMinResidualAlongPath@{FindMinResidualAlongPath}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{FindMinResidualAlongPath()}{FindMinResidualAlongPath()}}
+{\footnotesize\ttfamily double Manager\+::\+Find\+Min\+Residual\+Along\+Path (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Time complexity\+: O(\+V) being V the number of vertexes in the graph Finds the minimum residual along the path. 
+
+\mbox{\Hypertarget{classManager_a78ec3860b3549c2360e1671d9cab3e1b}\label{classManager_a78ec3860b3549c2360e1671d9cab3e1b}} 
+\index{Manager@{Manager}!getAllDistricts@{getAllDistricts}}
+\index{getAllDistricts@{getAllDistricts}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{getAllDistricts()}{getAllDistricts()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{structManager_1_1District}{Manager\+::\+District}} $>$ Manager\+::get\+All\+Districts (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Time complexity\+: O(\+V$\ast$\+D ) being V the number of vertexes in the graph and D the number of Districts in the graph. 
+
+\begin{DoxyReturn}{Returns}
+a vector with all the Districts in the graph 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classManager_af533ec543a3525c48f2607a843a39cea}\label{classManager_af533ec543a3525c48f2607a843a39cea}} 
+\index{Manager@{Manager}!getAllMunicipalities@{getAllMunicipalities}}
+\index{getAllMunicipalities@{getAllMunicipalities}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{getAllMunicipalities()}{getAllMunicipalities()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{structManager_1_1Municipality}{Manager\+::\+Municipality}} $>$ Manager\+::get\+All\+Municipalities (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Time complexity\+: O(\+V$\ast$\+M) being V the number of vertexes in the graph and M the number municipalities. 
+
+\begin{DoxyReturn}{Returns}
+a vector with all the municipalities 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classManager_a3acf13e0f7502b61bf252448f519f13f}\label{classManager_a3acf13e0f7502b61bf252448f519f13f}} 
+\index{Manager@{Manager}!getVerticesWithDistrict@{getVerticesWithDistrict}}
+\index{getVerticesWithDistrict@{getVerticesWithDistrict}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{getVerticesWithDistrict()}{getVerticesWithDistrict()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{classVertex}{Vertex}} $\ast$ $>$ Manager\+::get\+Vertices\+With\+District (\begin{DoxyParamCaption}\item[{string}]{dis }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Time complexity\+: O(\+V) being V the number of vertexes in the graph. 
+
+\begin{DoxyReturn}{Returns}
+a vector with all the vertexes on a given district 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classManager_a9efa41195d5849e8606167d3e57168b7}\label{classManager_a9efa41195d5849e8606167d3e57168b7}} 
+\index{Manager@{Manager}!getVerticesWithMunicipality@{getVerticesWithMunicipality}}
+\index{getVerticesWithMunicipality@{getVerticesWithMunicipality}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{getVerticesWithMunicipality()}{getVerticesWithMunicipality()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{classVertex}{Vertex}} $\ast$ $>$ Manager\+::get\+Vertices\+With\+Municipality (\begin{DoxyParamCaption}\item[{string}]{muni }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Time complexity\+: O(\+V) being V the number of vertexes in the graph. 
+
+\mbox{\Hypertarget{classManager_a222c046454b9a53a20c67649f86d5d11}\label{classManager_a222c046454b9a53a20c67649f86d5d11}} 
+\index{Manager@{Manager}!MaxTrainsBetweenStations@{MaxTrainsBetweenStations}}
+\index{MaxTrainsBetweenStations@{MaxTrainsBetweenStations}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{MaxTrainsBetweenStations()}{MaxTrainsBetweenStations()}}
+{\footnotesize\ttfamily double Manager\+::\+Max\+Trains\+Between\+Stations (\begin{DoxyParamCaption}\item[{string}]{source,  }\item[{string}]{dest }\end{DoxyParamCaption})}
+
+
+
+Time complexity\+: O(\+V$\ast$\+E$^\wedge$2) being V the number of vertexes in the graph Finds the maximum flow between two stations. 
+
+\mbox{\Hypertarget{classManager_ab0b17f9b7cd975a133169ed727c6bd71}\label{classManager_ab0b17f9b7cd975a133169ed727c6bd71}} 
+\index{Manager@{Manager}!MaxTrainsBetweenStationsID@{MaxTrainsBetweenStationsID}}
+\index{MaxTrainsBetweenStationsID@{MaxTrainsBetweenStationsID}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{MaxTrainsBetweenStationsID()}{MaxTrainsBetweenStationsID()}}
+{\footnotesize\ttfamily double Manager\+::\+Max\+Trains\+Between\+Stations\+ID (\begin{DoxyParamCaption}\item[{int}]{id1,  }\item[{int}]{id2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Time complexity\+: O(\+V$\ast$\+E$^\wedge$2 ) being V the number of vertexes in the graph and E the number of edges in the graph Finds the maximum flow between two stations. 
+
+\mbox{\Hypertarget{classManager_ad2a947988e12ca7d430bbed4205fa18f}\label{classManager_ad2a947988e12ca7d430bbed4205fa18f}} 
+\index{Manager@{Manager}!MaxTrainsBetweenStationsIDDistrict@{MaxTrainsBetweenStationsIDDistrict}}
+\index{MaxTrainsBetweenStationsIDDistrict@{MaxTrainsBetweenStationsIDDistrict}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{MaxTrainsBetweenStationsIDDistrict()}{MaxTrainsBetweenStationsIDDistrict()}}
+{\footnotesize\ttfamily double Manager\+::\+Max\+Trains\+Between\+Stations\+I\+D\+District (\begin{DoxyParamCaption}\item[{int}]{id1,  }\item[{int}]{id2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Time complexity\+: O(\+V$\ast$\+E$^\wedge$2 ) being V the number of vertexes in the graph and E the number of edges in the graph Finds the maximum flow between two stations without leaving the \mbox{\hyperlink{structManager_1_1District}{District}} of source. 
+
+\mbox{\Hypertarget{classManager_ac9f5f210653ab1c269d026f10f90f1d2}\label{classManager_ac9f5f210653ab1c269d026f10f90f1d2}} 
+\index{Manager@{Manager}!MaxTrainsBetweenStationsIDMunicipy@{MaxTrainsBetweenStationsIDMunicipy}}
+\index{MaxTrainsBetweenStationsIDMunicipy@{MaxTrainsBetweenStationsIDMunicipy}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{MaxTrainsBetweenStationsIDMunicipy()}{MaxTrainsBetweenStationsIDMunicipy()}}
+{\footnotesize\ttfamily double Manager\+::\+Max\+Trains\+Between\+Stations\+I\+D\+Municipy (\begin{DoxyParamCaption}\item[{int}]{id1,  }\item[{int}]{id2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Time complexity\+: O(\+V$\ast$\+E$^\wedge$2 ) being V the number of vertexes in the graph and E the number of edges in the graph Finds the maximum flow between two stations without leaving the municipality of source. 
+
+\mbox{\Hypertarget{classManager_ac5cc08c984888b2cf45150005e7a1376}\label{classManager_ac5cc08c984888b2cf45150005e7a1376}} 
+\index{Manager@{Manager}!MaxTrainsPairs@{MaxTrainsPairs}}
+\index{MaxTrainsPairs@{MaxTrainsPairs}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{MaxTrainsPairs()}{MaxTrainsPairs()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{structManager_1_1StationPair}{Manager\+::\+Station\+Pair}} $>$ Manager\+::\+Max\+Trains\+Pairs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Time complexity\+: O(\+V$\ast$\+V$\ast$\+E$^\wedge$2 ) being V the number of vertexes in the graph and E the number of edges in the graph Finds the maximum flow between two stations. 
+
+\mbox{\Hypertarget{classManager_a48b1d0c467c1e4e90e90e4f213830a14}\label{classManager_a48b1d0c467c1e4e90e90e4f213830a14}} 
+\index{Manager@{Manager}!MinCostMaxFlow@{MinCostMaxFlow}}
+\index{MinCostMaxFlow@{MinCostMaxFlow}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{MinCostMaxFlow()}{MinCostMaxFlow()}}
+{\footnotesize\ttfamily double Manager\+::\+Min\+Cost\+Max\+Flow (\begin{DoxyParamCaption}\item[{string}]{source,  }\item[{string}]{dest }\end{DoxyParamCaption})}
+
+
+
+Time complexity\+: O((E+V) $\ast$ log(\+V) $\ast$ V ) 
+
+\begin{DoxyReturn}{Returns}
+the maximum amount of trains that can be sent from source to target through the cheapest route 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classManager_a65b160b48ed1a068c3effd94c4f24209}\label{classManager_a65b160b48ed1a068c3effd94c4f24209}} 
+\index{Manager@{Manager}!ReadNetworks@{ReadNetworks}}
+\index{ReadNetworks@{ReadNetworks}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{ReadNetworks()}{ReadNetworks()}}
+{\footnotesize\ttfamily void Manager\+::\+Read\+Networks (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Time complexity\+: O(\+E $\ast$ V) being E the number of edges in the graph and V the number of vertexes in the graph Reads the edges from the networks file and adds them to the graph. 
+
+\mbox{\Hypertarget{classManager_a4053dde3f142267914528304b3c3a0ee}\label{classManager_a4053dde3f142267914528304b3c3a0ee}} 
+\index{Manager@{Manager}!ReadStations@{ReadStations}}
+\index{ReadStations@{ReadStations}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{ReadStations()}{ReadStations()}}
+{\footnotesize\ttfamily void Manager\+::\+Read\+Stations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Time complexity\+: O(\+V$^\wedge$2) being V the number of vertexes in the graph in this case the number of stations Reads the stations from the file and adds them to the graph. 
+
+\mbox{\Hypertarget{classManager_abbb0fabecdc795ff63444a0bd5880935}\label{classManager_abbb0fabecdc795ff63444a0bd5880935}} 
+\index{Manager@{Manager}!Report\_On\_Stations\_After\_Failure@{Report\_On\_Stations\_After\_Failure}}
+\index{Report\_On\_Stations\_After\_Failure@{Report\_On\_Stations\_After\_Failure}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{Report\_On\_Stations\_After\_Failure()}{Report\_On\_Stations\_After\_Failure()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{structGraph_1_1AfectedStation}{Graph\+::\+Afected\+Station}} $>$ Manager\+::\+Report\+\_\+\+On\+\_\+\+Stations\+\_\+\+After\+\_\+\+Failure (\begin{DoxyParamCaption}\item[{int}]{top,  }\item[{vector$<$ pair$<$ string, string $>$$>$}]{blacklists }\end{DoxyParamCaption})}
+
+
+
+Time complexity\+: O(V $\ast$ (V $\ast$ E $^\wedge$ 2 + V $^\wedge$ 2) ) being V the number of vertexes in the graph and E the number of edges in the graph. 
+
+\begin{DoxyReturn}{Returns}
+a vector with sorted by the top number of stations that are more affected by the blacklists 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classManager_a86dc343a70ac5a4b95b7178986d0d18a}\label{classManager_a86dc343a70ac5a4b95b7178986d0d18a}} 
+\index{Manager@{Manager}!Testandvisit@{Testandvisit}}
+\index{Testandvisit@{Testandvisit}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{Testandvisit()}{Testandvisit()}}
+{\footnotesize\ttfamily void Manager\+::\+Testandvisit (\begin{DoxyParamCaption}\item[{queue$<$ \mbox{\hyperlink{classVertex}{Vertex}} $\ast$ $>$ \&}]{q,  }\item[{\mbox{\hyperlink{classEdge}{Edge}} $\ast$}]{e,  }\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{w,  }\item[{double}]{residual }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Time complexity\+: O(1) Tests if the vertex w is visited and if the residual is greater than 0. 
+
+\mbox{\Hypertarget{classManager_a4d5996b1213d378d1540fa7d54a31de8}\label{classManager_a4d5996b1213d378d1540fa7d54a31de8}} 
+\index{Manager@{Manager}!testAndVisitDisjka@{testAndVisitDisjka}}
+\index{testAndVisitDisjka@{testAndVisitDisjka}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{testAndVisitDisjka()}{testAndVisitDisjka()}}
+{\footnotesize\ttfamily void Manager\+::test\+And\+Visit\+Disjka (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classMutablePriorityQueue}{Mutable\+Priority\+Queue}}$<$ \mbox{\hyperlink{classVertex}{Vertex}} $>$ \&}]{q,  }\item[{\mbox{\hyperlink{classEdge}{Edge}} $\ast$}]{e,  }\item[{\mbox{\hyperlink{classVertex}{Vertex}} $\ast$}]{w,  }\item[{double}]{residual,  }\item[{int}]{dist\+\_\+init }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Time complexity\+: O(log(\+V)) being V the number of vertexes in the graph tests if the vertex w is visited and if the residual is bigger than 0. 
+
+\mbox{\Hypertarget{classManager_ae830463ad9bdf49d7019accaa6a0a557}\label{classManager_ae830463ad9bdf49d7019accaa6a0a557}} 
+\index{Manager@{Manager}!TopkDistricts@{TopkDistricts}}
+\index{TopkDistricts@{TopkDistricts}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{TopkDistricts()}{TopkDistricts()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{structManager_1_1District}{Manager\+::\+District}} $>$ Manager\+::\+Topk\+Districts (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+Time complexity\+: O(\+D $\ast$ V$^\wedge$3 $\ast$ E$^\wedge$2 ) being V the number of vertexes in the graph and E the number of edges and D the number of districts in the graph Finds the top k municipalities with the most flow between themselves. 
+
+\mbox{\Hypertarget{classManager_a4fd100451f77a43f4546a41c758539f8}\label{classManager_a4fd100451f77a43f4546a41c758539f8}} 
+\index{Manager@{Manager}!TopkMunicipalities@{TopkMunicipalities}}
+\index{TopkMunicipalities@{TopkMunicipalities}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{TopkMunicipalities()}{TopkMunicipalities()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{structManager_1_1Municipality}{Manager\+::\+Municipality}} $>$ Manager\+::\+Topk\+Municipalities (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+Time complexity\+: O(\+M $\ast$ V$^\wedge$3 $\ast$ E$^\wedge$2 ) being V the number of vertexes in the graph and E the number of edges in the graph Finds the top k municipalities with the most flow between themselves. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classManager_a716df90efe99e99e8ebb1ac8a83db795}\label{classManager_a716df90efe99e99e8ebb1ac8a83db795}} 
+\index{Manager@{Manager}!network@{network}}
+\index{network@{network}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{network}{network}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGraph}{Graph}} Manager\+::network}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{Manager_8h}{Manager.\+h}}\item 
+\mbox{\hyperlink{Manager_8cpp}{Manager.\+cpp}}\end{DoxyCompactItemize}

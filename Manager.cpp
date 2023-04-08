@@ -3,7 +3,9 @@ using namespace std;
 Manager::Manager() {
 }
 
-
+/** Time complexity: O(V^2) being V the number of vertexes in the graph in this case the number of stations
+ * Reads the stations from the file and adds them to the graph
+ */
 
 void Manager::ReadStations() {
     ifstream file;
@@ -40,7 +42,10 @@ void Manager::ReadStations() {
         id++;
     }
 }
-
+/** Time complexity: O(E * V) being E the number of edges in the graph and V the number of vertexes in the graph
+ *  Reads the edges from the networks file and adds them to the graph
+ *
+ */
 void Manager::ReadNetworks() {
     ifstream file;
     file.open("../docs/network.csv");
@@ -65,7 +70,11 @@ void Manager::ReadNetworks() {
         int idB=network.findVertexName(stationB);
         network.addBidirectionalEdge(idA,idB,stod(capacity),service);
     }
+
 }
+/** Time complexity: O(V*E^2) being V the number of vertexes in the graph
+ *  Finds the maximum flow between two stations
+ */
 
 double Manager::MaxTrainsBetweenStations(string source, string dest) {
     double maxflow = 0;
@@ -90,6 +99,9 @@ double Manager::MaxTrainsBetweenStations(string source, string dest) {
 
     return maxflow;
 }
+/** Time complexity: O(1)
+ *  Tests if the vertex w is visited and if the residual is greater than 0
+ */
 void Manager::Testandvisit(queue<Vertex *>& q, Edge *e, Vertex *w, double residual) {
     if(!w->isVisited() && residual > 0) {
         w->setVisited(true);
@@ -98,6 +110,10 @@ void Manager::Testandvisit(queue<Vertex *>& q, Edge *e, Vertex *w, double residu
     }
     return;
 }
+
+/** Time complexity: O(V+E) being V the number of vertexes in the graph and E the number of edges in the graph
+ * Finds an augmenting path from the source to the sink
+ */
 bool Manager::FindAugmentingPath(Vertex* s, Vertex* t){
     for(Vertex* v : network.getVertexSet())
         v->setVisited(false);
@@ -126,6 +142,10 @@ bool Manager::FindAugmentingPath(Vertex* s, Vertex* t){
 
     return t->isVisited();
 }
+/**
+ * Time complexity: O(V) being V the number of vertexes in the graph
+ * Finds the minimum residual along the path
+ */
 double Manager::FindMinResidualAlongPath(Vertex* s, Vertex* t){
     double f  = INT_MAX;
     for ( Vertex* v = t ; v!=s ;){
@@ -140,6 +160,10 @@ double Manager::FindMinResidualAlongPath(Vertex* s, Vertex* t){
     }
     return f;
 }
+
+/** Time complexity: O(V) being V the number of vertexes in the graph
+ * updates the flow along the path
+ */
 void Manager::AugmentedFlowAlongPath(Vertex* s, Vertex* t, double f){
     for( auto v = t ; v != s ;){
         Edge* e = v->getPath();
@@ -155,7 +179,9 @@ void Manager::AugmentedFlowAlongPath(Vertex* s, Vertex* t, double f){
     return;
 }
 
-
+/** Time complexity: O(V*E^2 + V^2) being V the number of vertexes in the graph and E the number of edges in the graph
+ *  Finds the maximum flow Station
+ */
 double Manager::FindMaxFlowinStation(std::string dest) {
     network.addVertex(9999);
     network.findVertex(9999)->setName("SuperSource");
@@ -173,6 +199,9 @@ double Manager::FindMaxFlowinStation(std::string dest) {
     return flow;
 }
 
+/** Time complexity: O(V*E^2 ) being V the number of vertexes in the graph and E the number of edges in the graph
+ *  Finds the maximum flow between two stations
+ */
 double Manager::MaxTrainsBetweenStationsID(int id1, int id2) {
     double maxflow=0;
     auto s = network.findVertex(id1);
@@ -190,6 +219,9 @@ double Manager::MaxTrainsBetweenStationsID(int id1, int id2) {
     return maxflow;
 }
 
+/** Time complexity: O(V*V*E^2 ) being V the number of vertexes in the graph and E the number of edges in the graph
+ *  Finds the maximum flow between two stations
+ */
 vector<Manager::StationPair> Manager::MaxTrainsPairs() {
     vector<StationPair> Pairs;
     StationPair pair;
@@ -211,10 +243,15 @@ vector<Manager::StationPair> Manager::MaxTrainsPairs() {
 
     return Pairs;
 }
-
+/** Time complexity: O(1)
+ */
 bool compareMunicipalities(const Manager::Municipality& a, const Manager::Municipality& b) {
     return a.flow > b.flow;
 }
+/** Time complexity: O(V*M) being V the number of vertexes in the graph and M the number municipalities
+ * @return a vector with all the municipalities
+ */
+
 vector<Manager::Municipality> Manager::getAllMunicipalities(){
     vector<Manager::Municipality> res;
     for (auto v : network.getVertexSet()) {
@@ -235,6 +272,10 @@ vector<Manager::Municipality> Manager::getAllMunicipalities(){
     }
     return res;
 }
+/** Time complexity: O(V) being V the number of vertexes in the graph
+ *
+ *
+ */
 vector<Vertex *> Manager::getVerticesWithMunicipality(string muni) {
     vector<Vertex*> sets;
     for (auto v: network.getVertexSet()) {
@@ -244,6 +285,10 @@ vector<Vertex *> Manager::getVerticesWithMunicipality(string muni) {
     }
     return sets;
 }
+
+/** Time complexity: O(V*E^2 ) being V the number of vertexes in the graph and E the number of edges in the graph
+ *  Finds the maximum flow between two stations without leaving the municipality of source
+ */
 double Manager::MaxTrainsBetweenStationsIDMunicipy(int id1, int id2) {
     double maxflow=0;
     auto s = network.findVertex(id1);
@@ -260,6 +305,10 @@ double Manager::MaxTrainsBetweenStationsIDMunicipy(int id1, int id2) {
     }
     return maxflow;
 }
+
+/** Time complexity: O(V + E ) being V the number of vertexes in the graph and E the number of edges in the graph
+ *  Finds the augmenting without leaving the municipality of source
+ */
 bool Manager::FindAugmentingPathMunicipy(Vertex *s, Vertex *t){
     for(Vertex* v : network.getVertexSet())
         v->setVisited(false);
@@ -288,6 +337,9 @@ bool Manager::FindAugmentingPathMunicipy(Vertex *s, Vertex *t){
 
     return t->isVisited();
 }
+/** Time complexity: O(M * V^3 * E^2 ) being V the number of vertexes in the graph and E the number of edges in the graph
+ * Finds the top k municipalities with the most flow between themselves
+ */
 vector<Manager::Municipality> Manager::TopkMunicipalities(int n) {
     vector<Manager::Municipality> res = getAllMunicipalities();
     for (auto& m : res) {
@@ -316,10 +368,15 @@ vector<Manager::Municipality> Manager::TopkMunicipalities(int n) {
 
     return res2;
 }
-
+/** Time complexity: O(1)
+ *
+ */
 bool compareDistricts(const Manager::District& a, const Manager::District& b) {
     return a.flow > b.flow;
 }
+/** Time complexity: O(V) being V the number of vertexes in the graph
+ * @return a vector with all the vertexes on a given district
+ */
 vector<Vertex *> Manager::getVerticesWithDistrict(string dis) {
     vector<Vertex*> sets;
     for (auto v: network.getVertexSet()) {
@@ -329,6 +386,10 @@ vector<Vertex *> Manager::getVerticesWithDistrict(string dis) {
     }
     return sets;
 }
+
+/** Time complexity: O(V*D ) being V the number of vertexes in the graph and D the number of Districts in the graph
+ *  @return a vector with all the Districts in the graph
+ */
 vector<Manager::District> Manager::getAllDistricts() {
     vector<Manager::District> res;
     for (auto v : network.getVertexSet()) {
@@ -349,6 +410,9 @@ vector<Manager::District> Manager::getAllDistricts() {
     }
     return res;
 }
+/** Time complexity: O(V*E^2 ) being V the number of vertexes in the graph and E the number of edges in the graph
+ *  Finds the maximum flow between two stations without leaving the District of source
+ */
 double Manager::MaxTrainsBetweenStationsIDDistrict(int id1, int id2) {
     double maxflow=0;
     auto s = network.findVertex(id1);
@@ -365,6 +429,9 @@ double Manager::MaxTrainsBetweenStationsIDDistrict(int id1, int id2) {
     }
     return maxflow;
 }
+/** Time complexity: O(V + E ) being V the number of vertexes in the graph and E the number of edges in the graph
+ *  Finds the augmenting without leaving the district of source
+ */
 bool Manager::FindAugmentingPathDistrict(Vertex *s, Vertex *t) {
     for(Vertex* v : network.getVertexSet())
         v->setVisited(false);
@@ -393,6 +460,10 @@ bool Manager::FindAugmentingPathDistrict(Vertex *s, Vertex *t) {
 
     return t->isVisited();
 }
+
+/** Time complexity: O(D * V^3 * E^2 ) being V the number of vertexes in the graph and E the number of edges  and D the number of districts in the graph
+ * Finds the top k municipalities with the most flow between themselves
+ */
 vector<Manager::District> Manager::TopkDistricts(int n) {
     vector<Manager::District> res = getAllDistricts();
     for (auto& d : res) {
@@ -421,7 +492,10 @@ vector<Manager::District> Manager::TopkDistricts(int n) {
 
     return res2;
 }
-
+/** Time complexity: O(V*E^2 + B*V) being V the number of vertexes in the graph and E the number of edges in the graph and B being the blackslists s size
+ * finds the maximum flow between two stations without using the blacklists edges
+ *
+ */
 double Manager::BlackListed(vector<pair<string, string>> blacklists, string source, string target) {
     int idS = network.findVertexName(source);
     int idT = network.findVertexName(target);
@@ -457,7 +531,9 @@ double Manager::BlackListed(vector<pair<string, string>> blacklists, string sour
     }
     return flow;
 }
-
+/** Time complexity: O((E+V) * log(V)) being V the number of vertexes in the graph and E the number of edges in the graph
+ * Finds the augmenting path with the minimum price
+ */
 bool Manager::findArgumentingPathDijkstra(Vertex *s, Vertex *t, int &price) {
     for( Vertex*  v : network.getVertexSet()){
         v->setVisited(false);
@@ -486,6 +562,9 @@ bool Manager::findArgumentingPathDijkstra(Vertex *s, Vertex *t, int &price) {
 
     return t->isVisited();
 }
+/** Time complexity: O(log(V)) being V the number of vertexes in the graph
+ * tests if the vertex w is visited and if the residual is bigger than 0
+ */
 void Manager::testAndVisitDisjka(MutablePriorityQueue<Vertex>& q,Edge* e ,Vertex* w ,double residual , int dist_init){
     if( ! w->isVisited() && residual>0){
         w->setVisited(true);
@@ -500,6 +579,9 @@ void Manager::testAndVisitDisjka(MutablePriorityQueue<Vertex>& q,Edge* e ,Vertex
     }
     return;
 }
+/** Time complexity: O((E+V) * log(V) * V )
+ *  @returns the maximum amount of trains that can be sent from source to target through the cheapest route
+ */
 double Manager::MinCostMaxFlow(string source, string dest) {
     int s = network.findVertexName(source);
     Vertex* sourc = network.findVertex(s);
@@ -526,6 +608,9 @@ double Manager::MinCostMaxFlow(string source, string dest) {
 
 }
 
+/** Time complexity: O(V * (V * E ^ 2 + V ^ 2) ) being V the number of vertexes in the graph and E the number of edges in the graph
+ * @returns a vector with sorted by the top number of stations that are more affected by the blacklists
+ */
 vector<Graph::AfectedStation> Manager::Report_On_Stations_After_Failure(int top, vector<pair<string, string>> blacklists) {
 
     vector<Graph::AfectedStation> report;

@@ -1,16 +1,21 @@
 #include "Graph.h"
 
-
+/**
+ * @return the number of vertexes in the graph
+ */
 int Graph::getNumVertex() const {
     return vertexSet.size();
 }
 
+/** time complexity: O(1)
+ * @return a vector with all the vertexes in the graph
+ */
 std::vector<Vertex *> Graph::getVertexSet() const {
     return vertexSet;
 }
 
-/*
- * Auxiliary function to find a vertex with a given content.
+/** time complexity: O(V) being V the number of vertexes in the graph
+ * @return the vertex with the given id if it exists, nullptr otherwise
  */
 Vertex * Graph::findVertex(const int &id) const {
     for (auto v : vertexSet)
@@ -19,8 +24,8 @@ Vertex * Graph::findVertex(const int &id) const {
     return nullptr;
 }
 
-/*
- * Finds the index of the vertex with a given content.
+/** time complexity: O(V) being V the number of vertexes in the graph
+ * @return the index of the vertex with the given id if it exists, -1 otherwise
  */
 int Graph::findVertexIdx(const int &id) const {
     for (unsigned i = 0; i < vertexSet.size(); i++)
@@ -28,6 +33,10 @@ int Graph::findVertexIdx(const int &id) const {
             return i;
     return -1;
 }
+/**
+ *  Time complexity: O(V) being V the number of vertexes in the graph
+ *  @return the index of the vertex with the given name if it exists, -1 otherwise
+ */
 int Graph::findVertexName(const string name){
 
     for(auto v:vertexSet){
@@ -35,9 +44,9 @@ int Graph::findVertexName(const string name){
     }
     return -1;
 }
-/*
- *  Adds a vertex with a given content or info (in) to a graph (this).
- *  Returns true if successful, and false if a vertex with that content already exists.
+/**
+ *  Time complexity: O(1)
+ *  @return true if the there is not a vertex with the same id in the graph, false otherwise
  */
 bool Graph::addVertex(const int &id) {
     if (findVertex(id) != nullptr)
@@ -46,10 +55,10 @@ bool Graph::addVertex(const int &id) {
     return true;
 }
 
-/*
+/** Time complexity: O(V) being V the number of vertexes in the graph
  * Adds an edge to a graph (this), given the contents of the source and
  * destination vertices and the edge weight (w).
- * Returns true if successful, and false if the source or destination vertex does not exist.
+ * @return true if successful, and false if the source or destination vertex does not exist.
  */
 bool Graph::addEdge(const int &sourc, const int &dest, double w) {
     auto v1 = findVertex(sourc);
@@ -60,7 +69,10 @@ bool Graph::addEdge(const int &sourc, const int &dest, double w) {
 
     return true;
 }
-
+/** Time complexity: O(V) being V the number of vertexes in the graph
+ *
+ * @return true if successful, and false if the source or destination vertex does not exist.
+ */
 bool Graph::addBidirectionalEdge(const int &sourc, const int &dest, double w, string service) {
     auto v1 = findVertex(sourc);
     auto v2 = findVertex(dest);
@@ -77,6 +89,9 @@ bool Graph::addBidirectionalEdge(const int &sourc, const int &dest, double w, st
     return true;
 }
 
+/** Time complexity: O(N) being N the given n parameter
+ * deletes a matrix
+ */
 void deleteMatrix(int **m, int n) {
     if (m != nullptr) {
         for (int i = 0; i < n; i++)
@@ -86,6 +101,9 @@ void deleteMatrix(int **m, int n) {
     }
 }
 
+/** Time complexity: O(N) being N the given n parameter
+ * deletes a matrix
+ */
 void deleteMatrix(double **m, int n) {
     if (m != nullptr) {
         for (int i = 0; i < n; i++)
@@ -95,10 +113,17 @@ void deleteMatrix(double **m, int n) {
     }
 }
 
+/** Time complexity: O(V) being V the number of vertexes in the graph
+ * deletes a matrix
+ */
 Graph::~Graph() {
     deleteMatrix(distMatrix, vertexSet.size());
     deleteMatrix(pathMatrix, vertexSet.size());
 }
+/**
+ * Time complexity: O(V^2) being V the number of vertexes in the graph
+ * @return true if successful, and false otherwise
+ */
 bool Graph::removeVertex(const int &id) {
     for (auto it = vertexSet.begin(); it != vertexSet.end(); it++) {
         if ((*it)->getId() == id) {
@@ -114,6 +139,10 @@ bool Graph::removeVertex(const int &id) {
     }
     return false;
 }
+
+/** Time complexity: O(V) being V the number of vertexes in the graph
+ * @return a vector with all the vertexes in the graph in the same district as the given district in the parameter
+ */
 vector<Vertex*> Graph::getStationsOnDistrict(string district){
     vector<Vertex*> stations;
     for(auto v:vertexSet){
@@ -121,6 +150,9 @@ vector<Vertex*> Graph::getStationsOnDistrict(string district){
     }
     return stations;
 }
+/** Time complexity: O(V) being V the number of vertexes in the graph
+ * @return a vector with all the vertexes in the graph in the same municipality as the given municipality in the parameter
+ */
 vector<Vertex*> Graph::getStationsOnMunicipality(string muni) {
     vector<Vertex*> stations;
     for(auto v:vertexSet){
@@ -128,6 +160,10 @@ vector<Vertex*> Graph::getStationsOnMunicipality(string muni) {
     }
     return stations;
 }
+
+/** Time complexity: O(V) being V the number of vertexes in the graph
+ * @return a vector with all the vertexes in the graph in the same town as the given town in the parameter
+ */
 vector<Vertex*> Graph::getStationsOnTown(string town) {
     vector<Vertex*> stations;
     for(auto v:vertexSet){

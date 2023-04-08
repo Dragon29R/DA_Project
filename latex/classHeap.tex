@@ -1,0 +1,94 @@
+\hypertarget{classHeap}{}\doxysection{Heap Class Reference}
+\label{classHeap}\index{Heap@{Heap}}
+
+
+{\ttfamily \#include $<$Heap.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classHeap_a6595efd3562a6334d2f5471c2b3b7cb4}{Heap}} ()
+\item 
+\mbox{\hyperlink{classHeap_aad54cb57cd3f33a1493aef602d787463}{Heap}} (std\+::vector$<$ int $>$ v)
+\item 
+void \mbox{\hyperlink{classHeap_a4c6a62f67cebbe16be684d464b2e19f0}{insert}} (int x)
+\item 
+int \mbox{\hyperlink{classHeap_acbf8935a8c01b3188d16ffca0011824b}{extract\+Min}} ()
+\item 
+bool \mbox{\hyperlink{classHeap_a576331b44a7f81f24b324261b1714732}{empty}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classHeap_ad52cc204b6ee2b666a8c2e30ab1477c9}{heapify\+Up}} (unsigned int i)
+\item 
+void \mbox{\hyperlink{classHeap_a423e81df2c4800f42e5827abb631c095}{heapify\+Down}} (unsigned int i)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{classHeap_a87f0e00ea91195bbf83b6784e90affbd}{elems}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classHeap_a6595efd3562a6334d2f5471c2b3b7cb4}\label{classHeap_a6595efd3562a6334d2f5471c2b3b7cb4}} 
+\index{Heap@{Heap}!Heap@{Heap}}
+\index{Heap@{Heap}!Heap@{Heap}}
+\doxysubsubsection{\texorpdfstring{Heap()}{Heap()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Heap\+::\+Heap (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classHeap_aad54cb57cd3f33a1493aef602d787463}\label{classHeap_aad54cb57cd3f33a1493aef602d787463}} 
+\index{Heap@{Heap}!Heap@{Heap}}
+\index{Heap@{Heap}!Heap@{Heap}}
+\doxysubsubsection{\texorpdfstring{Heap()}{Heap()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Heap\+::\+Heap (\begin{DoxyParamCaption}\item[{std\+::vector$<$ int $>$}]{v }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classHeap_a576331b44a7f81f24b324261b1714732}\label{classHeap_a576331b44a7f81f24b324261b1714732}} 
+\index{Heap@{Heap}!empty@{empty}}
+\index{empty@{empty}!Heap@{Heap}}
+\doxysubsubsection{\texorpdfstring{empty()}{empty()}}
+{\footnotesize\ttfamily bool Heap\+::empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classHeap_acbf8935a8c01b3188d16ffca0011824b}\label{classHeap_acbf8935a8c01b3188d16ffca0011824b}} 
+\index{Heap@{Heap}!extractMin@{extractMin}}
+\index{extractMin@{extractMin}!Heap@{Heap}}
+\doxysubsubsection{\texorpdfstring{extractMin()}{extractMin()}}
+{\footnotesize\ttfamily int Heap\+::extract\+Min (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classHeap_a423e81df2c4800f42e5827abb631c095}\label{classHeap_a423e81df2c4800f42e5827abb631c095}} 
+\index{Heap@{Heap}!heapifyDown@{heapifyDown}}
+\index{heapifyDown@{heapifyDown}!Heap@{Heap}}
+\doxysubsubsection{\texorpdfstring{heapifyDown()}{heapifyDown()}}
+{\footnotesize\ttfamily void Heap\+::heapify\+Down (\begin{DoxyParamCaption}\item[{unsigned int}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classHeap_ad52cc204b6ee2b666a8c2e30ab1477c9}\label{classHeap_ad52cc204b6ee2b666a8c2e30ab1477c9}} 
+\index{Heap@{Heap}!heapifyUp@{heapifyUp}}
+\index{heapifyUp@{heapifyUp}!Heap@{Heap}}
+\doxysubsubsection{\texorpdfstring{heapifyUp()}{heapifyUp()}}
+{\footnotesize\ttfamily void Heap\+::heapify\+Up (\begin{DoxyParamCaption}\item[{unsigned int}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classHeap_a4c6a62f67cebbe16be684d464b2e19f0}\label{classHeap_a4c6a62f67cebbe16be684d464b2e19f0}} 
+\index{Heap@{Heap}!insert@{insert}}
+\index{insert@{insert}!Heap@{Heap}}
+\doxysubsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily void Heap\+::insert (\begin{DoxyParamCaption}\item[{int}]{x }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classHeap_a87f0e00ea91195bbf83b6784e90affbd}\label{classHeap_a87f0e00ea91195bbf83b6784e90affbd}} 
+\index{Heap@{Heap}!elems@{elems}}
+\index{elems@{elems}!Heap@{Heap}}
+\doxysubsubsection{\texorpdfstring{elems}{elems}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ Heap\+::elems\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{Heap_8h}{Heap.\+h}}\item 
+\mbox{\hyperlink{Heap_8cpp}{Heap.\+cpp}}\end{DoxyCompactItemize}
