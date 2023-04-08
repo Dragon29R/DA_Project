@@ -2,11 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include <iomanip>
-#include <math.h>
-#include "Graph.h"
-#include "Heap.h"
-#include "UFDS.h"
-#include "VertexEdge.h"
+#include <cmath>
 #include "Manager.h"
 
 using namespace std;

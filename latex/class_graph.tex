@@ -1,0 +1,323 @@
+\hypertarget{class_graph}{}\doxysection{Graph Class Reference}
+\label{class_graph}\index{Graph@{Graph}}
+
+
+The \mbox{\hyperlink{class_graph}{Graph}} class represents a graph, which is a collection of vertices and edges, in this case stations and lines.  
+
+
+
+
+{\ttfamily \#include $<$Graph.\+h$>$}
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_graph_1_1_afected_station}{Afected\+Station}}
+\begin{DoxyCompactList}\small\item\em The \mbox{\hyperlink{struct_graph_1_1_afected_station}{Afected\+Station}} struct represents a station and its number of trains before and after a change. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_graph_a902c5b3eacb66d60752525ab23297a95}{$\sim$\+Graph}} ()
+\begin{DoxyCompactList}\small\item\em Destroys the \mbox{\hyperlink{class_graph}{Graph}} object and frees its resources. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ \mbox{\hyperlink{class_graph_a089f7fc73ea9976295d387846ad36c69}{find\+Vertex}} (const int \&id) const
+\begin{DoxyCompactList}\small\item\em Finds the vertex with the given ID. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_graph_ad354c018724ef3f137a0b8554089105e}{add\+Vertex}} (const int \&id)
+\begin{DoxyCompactList}\small\item\em Adds a new vertex with the given ID to the graph. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_graph_a516f4487d70f4b15e413447afa8c2310}{add\+Edge}} (const int \&sourc, const int \&dest, double w)
+\begin{DoxyCompactList}\small\item\em Adds a new edge to the graph. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_graph_a8a226e1949c24946eb56a0c25dd6dcdb}{add\+Bidirectional\+Edge}} (const int \&sourc, const int \&dest, double w, string service)
+\begin{DoxyCompactList}\small\item\em Adds a new bidirectional edge to the graph. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_graph_abb5e0517e2979c54eebdafc2a9875e8f}{get\+Num\+Vertex}} () const
+\begin{DoxyCompactList}\small\item\em Gets the number of vertices in the graph. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ \mbox{\hyperlink{class_graph_a619ac583094079134074658e29463c0e}{get\+Vertex\+Set}} () const
+\begin{DoxyCompactList}\small\item\em Gets the vector of vertices in the graph. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_graph_a77280644f6af669143dff86778541a0d}{find\+Vertex\+Name}} (const string name)
+\begin{DoxyCompactList}\small\item\em Finds the ID of the vertex with the given name. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_graph_a697561b2a2c1b25147b1750b250c1fdf}{remove\+Vertex}} (const int \&id)
+\begin{DoxyCompactList}\small\item\em Removes the vertex with the given ID from the graph. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ \mbox{\hyperlink{class_graph_a7cdfbd3b7241ee7a9e6caab34e6857a1}{get\+Stations\+On\+Municipality}} (string muni)
+\begin{DoxyCompactList}\small\item\em Gets the vector of vertices in the given municipality. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ \mbox{\hyperlink{class_graph_a0c370a136aab1839b375a5aeb1d2b7cf}{get\+Stations\+On\+District}} (string district)
+\begin{DoxyCompactList}\small\item\em Gets the vector of vertices in the given district. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ \mbox{\hyperlink{class_graph_a8025f1f7dccb065ff80dc42a6b222617}{get\+Stations\+On\+Town}} (string town)
+\begin{DoxyCompactList}\small\item\em Gets the vector of vertices in the given township. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_graph_a7dfcef08a9286cf144902cd7e56940ee}{find\+Vertex\+Idx}} (const int \&id) const
+\begin{DoxyCompactList}\small\item\em Finds the index of the vertex with the given ID in the vertex vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ \mbox{\hyperlink{class_graph_aa9b0a6d8ad43c5eabaca5a7140bcc8b6}{vertex\+Set}}
+\begin{DoxyCompactList}\small\item\em Vector that contains all the vertexs of the graph. \end{DoxyCompactList}\item 
+double $\ast$$\ast$ \mbox{\hyperlink{class_graph_a9e61864da69191c1896a25a708d1a02d}{dist\+Matrix}} = nullptr
+\item 
+int $\ast$$\ast$ \mbox{\hyperlink{class_graph_a3ae09699c3616af3ebfcb1eb045f2b62}{path\+Matrix}} = nullptr
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{class_graph}{Graph}} class represents a graph, which is a collection of vertices and edges, in this case stations and lines. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_graph_a902c5b3eacb66d60752525ab23297a95}\label{class_graph_a902c5b3eacb66d60752525ab23297a95}} 
+\index{Graph@{Graph}!````~Graph@{$\sim$Graph}}
+\index{````~Graph@{$\sim$Graph}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{$\sim$Graph()}{~Graph()}}
+{\footnotesize\ttfamily Graph\+::$\sim$\+Graph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destroys the \mbox{\hyperlink{class_graph}{Graph}} object and frees its resources. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_graph_a8a226e1949c24946eb56a0c25dd6dcdb}\label{class_graph_a8a226e1949c24946eb56a0c25dd6dcdb}} 
+\index{Graph@{Graph}!addBidirectionalEdge@{addBidirectionalEdge}}
+\index{addBidirectionalEdge@{addBidirectionalEdge}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{addBidirectionalEdge()}{addBidirectionalEdge()}}
+{\footnotesize\ttfamily bool Graph\+::add\+Bidirectional\+Edge (\begin{DoxyParamCaption}\item[{const int \&}]{sourc,  }\item[{const int \&}]{dest,  }\item[{double}]{w,  }\item[{string}]{service }\end{DoxyParamCaption})}
+
+
+
+Adds a new bidirectional edge to the graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sourc} & The ID of the source vertex. \\
+\hline
+{\em dest} & The ID of the destination vertex. \\
+\hline
+{\em w} & The weight of the edge. \\
+\hline
+{\em service} & The name of the service that operates on the edge. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the edge is added successfully, or false if either the source or the destination vertex is not found in the graph. @\+Complexity O(\+V), where V is the number of vertexs. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a516f4487d70f4b15e413447afa8c2310}\label{class_graph_a516f4487d70f4b15e413447afa8c2310}} 
+\index{Graph@{Graph}!addEdge@{addEdge}}
+\index{addEdge@{addEdge}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{addEdge()}{addEdge()}}
+{\footnotesize\ttfamily bool Graph\+::add\+Edge (\begin{DoxyParamCaption}\item[{const int \&}]{sourc,  }\item[{const int \&}]{dest,  }\item[{double}]{w }\end{DoxyParamCaption})}
+
+
+
+Adds a new edge to the graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sourc} & The ID of the source vertex. \\
+\hline
+{\em dest} & The ID of the destination vertex. \\
+\hline
+{\em w} & The weight of the edge. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the edge is added successfully, or false if either the source or the destination vertex is not found in the graph. @\+Complexity O(\+V), where V is the number of vertexs. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_ad354c018724ef3f137a0b8554089105e}\label{class_graph_ad354c018724ef3f137a0b8554089105e}} 
+\index{Graph@{Graph}!addVertex@{addVertex}}
+\index{addVertex@{addVertex}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{addVertex()}{addVertex()}}
+{\footnotesize\ttfamily bool Graph\+::add\+Vertex (\begin{DoxyParamCaption}\item[{const int \&}]{id }\end{DoxyParamCaption})}
+
+
+
+Adds a new vertex with the given ID to the graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the vertex to add. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the vertex is added successfully, or false if a vertex with the same ID already exists in the graph. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a089f7fc73ea9976295d387846ad36c69}\label{class_graph_a089f7fc73ea9976295d387846ad36c69}} 
+\index{Graph@{Graph}!findVertex@{findVertex}}
+\index{findVertex@{findVertex}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{findVertex()}{findVertex()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ Graph\+::find\+Vertex (\begin{DoxyParamCaption}\item[{const int \&}]{id }\end{DoxyParamCaption}) const}
+
+
+
+Finds the vertex with the given ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the vertex to find. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the vertex if it is found, or nullptr otherwise. @\+Complexity O(\+V), where V is the number of vertexs. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a7dfcef08a9286cf144902cd7e56940ee}\label{class_graph_a7dfcef08a9286cf144902cd7e56940ee}} 
+\index{Graph@{Graph}!findVertexIdx@{findVertexIdx}}
+\index{findVertexIdx@{findVertexIdx}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{findVertexIdx()}{findVertexIdx()}}
+{\footnotesize\ttfamily int Graph\+::find\+Vertex\+Idx (\begin{DoxyParamCaption}\item[{const int \&}]{id }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Finds the index of the vertex with the given ID in the vertex vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the vertex to find. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The index of the vertex if it is found, or -\/1 otherwise. @\+Complexity O(\+V), where V is the number of vertexs. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a77280644f6af669143dff86778541a0d}\label{class_graph_a77280644f6af669143dff86778541a0d}} 
+\index{Graph@{Graph}!findVertexName@{findVertexName}}
+\index{findVertexName@{findVertexName}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{findVertexName()}{findVertexName()}}
+{\footnotesize\ttfamily int Graph\+::find\+Vertex\+Name (\begin{DoxyParamCaption}\item[{const string}]{name }\end{DoxyParamCaption})}
+
+
+
+Finds the ID of the vertex with the given name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the vertex to find. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The ID of the vertex if it is found, or -\/1 otherwise. @\+Complexity O(\+V), where V is the number of vertexs. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_abb5e0517e2979c54eebdafc2a9875e8f}\label{class_graph_abb5e0517e2979c54eebdafc2a9875e8f}} 
+\index{Graph@{Graph}!getNumVertex@{getNumVertex}}
+\index{getNumVertex@{getNumVertex}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{getNumVertex()}{getNumVertex()}}
+{\footnotesize\ttfamily int Graph\+::get\+Num\+Vertex (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the number of vertices in the graph. 
+
+\begin{DoxyReturn}{Returns}
+The number of vertices in the graph. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a0c370a136aab1839b375a5aeb1d2b7cf}\label{class_graph_a0c370a136aab1839b375a5aeb1d2b7cf}} 
+\index{Graph@{Graph}!getStationsOnDistrict@{getStationsOnDistrict}}
+\index{getStationsOnDistrict@{getStationsOnDistrict}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{getStationsOnDistrict()}{getStationsOnDistrict()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ Graph\+::get\+Stations\+On\+District (\begin{DoxyParamCaption}\item[{string}]{district }\end{DoxyParamCaption})}
+
+
+
+Gets the vector of vertices in the given district. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em district} & The name of the district. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The vector of vertices in the given district. @\+Complexity O(\+V), where V is the number of vertexs. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a7cdfbd3b7241ee7a9e6caab34e6857a1}\label{class_graph_a7cdfbd3b7241ee7a9e6caab34e6857a1}} 
+\index{Graph@{Graph}!getStationsOnMunicipality@{getStationsOnMunicipality}}
+\index{getStationsOnMunicipality@{getStationsOnMunicipality}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{getStationsOnMunicipality()}{getStationsOnMunicipality()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ Graph\+::get\+Stations\+On\+Municipality (\begin{DoxyParamCaption}\item[{string}]{muni }\end{DoxyParamCaption})}
+
+
+
+Gets the vector of vertices in the given municipality. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em muni} & The name of the municipality. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The vector of vertices in the given municipality. @\+Complexity O(\+V), where V is the number of vertexs. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a8025f1f7dccb065ff80dc42a6b222617}\label{class_graph_a8025f1f7dccb065ff80dc42a6b222617}} 
+\index{Graph@{Graph}!getStationsOnTown@{getStationsOnTown}}
+\index{getStationsOnTown@{getStationsOnTown}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{getStationsOnTown()}{getStationsOnTown()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ Graph\+::get\+Stations\+On\+Town (\begin{DoxyParamCaption}\item[{string}]{town }\end{DoxyParamCaption})}
+
+
+
+Gets the vector of vertices in the given township. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em town} & The name of the township. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The vector of vertices in the given township. @\+Complexity O(\+V), where V is the number of vertexs. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a619ac583094079134074658e29463c0e}\label{class_graph_a619ac583094079134074658e29463c0e}} 
+\index{Graph@{Graph}!getVertexSet@{getVertexSet}}
+\index{getVertexSet@{getVertexSet}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{getVertexSet()}{getVertexSet()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ Graph\+::get\+Vertex\+Set (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the vector of vertices in the graph. 
+
+\begin{DoxyReturn}{Returns}
+The vector of vertices in the graph. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a697561b2a2c1b25147b1750b250c1fdf}\label{class_graph_a697561b2a2c1b25147b1750b250c1fdf}} 
+\index{Graph@{Graph}!removeVertex@{removeVertex}}
+\index{removeVertex@{removeVertex}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{removeVertex()}{removeVertex()}}
+{\footnotesize\ttfamily bool Graph\+::remove\+Vertex (\begin{DoxyParamCaption}\item[{const int \&}]{id }\end{DoxyParamCaption})}
+
+
+
+Removes the vertex with the given ID from the graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the vertex to remove. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the vertex is removed successfully, or false if the vertex is not found in the graph. @\+Complexity O(\+V$^\wedge$2), where V is the number of vertexs. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_graph_a9e61864da69191c1896a25a708d1a02d}\label{class_graph_a9e61864da69191c1896a25a708d1a02d}} 
+\index{Graph@{Graph}!distMatrix@{distMatrix}}
+\index{distMatrix@{distMatrix}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{distMatrix}{distMatrix}}
+{\footnotesize\ttfamily double$\ast$$\ast$ Graph\+::dist\+Matrix = nullptr\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_graph_a3ae09699c3616af3ebfcb1eb045f2b62}\label{class_graph_a3ae09699c3616af3ebfcb1eb045f2b62}} 
+\index{Graph@{Graph}!pathMatrix@{pathMatrix}}
+\index{pathMatrix@{pathMatrix}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{pathMatrix}{pathMatrix}}
+{\footnotesize\ttfamily int$\ast$$\ast$ Graph\+::path\+Matrix = nullptr\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_graph_aa9b0a6d8ad43c5eabaca5a7140bcc8b6}\label{class_graph_aa9b0a6d8ad43c5eabaca5a7140bcc8b6}} 
+\index{Graph@{Graph}!vertexSet@{vertexSet}}
+\index{vertexSet@{vertexSet}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{vertexSet}{vertexSet}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$$>$ Graph\+::vertex\+Set\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Vector that contains all the vertexs of the graph. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_graph_8h}{Graph.\+h}}\item 
+\mbox{\hyperlink{_graph_8cpp}{Graph.\+cpp}}\end{DoxyCompactItemize}

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['district_172',['District',['../structManager_1_1District.html',1,'Manager']]]
+  ['district_0',['District',['../struct_manager_1_1_district.html',1,'Manager']]]
 ];

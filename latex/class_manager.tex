@@ -1,0 +1,576 @@
+\hypertarget{class_manager}{}\doxysection{Manager Class Reference}
+\label{class_manager}\index{Manager@{Manager}}
+
+
+Manages the train network and provides various functions to query the network.  
+
+
+
+
+{\ttfamily \#include $<$Manager.\+h$>$}
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_manager_1_1_district}{District}}
+\begin{DoxyCompactList}\small\item\em Represents a district in the network. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_manager_1_1_municipality}{Municipality}}
+\begin{DoxyCompactList}\small\item\em Represents a municipality in the network. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_manager_1_1_station_pair}{Station\+Pair}}
+\begin{DoxyCompactList}\small\item\em Represents a pair of stations and the maximum number of trains that can travel between them. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_manager_a1658ff9f18e38ccd9cb8b0b371b9c20b}{Manager}} ()
+\begin{DoxyCompactList}\small\item\em This class represents a \mbox{\hyperlink{class_manager}{Manager}} that handles a transportation network. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_manager_a4053dde3f142267914528304b3c3a0ee}{Read\+Stations}} ()
+\begin{DoxyCompactList}\small\item\em Reads the stations information from a file @\+Complexity O(\+V$^\wedge$2), being V the number of vertexes in the graph, in this case the number of stations. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_manager_a65b160b48ed1a068c3effd94c4f24209}{Read\+Networks}} ()
+\begin{DoxyCompactList}\small\item\em Reads the stations information from a file @\+Complexity O(\+E$\ast$\+V), being V the number of vertexes in the graph and E the number of edges. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_manager_a222c046454b9a53a20c67649f86d5d11}{Max\+Trains\+Between\+Stations}} (string source, string dest)
+\begin{DoxyCompactList}\small\item\em Calculates the maximum number of trains that can be taken between two stations. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{struct_manager_1_1_station_pair}{Manager\+::\+Station\+Pair}} $>$ \mbox{\hyperlink{class_manager_ac5cc08c984888b2cf45150005e7a1376}{Max\+Trains\+Pairs}} ()
+\begin{DoxyCompactList}\small\item\em Calculates the pairs of stations with the maximum number of trains that can be taken between them. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{struct_manager_1_1_municipality}{Manager\+::\+Municipality}} $>$ \mbox{\hyperlink{class_manager_a4fd100451f77a43f4546a41c758539f8}{Topk\+Municipalities}} (int n)
+\begin{DoxyCompactList}\small\item\em Returns the top n municipalities based on the max train between all pairs of each municipality. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{struct_manager_1_1_district}{Manager\+::\+District}} $>$ \mbox{\hyperlink{class_manager_ae830463ad9bdf49d7019accaa6a0a557}{Topk\+Districts}} (int n)
+\begin{DoxyCompactList}\small\item\em Returns the top n municipalities based on the max train between all pairs of each district. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_manager_af3683a17d108b2cbb54454ba250f620d}{Find\+Max\+Flowin\+Station}} (string dest)
+\begin{DoxyCompactList}\small\item\em Calculates the maximum flow that can be transported to a given station. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_manager_a48b1d0c467c1e4e90e90e4f213830a14}{Min\+Cost\+Max\+Flow}} (string source, string dest)
+\begin{DoxyCompactList}\small\item\em Calculates the minimum cost maximum flow between two stations using the Ford-\/\+Fulkerson algorithm with Dijkstra\textquotesingle{}s shortest path algorithm. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_manager_afa0ddf27337b484a9f14fe805ade2823}{Black\+Listed}} (vector$<$ pair$<$ string, string $>$ $>$ blacklists, string source, string target)
+\begin{DoxyCompactList}\small\item\em Calculates the max trains between 2 stations and considers blacklisted stations as unavailable. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{struct_graph_1_1_afected_station}{Graph\+::\+Afected\+Station}} $>$ \mbox{\hyperlink{class_manager_a03ff8e2581878f07d00a1ea0b99e19b9}{Report\+\_\+\+On\+\_\+\+Stations\+\_\+\+After\+\_\+\+Failure}} (int top, vector$<$ pair$<$ string, string $>$ $>$ blacklists)
+\begin{DoxyCompactList}\small\item\em Reports the top n stations affected by a failure and their level of impact on the transportation network (max trains difference) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_graph}{Graph}} \mbox{\hyperlink{class_manager_a716df90efe99e99e8ebb1ac8a83db795}{network}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_manager_a9e6041417f98f1fa84ef2e0a5e6c25dd}{Find\+Augmenting\+Path}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$s, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$t)
+\begin{DoxyCompactList}\small\item\em Finds an augmenting path between two vertices in the network. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_manager_addad81a4510767a988e40d2a3c87418c}{Find\+Min\+Residual\+Along\+Path}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$s, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$t)
+\begin{DoxyCompactList}\small\item\em Finds the minimum residual capacity along an augmenting path. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_manager_a7c687e6c90a5110c35d7ccddc4687301}{Augmented\+Flow\+Along\+Path}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$s, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$t, double f)
+\begin{DoxyCompactList}\small\item\em Updates the flow along an augmenting path. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_manager_ab0b17f9b7cd975a133169ed727c6bd71}{Max\+Trains\+Between\+Stations\+ID}} (int id1, int id2)
+\begin{DoxyCompactList}\small\item\em Calculates the maximum number of trains that can travel between two stations. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ \mbox{\hyperlink{class_manager_a9efa41195d5849e8606167d3e57168b7}{get\+Vertices\+With\+Municipality}} (string muni)
+\begin{DoxyCompactList}\small\item\em Returns all vertices in the network that belong to a given municipality. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ \mbox{\hyperlink{class_manager_a3acf13e0f7502b61bf252448f519f13f}{get\+Vertices\+With\+District}} (string dis)
+\begin{DoxyCompactList}\small\item\em Returns all vertices in the network that belong to a given district. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{struct_manager_1_1_municipality}{Manager\+::\+Municipality}} $>$ \mbox{\hyperlink{class_manager_af533ec543a3525c48f2607a843a39cea}{get\+All\+Municipalities}} ()
+\begin{DoxyCompactList}\small\item\em Gets a vector of all municipalities. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{struct_manager_1_1_district}{Manager\+::\+District}} $>$ \mbox{\hyperlink{class_manager_a78ec3860b3549c2360e1671d9cab3e1b}{get\+All\+Districts}} ()
+\begin{DoxyCompactList}\small\item\em Gets a vector of all districts. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_manager_a36ee2223c0beb2a0863a2dc7d3cd7116}{Find\+Augmenting\+Path\+District}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$s, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$t)
+\begin{DoxyCompactList}\small\item\em Finds an augmenting path between two vertices in the same district. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_manager_ad2a947988e12ca7d430bbed4205fa18f}{Max\+Trains\+Between\+Stations\+IDDistrict}} (int id1, int id2)
+\begin{DoxyCompactList}\small\item\em Calculates the maximum number of trains that can be taken between two stations without leaving the current district. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_manager_ac9f5f210653ab1c269d026f10f90f1d2}{Max\+Trains\+Between\+Stations\+IDMunicipy}} (int id1, int id2)
+\begin{DoxyCompactList}\small\item\em Calculates the maximum number of trains that can be taken between two stations without leaving the current municipality. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_manager_a109b62ea31996c49bc990714dea92967}{Find\+Augmenting\+Path\+Municipy}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$s, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$t)
+\begin{DoxyCompactList}\small\item\em Finds an augmenting path between two vertices in the same municipality. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_manager_adb090cd30a94f2b2e12b280728dfcbe7}{find\+Argumenting\+Path\+Dijkstra}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$s, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$t, int \&price)
+\begin{DoxyCompactList}\small\item\em Find the shortest path between two vertices using Dijkstra\textquotesingle{}s algorithm This function takes two vertices s and t as inputs and uses Dijkstra\textquotesingle{}s algorithm to find the shortest path between them. It also returns the cost of the path in the price parameter. If a path is found, the function returns true. Otherwise, it returns false. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_manager_a4d5996b1213d378d1540fa7d54a31de8}{test\+And\+Visit\+Disjka}} (\mbox{\hyperlink{class_mutable_priority_queue}{Mutable\+Priority\+Queue}}$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $>$ \&q, \mbox{\hyperlink{class_edge}{Edge}} $\ast$e, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$w, double residual, int dist\+\_\+init)
+\begin{DoxyCompactList}\small\item\em Test and visit a vertex during Dijkstra\textquotesingle{}s algorithm This function is used to test and visit a vertex w during Dijkstra\textquotesingle{}s algorithm. It takes a mutable priority queue q, an edge e, a vertex w, a residual value residual, and an initial distance value dist\+\_\+init as inputs. The function updates the distance of the vertex w if a shorter path is found and adds the vertex to the priority queue q. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_manager_a86dc343a70ac5a4b95b7178986d0d18a}{Testandvisit}} (queue$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ \&q, \mbox{\hyperlink{class_edge}{Edge}} $\ast$e, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$w, double residual)
+\begin{DoxyCompactList}\small\item\em Tests a connection for viability and visits the destination vertex. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages the train network and provides various functions to query the network. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_manager_a1658ff9f18e38ccd9cb8b0b371b9c20b}\label{class_manager_a1658ff9f18e38ccd9cb8b0b371b9c20b}} 
+\index{Manager@{Manager}!Manager@{Manager}}
+\index{Manager@{Manager}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{Manager()}{Manager()}}
+{\footnotesize\ttfamily Manager\+::\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This class represents a \mbox{\hyperlink{class_manager}{Manager}} that handles a transportation network. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_manager_a7c687e6c90a5110c35d7ccddc4687301}\label{class_manager_a7c687e6c90a5110c35d7ccddc4687301}} 
+\index{Manager@{Manager}!AugmentedFlowAlongPath@{AugmentedFlowAlongPath}}
+\index{AugmentedFlowAlongPath@{AugmentedFlowAlongPath}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{AugmentedFlowAlongPath()}{AugmentedFlowAlongPath()}}
+{\footnotesize\ttfamily void Manager\+::\+Augmented\+Flow\+Along\+Path (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{t,  }\item[{double}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Updates the flow along an augmenting path. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & A pointer to the source vertex. \\
+\hline
+{\em t} & A pointer to the target vertex. \\
+\hline
+{\em f} & The amount of flow to be augmented along the path. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_manager_afa0ddf27337b484a9f14fe805ade2823}\label{class_manager_afa0ddf27337b484a9f14fe805ade2823}} 
+\index{Manager@{Manager}!BlackListed@{BlackListed}}
+\index{BlackListed@{BlackListed}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{BlackListed()}{BlackListed()}}
+{\footnotesize\ttfamily double Manager\+::\+Black\+Listed (\begin{DoxyParamCaption}\item[{vector$<$ pair$<$ string, string $>$ $>$}]{blacklists,  }\item[{string}]{source,  }\item[{string}]{target }\end{DoxyParamCaption})}
+
+
+
+Calculates the max trains between 2 stations and considers blacklisted stations as unavailable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em blacklists} & A vector of pairs of blacklisted stations \\
+\hline
+{\em source} & The source station \\
+\hline
+{\em target} & The destination station \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The length of the shortest path between the source and destination stations while avoiding blacklisted stations @\+Complexity O(V$\ast$\+E$^\wedge$2 + B$\ast$V) being V the number of vertexes in the graph and E the number of edges in the graph and B being the blackslists. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_manager_adb090cd30a94f2b2e12b280728dfcbe7}\label{class_manager_adb090cd30a94f2b2e12b280728dfcbe7}} 
+\index{Manager@{Manager}!findArgumentingPathDijkstra@{findArgumentingPathDijkstra}}
+\index{findArgumentingPathDijkstra@{findArgumentingPathDijkstra}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{findArgumentingPathDijkstra()}{findArgumentingPathDijkstra()}}
+{\footnotesize\ttfamily bool Manager\+::find\+Argumenting\+Path\+Dijkstra (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{t,  }\item[{int \&}]{price }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Find the shortest path between two vertices using Dijkstra\textquotesingle{}s algorithm This function takes two vertices s and t as inputs and uses Dijkstra\textquotesingle{}s algorithm to find the shortest path between them. It also returns the cost of the path in the price parameter. If a path is found, the function returns true. Otherwise, it returns false. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & Starting vertex \\
+\hline
+{\em t} & Target vertex \\
+\hline
+{\em price} & Output parameter to store the cost of the shortest path \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true If a shortest path is found, else false @\+Complexity O((E+V) $\ast$ log(\+V)), being V the number of vertexes in the graph and E the number of edges in the graph 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_manager_a9e6041417f98f1fa84ef2e0a5e6c25dd}\label{class_manager_a9e6041417f98f1fa84ef2e0a5e6c25dd}} 
+\index{Manager@{Manager}!FindAugmentingPath@{FindAugmentingPath}}
+\index{FindAugmentingPath@{FindAugmentingPath}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{FindAugmentingPath()}{FindAugmentingPath()}}
+{\footnotesize\ttfamily bool Manager\+::\+Find\+Augmenting\+Path (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Finds an augmenting path between two vertices in the network. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & A pointer to the source vertex. \\
+\hline
+{\em t} & A pointer to the target vertex. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if an augmenting path is found, false otherwise. @\+Complexity O(V+E), where V is the number of vertexs and E is the number of edges 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_manager_a36ee2223c0beb2a0863a2dc7d3cd7116}\label{class_manager_a36ee2223c0beb2a0863a2dc7d3cd7116}} 
+\index{Manager@{Manager}!FindAugmentingPathDistrict@{FindAugmentingPathDistrict}}
+\index{FindAugmentingPathDistrict@{FindAugmentingPathDistrict}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{FindAugmentingPathDistrict()}{FindAugmentingPathDistrict()}}
+{\footnotesize\ttfamily bool Manager\+::\+Find\+Augmenting\+Path\+District (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Finds an augmenting path between two vertices in the same district. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & A pointer to the source vertex. \\
+\hline
+{\em t} & A pointer to the target vertex. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if an augmenting path is found, false otherwise. @\+Complexity O(V+E), where V is the number of vertexs and E is the number of edges 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_manager_a109b62ea31996c49bc990714dea92967}\label{class_manager_a109b62ea31996c49bc990714dea92967}} 
+\index{Manager@{Manager}!FindAugmentingPathMunicipy@{FindAugmentingPathMunicipy}}
+\index{FindAugmentingPathMunicipy@{FindAugmentingPathMunicipy}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{FindAugmentingPathMunicipy()}{FindAugmentingPathMunicipy()}}
+{\footnotesize\ttfamily bool Manager\+::\+Find\+Augmenting\+Path\+Municipy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Finds an augmenting path between two vertices in the same municipality. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & A pointer to the source vertex. \\
+\hline
+{\em t} & A pointer to the target vertex. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if an augmenting path is found, false otherwise. @\+Complexity O(V+E), where V is the number of vertexs and E is the number of edges 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_manager_af3683a17d108b2cbb54454ba250f620d}\label{class_manager_af3683a17d108b2cbb54454ba250f620d}} 
+\index{Manager@{Manager}!FindMaxFlowinStation@{FindMaxFlowinStation}}
+\index{FindMaxFlowinStation@{FindMaxFlowinStation}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{FindMaxFlowinStation()}{FindMaxFlowinStation()}}
+{\footnotesize\ttfamily double Manager\+::\+Find\+Max\+Flowin\+Station (\begin{DoxyParamCaption}\item[{string}]{dest }\end{DoxyParamCaption})}
+
+
+
+Calculates the maximum flow that can be transported to a given station. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest} & The destination station \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The maximum flow that can be transported to the destination station @\+Complexity O(\+V$\ast$\+E$^\wedge$2), where V is the number of vertexs and E is the number of edges 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_manager_addad81a4510767a988e40d2a3c87418c}\label{class_manager_addad81a4510767a988e40d2a3c87418c}} 
+\index{Manager@{Manager}!FindMinResidualAlongPath@{FindMinResidualAlongPath}}
+\index{FindMinResidualAlongPath@{FindMinResidualAlongPath}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{FindMinResidualAlongPath()}{FindMinResidualAlongPath()}}
+{\footnotesize\ttfamily double Manager\+::\+Find\+Min\+Residual\+Along\+Path (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Finds the minimum residual capacity along an augmenting path. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & A pointer to the source vertex. \\
+\hline
+{\em t} & A pointer to the target vertex. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The minimum residual capacity along the augmenting path. @\+Complexity O(\+V), where V is the number if vertexs 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_manager_a78ec3860b3549c2360e1671d9cab3e1b}\label{class_manager_a78ec3860b3549c2360e1671d9cab3e1b}} 
+\index{Manager@{Manager}!getAllDistricts@{getAllDistricts}}
+\index{getAllDistricts@{getAllDistricts}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{getAllDistricts()}{getAllDistricts()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{struct_manager_1_1_district}{Manager\+::\+District}} $>$ Manager\+::get\+All\+Districts (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Gets a vector of all districts. 
+
+\begin{DoxyReturn}{Returns}
+vector$<$\+Manager\+::\+District$>$ Vector of all districts. @\+Complexity O(\+V$\ast$\+D), being V the number of vertexes in the graph and D the number of districts. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_manager_af533ec543a3525c48f2607a843a39cea}\label{class_manager_af533ec543a3525c48f2607a843a39cea}} 
+\index{Manager@{Manager}!getAllMunicipalities@{getAllMunicipalities}}
+\index{getAllMunicipalities@{getAllMunicipalities}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{getAllMunicipalities()}{getAllMunicipalities()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{struct_manager_1_1_municipality}{Manager\+::\+Municipality}} $>$ Manager\+::get\+All\+Municipalities (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Gets a vector of all municipalities. 
+
+\begin{DoxyReturn}{Returns}
+vector$<$\+Manager\+::\+Municipality$>$ Vector of all municipalities. @\+Complexity O(\+V$\ast$\+M), being V the number of vertexes in the graph and M the number of municipalities. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_manager_a3acf13e0f7502b61bf252448f519f13f}\label{class_manager_a3acf13e0f7502b61bf252448f519f13f}} 
+\index{Manager@{Manager}!getVerticesWithDistrict@{getVerticesWithDistrict}}
+\index{getVerticesWithDistrict@{getVerticesWithDistrict}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{getVerticesWithDistrict()}{getVerticesWithDistrict()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ Manager\+::get\+Vertices\+With\+District (\begin{DoxyParamCaption}\item[{string}]{dis }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Returns all vertices in the network that belong to a given district. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dis} & The name of the district. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of pointers to vertices that belong to the given district. @\+Complexity O(\+V), where V is the number of vertexs 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_manager_a9efa41195d5849e8606167d3e57168b7}\label{class_manager_a9efa41195d5849e8606167d3e57168b7}} 
+\index{Manager@{Manager}!getVerticesWithMunicipality@{getVerticesWithMunicipality}}
+\index{getVerticesWithMunicipality@{getVerticesWithMunicipality}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{getVerticesWithMunicipality()}{getVerticesWithMunicipality()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ Manager\+::get\+Vertices\+With\+Municipality (\begin{DoxyParamCaption}\item[{string}]{muni }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Returns all vertices in the network that belong to a given municipality. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em muni} & The name of the municipality. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of pointers to vertices that belong to the given municipality. @\+Complexity O(\+V), where V is the number of vertexs 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_manager_a222c046454b9a53a20c67649f86d5d11}\label{class_manager_a222c046454b9a53a20c67649f86d5d11}} 
+\index{Manager@{Manager}!MaxTrainsBetweenStations@{MaxTrainsBetweenStations}}
+\index{MaxTrainsBetweenStations@{MaxTrainsBetweenStations}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{MaxTrainsBetweenStations()}{MaxTrainsBetweenStations()}}
+{\footnotesize\ttfamily double Manager\+::\+Max\+Trains\+Between\+Stations (\begin{DoxyParamCaption}\item[{string}]{source,  }\item[{string}]{dest }\end{DoxyParamCaption})}
+
+
+
+Calculates the maximum number of trains that can be taken between two stations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source} & The source station \\
+\hline
+{\em dest} & The destination station \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The maximum number of trains that can be taken between the two @\+Complexity O(\+V$\ast$\+E$^\wedge$2), where V is the number of vertexs and E is the number of edges 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_manager_ab0b17f9b7cd975a133169ed727c6bd71}\label{class_manager_ab0b17f9b7cd975a133169ed727c6bd71}} 
+\index{Manager@{Manager}!MaxTrainsBetweenStationsID@{MaxTrainsBetweenStationsID}}
+\index{MaxTrainsBetweenStationsID@{MaxTrainsBetweenStationsID}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{MaxTrainsBetweenStationsID()}{MaxTrainsBetweenStationsID()}}
+{\footnotesize\ttfamily double Manager\+::\+Max\+Trains\+Between\+Stations\+ID (\begin{DoxyParamCaption}\item[{int}]{id1,  }\item[{int}]{id2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Calculates the maximum number of trains that can travel between two stations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id1} & The ID of the first station. \\
+\hline
+{\em id2} & The ID of the second station. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The maximum number of trains that can travel between the two stations. @\+Complexity O(\+V$\ast$\+E$^\wedge$2), where V is the number of vertexs and E is the number of edges 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_manager_ad2a947988e12ca7d430bbed4205fa18f}\label{class_manager_ad2a947988e12ca7d430bbed4205fa18f}} 
+\index{Manager@{Manager}!MaxTrainsBetweenStationsIDDistrict@{MaxTrainsBetweenStationsIDDistrict}}
+\index{MaxTrainsBetweenStationsIDDistrict@{MaxTrainsBetweenStationsIDDistrict}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{MaxTrainsBetweenStationsIDDistrict()}{MaxTrainsBetweenStationsIDDistrict()}}
+{\footnotesize\ttfamily double Manager\+::\+Max\+Trains\+Between\+Stations\+IDDistrict (\begin{DoxyParamCaption}\item[{int}]{id1,  }\item[{int}]{id2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Calculates the maximum number of trains that can be taken between two stations without leaving the current district. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source} & The source station \\
+\hline
+{\em dest} & The destination station \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The maximum number of trains that can be taken between the two stations @\+Complexity O(\+V$\ast$\+E$^\wedge$2), where V is the number of vertexs and E is the number of edges 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_manager_ac9f5f210653ab1c269d026f10f90f1d2}\label{class_manager_ac9f5f210653ab1c269d026f10f90f1d2}} 
+\index{Manager@{Manager}!MaxTrainsBetweenStationsIDMunicipy@{MaxTrainsBetweenStationsIDMunicipy}}
+\index{MaxTrainsBetweenStationsIDMunicipy@{MaxTrainsBetweenStationsIDMunicipy}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{MaxTrainsBetweenStationsIDMunicipy()}{MaxTrainsBetweenStationsIDMunicipy()}}
+{\footnotesize\ttfamily double Manager\+::\+Max\+Trains\+Between\+Stations\+IDMunicipy (\begin{DoxyParamCaption}\item[{int}]{id1,  }\item[{int}]{id2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Calculates the maximum number of trains that can be taken between two stations without leaving the current municipality. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source} & The source station \\
+\hline
+{\em dest} & The destination station \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The maximum number of trains that can be taken between the two stations @\+Complexity O(\+V$\ast$\+E$^\wedge$2), where V is the number of vertexs and E is the number of edges 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_manager_ac5cc08c984888b2cf45150005e7a1376}\label{class_manager_ac5cc08c984888b2cf45150005e7a1376}} 
+\index{Manager@{Manager}!MaxTrainsPairs@{MaxTrainsPairs}}
+\index{MaxTrainsPairs@{MaxTrainsPairs}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{MaxTrainsPairs()}{MaxTrainsPairs()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{struct_manager_1_1_station_pair}{Manager\+::\+Station\+Pair}} $>$ Manager\+::\+Max\+Trains\+Pairs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Calculates the pairs of stations with the maximum number of trains that can be taken between them. 
+
+\begin{DoxyReturn}{Returns}
+A vector of pairs of stations with the maximum number of trains that can be taken between them @\+Complexity O(\+V$\ast$\+V$\ast$\+E$^\wedge$2 ) being V the number of vertexes in the graph and E the number of edges in the graph 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_manager_a48b1d0c467c1e4e90e90e4f213830a14}\label{class_manager_a48b1d0c467c1e4e90e90e4f213830a14}} 
+\index{Manager@{Manager}!MinCostMaxFlow@{MinCostMaxFlow}}
+\index{MinCostMaxFlow@{MinCostMaxFlow}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{MinCostMaxFlow()}{MinCostMaxFlow()}}
+{\footnotesize\ttfamily double Manager\+::\+Min\+Cost\+Max\+Flow (\begin{DoxyParamCaption}\item[{string}]{source,  }\item[{string}]{dest }\end{DoxyParamCaption})}
+
+
+
+Calculates the minimum cost maximum flow between two stations using the Ford-\/\+Fulkerson algorithm with Dijkstra\textquotesingle{}s shortest path algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source} & The source station \\
+\hline
+{\em dest} & The destination station \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The minimum cost maximum flow between the source and destination stations @\+Complexity O(\+VE$^\wedge$2 log\+V), where V is the number of vertexs and E is the number of edges 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_manager_a65b160b48ed1a068c3effd94c4f24209}\label{class_manager_a65b160b48ed1a068c3effd94c4f24209}} 
+\index{Manager@{Manager}!ReadNetworks@{ReadNetworks}}
+\index{ReadNetworks@{ReadNetworks}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{ReadNetworks()}{ReadNetworks()}}
+{\footnotesize\ttfamily void Manager\+::\+Read\+Networks (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads the stations information from a file @\+Complexity O(\+E$\ast$\+V), being V the number of vertexes in the graph and E the number of edges. 
+
+\mbox{\Hypertarget{class_manager_a4053dde3f142267914528304b3c3a0ee}\label{class_manager_a4053dde3f142267914528304b3c3a0ee}} 
+\index{Manager@{Manager}!ReadStations@{ReadStations}}
+\index{ReadStations@{ReadStations}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{ReadStations()}{ReadStations()}}
+{\footnotesize\ttfamily void Manager\+::\+Read\+Stations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads the stations information from a file @\+Complexity O(\+V$^\wedge$2), being V the number of vertexes in the graph, in this case the number of stations. 
+
+\mbox{\Hypertarget{class_manager_a03ff8e2581878f07d00a1ea0b99e19b9}\label{class_manager_a03ff8e2581878f07d00a1ea0b99e19b9}} 
+\index{Manager@{Manager}!Report\_On\_Stations\_After\_Failure@{Report\_On\_Stations\_After\_Failure}}
+\index{Report\_On\_Stations\_After\_Failure@{Report\_On\_Stations\_After\_Failure}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{Report\_On\_Stations\_After\_Failure()}{Report\_On\_Stations\_After\_Failure()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{struct_graph_1_1_afected_station}{Graph\+::\+Afected\+Station}} $>$ Manager\+::\+Report\+\_\+\+On\+\_\+\+Stations\+\_\+\+After\+\_\+\+Failure (\begin{DoxyParamCaption}\item[{int}]{top,  }\item[{vector$<$ pair$<$ string, string $>$ $>$}]{blacklists }\end{DoxyParamCaption})}
+
+
+
+Reports the top n stations affected by a failure and their level of impact on the transportation network (max trains difference) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em top} & The number of stations to report \\
+\hline
+{\em blacklists} & A vector of pairs of blacklisted stations \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of n stations sorted in descending order based on their level of impact on the transportation network @\+Complexity O(\+V$^\wedge$2\+E$^\wedge$2), where V is the number of vertexs and E is the number of edges 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_manager_a86dc343a70ac5a4b95b7178986d0d18a}\label{class_manager_a86dc343a70ac5a4b95b7178986d0d18a}} 
+\index{Manager@{Manager}!Testandvisit@{Testandvisit}}
+\index{Testandvisit@{Testandvisit}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{Testandvisit()}{Testandvisit()}}
+{\footnotesize\ttfamily void Manager\+::\+Testandvisit (\begin{DoxyParamCaption}\item[{queue$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ \&}]{q,  }\item[{\mbox{\hyperlink{class_edge}{Edge}} $\ast$}]{e,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{w,  }\item[{double}]{residual }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Tests a connection for viability and visits the destination vertex. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em q} & A reference to the BFS queue. \\
+\hline
+{\em e} & A pointer to the edge being tested. \\
+\hline
+{\em w} & A pointer to the destination vertex. \\
+\hline
+{\em residual} & The residual of the edge being tested. @\+Complexity O(1) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_manager_a4d5996b1213d378d1540fa7d54a31de8}\label{class_manager_a4d5996b1213d378d1540fa7d54a31de8}} 
+\index{Manager@{Manager}!testAndVisitDisjka@{testAndVisitDisjka}}
+\index{testAndVisitDisjka@{testAndVisitDisjka}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{testAndVisitDisjka()}{testAndVisitDisjka()}}
+{\footnotesize\ttfamily void Manager\+::test\+And\+Visit\+Disjka (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_mutable_priority_queue}{Mutable\+Priority\+Queue}}$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $>$ \&}]{q,  }\item[{\mbox{\hyperlink{class_edge}{Edge}} $\ast$}]{e,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{w,  }\item[{double}]{residual,  }\item[{int}]{dist\+\_\+init }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Test and visit a vertex during Dijkstra\textquotesingle{}s algorithm This function is used to test and visit a vertex w during Dijkstra\textquotesingle{}s algorithm. It takes a mutable priority queue q, an edge e, a vertex w, a residual value residual, and an initial distance value dist\+\_\+init as inputs. The function updates the distance of the vertex w if a shorter path is found and adds the vertex to the priority queue q. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em q} & Mutable priority queue of vertices \\
+\hline
+{\em e} & \mbox{\hyperlink{class_edge}{Edge}} connecting the previous vertex to the current vertex \\
+\hline
+{\em w} & Current vertex being tested \\
+\hline
+{\em residual} & Residual capacity of the edge e \\
+\hline
+{\em dist\+\_\+init} & Initial distance value of the current vertex w @\+Complexity O(log(\+V)), where V is the number of vertexs in the graph \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_manager_ae830463ad9bdf49d7019accaa6a0a557}\label{class_manager_ae830463ad9bdf49d7019accaa6a0a557}} 
+\index{Manager@{Manager}!TopkDistricts@{TopkDistricts}}
+\index{TopkDistricts@{TopkDistricts}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{TopkDistricts()}{TopkDistricts()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{struct_manager_1_1_district}{Manager\+::\+District}} $>$ Manager\+::\+Topk\+Districts (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+Returns the top n municipalities based on the max train between all pairs of each district. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & The number of municipalities to return \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of n municipalities sorted in descending order based on the max train between all pairs of each district @\+Complexity O(\+D $\ast$ V$^\wedge$3 $\ast$ E$^\wedge$2 ) being V the number of vertexes in the graph and E the number of edges in the graph and D the number of districts 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_manager_a4fd100451f77a43f4546a41c758539f8}\label{class_manager_a4fd100451f77a43f4546a41c758539f8}} 
+\index{Manager@{Manager}!TopkMunicipalities@{TopkMunicipalities}}
+\index{TopkMunicipalities@{TopkMunicipalities}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{TopkMunicipalities()}{TopkMunicipalities()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{struct_manager_1_1_municipality}{Manager\+::\+Municipality}} $>$ Manager\+::\+Topk\+Municipalities (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+Returns the top n municipalities based on the max train between all pairs of each municipality. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & The number of municipalities to return \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of n municipalities sorted in descending order based on the max train between all pairs of each municipality @\+Complexity O(\+M $\ast$ V$^\wedge$3 $\ast$ E$^\wedge$2 ) being V the number of vertexes in the graph and E the number of edges in the graph and M the number of municipalities 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_manager_a716df90efe99e99e8ebb1ac8a83db795}\label{class_manager_a716df90efe99e99e8ebb1ac8a83db795}} 
+\index{Manager@{Manager}!network@{network}}
+\index{network@{network}!Manager@{Manager}}
+\doxysubsubsection{\texorpdfstring{network}{network}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_graph}{Graph}} Manager\+::network}
+
+The network of train stations and their lines. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_manager_8h}{Manager.\+h}}\item 
+\mbox{\hyperlink{_manager_8cpp}{Manager.\+cpp}}\end{DoxyCompactItemize}

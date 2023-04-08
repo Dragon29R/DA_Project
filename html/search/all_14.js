@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['weight_169',['weight',['../classEdge.html#a6d0148402e635354c03a151c77fcbdd8',1,'Edge']]]
+  ['_7egraph_0',['~Graph',['../class_graph.html#a902c5b3eacb66d60752525ab23297a95',1,'Graph']]]
 ];

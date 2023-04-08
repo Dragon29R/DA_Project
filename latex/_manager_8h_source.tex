@@ -1,0 +1,63 @@
+\hypertarget{_manager_8h_source}{}\doxysection{Manager.\+h}
+\mbox{\hyperlink{_manager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <sstream>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <algorithm>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <limits>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_graph_8h}{Graph.h}}"{}}}
+\DoxyCodeLine{13 \textcolor{keyword}{class }\mbox{\hyperlink{class_manager}{Manager}}\{}
+\DoxyCodeLine{14 \textcolor{keyword}{public}:}
+\DoxyCodeLine{19     \textcolor{keyword}{struct }\mbox{\hyperlink{struct_manager_1_1_station_pair}{StationPair}} \{}
+\DoxyCodeLine{20         \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_manager_1_1_station_pair_a886a7cc28ab9c7b35e47817c3fe85142}{s1}}; }
+\DoxyCodeLine{21         \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_manager_1_1_station_pair_a0651f8913273cfaa6196d1edb9390e7f}{s2}}; }
+\DoxyCodeLine{22         \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_manager_1_1_station_pair_aa1df83afc66fb86b9b543a178a313e77}{MaxTrains}}; }
+\DoxyCodeLine{23     \};}
+\DoxyCodeLine{28     \textcolor{keyword}{struct }\mbox{\hyperlink{struct_manager_1_1_municipality}{Municipality}}\{}
+\DoxyCodeLine{29         \textcolor{keywordtype}{string} \mbox{\hyperlink{struct_manager_1_1_municipality_a18a5ac0d2a97bf11283327bf5f582e6e}{name}}; }
+\DoxyCodeLine{30         \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_manager_1_1_municipality_a431f900eb9c5ab84f287e8b19e31eada}{flow}}; }
+\DoxyCodeLine{31     \};}
+\DoxyCodeLine{36     \textcolor{keyword}{struct }\mbox{\hyperlink{struct_manager_1_1_district}{District}}\{}
+\DoxyCodeLine{37         \textcolor{keywordtype}{string} \mbox{\hyperlink{struct_manager_1_1_district_a1bcad126ade4634d9ce5961b306da1c0}{name}}; }
+\DoxyCodeLine{38         \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_manager_1_1_district_ad29bfc7c53ce426d65f62bd1a4fcffad}{flow}}; }
+\DoxyCodeLine{39     \};}
+\DoxyCodeLine{40     \mbox{\hyperlink{class_graph}{Graph}} \mbox{\hyperlink{class_manager_a716df90efe99e99e8ebb1ac8a83db795}{network}}; }
+\DoxyCodeLine{42 \textcolor{keyword}{private}:}
+\DoxyCodeLine{51     \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_manager_a86dc343a70ac5a4b95b7178986d0d18a}{Testandvisit}}(queue<Vertex *> \&q, \mbox{\hyperlink{class_edge}{Edge}} *e, \mbox{\hyperlink{class_vertex}{Vertex}} *w, \textcolor{keywordtype}{double} residual);}
+\DoxyCodeLine{59     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_manager_a9e6041417f98f1fa84ef2e0a5e6c25dd}{FindAugmentingPath}}(\mbox{\hyperlink{class_vertex}{Vertex}} *s, \mbox{\hyperlink{class_vertex}{Vertex}} *t);}
+\DoxyCodeLine{67     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_manager_addad81a4510767a988e40d2a3c87418c}{FindMinResidualAlongPath}}(\mbox{\hyperlink{class_vertex}{Vertex}} *s, \mbox{\hyperlink{class_vertex}{Vertex}} *t);}
+\DoxyCodeLine{74     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_manager_a7c687e6c90a5110c35d7ccddc4687301}{AugmentedFlowAlongPath}}(\mbox{\hyperlink{class_vertex}{Vertex}} *s, \mbox{\hyperlink{class_vertex}{Vertex}} *t, \textcolor{keywordtype}{double} f);}
+\DoxyCodeLine{82     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_manager_ab0b17f9b7cd975a133169ed727c6bd71}{MaxTrainsBetweenStationsID}}(\textcolor{keywordtype}{int} id1, \textcolor{keywordtype}{int} id2);}
+\DoxyCodeLine{89     vector<Vertex*> \mbox{\hyperlink{class_manager_a9efa41195d5849e8606167d3e57168b7}{getVerticesWithMunicipality}}(\textcolor{keywordtype}{string} muni);}
+\DoxyCodeLine{96     vector<Vertex*> \mbox{\hyperlink{class_manager_a3acf13e0f7502b61bf252448f519f13f}{getVerticesWithDistrict}}(\textcolor{keywordtype}{string} dis);}
+\DoxyCodeLine{103     vector<Manager::Municipality> \mbox{\hyperlink{class_manager_af533ec543a3525c48f2607a843a39cea}{getAllMunicipalities}}();}
+\DoxyCodeLine{110     vector<Manager::District> \mbox{\hyperlink{class_manager_a78ec3860b3549c2360e1671d9cab3e1b}{getAllDistricts}}();}
+\DoxyCodeLine{118     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_manager_a36ee2223c0beb2a0863a2dc7d3cd7116}{FindAugmentingPathDistrict}}(\mbox{\hyperlink{class_vertex}{Vertex}} *s, \mbox{\hyperlink{class_vertex}{Vertex}} *t);}
+\DoxyCodeLine{127     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_manager_ad2a947988e12ca7d430bbed4205fa18f}{MaxTrainsBetweenStationsIDDistrict}}(\textcolor{keywordtype}{int} id1, \textcolor{keywordtype}{int} id2);}
+\DoxyCodeLine{136     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_manager_ac9f5f210653ab1c269d026f10f90f1d2}{MaxTrainsBetweenStationsIDMunicipy}}(\textcolor{keywordtype}{int} id1, \textcolor{keywordtype}{int} id2);}
+\DoxyCodeLine{144     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_manager_a109b62ea31996c49bc990714dea92967}{FindAugmentingPathMunicipy}}(\mbox{\hyperlink{class_vertex}{Vertex}} *s, \mbox{\hyperlink{class_vertex}{Vertex}} *t);}
+\DoxyCodeLine{157     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_manager_adb090cd30a94f2b2e12b280728dfcbe7}{findArgumentingPathDijkstra}}(\mbox{\hyperlink{class_vertex}{Vertex}}* s,\mbox{\hyperlink{class_vertex}{Vertex}}* t,\textcolor{keywordtype}{int} \&price);}
+\DoxyCodeLine{173     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_manager_a4d5996b1213d378d1540fa7d54a31de8}{testAndVisitDisjka}}(\mbox{\hyperlink{class_mutable_priority_queue}{MutablePriorityQueue<Vertex>}}\& q,\mbox{\hyperlink{class_edge}{Edge}}* e ,\mbox{\hyperlink{class_vertex}{Vertex}}* w ,\textcolor{keywordtype}{double} residual , \textcolor{keywordtype}{int} dist\_init);}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175 \textcolor{keyword}{public}:}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{180     \mbox{\hyperlink{class_manager_a1658ff9f18e38ccd9cb8b0b371b9c20b}{Manager}}();}
+\DoxyCodeLine{185     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_manager_a4053dde3f142267914528304b3c3a0ee}{ReadStations}}();}
+\DoxyCodeLine{190     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_manager_a65b160b48ed1a068c3effd94c4f24209}{ReadNetworks}}();}
+\DoxyCodeLine{199     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_manager_a222c046454b9a53a20c67649f86d5d11}{MaxTrainsBetweenStations}}(\textcolor{keywordtype}{string} source,\textcolor{keywordtype}{string} dest); \textcolor{comment}{//2.1}}
+\DoxyCodeLine{206 \textcolor{comment}{}    vector<Manager::StationPair> \mbox{\hyperlink{class_manager_ac5cc08c984888b2cf45150005e7a1376}{MaxTrainsPairs}}(); \textcolor{comment}{//2.2}}
+\DoxyCodeLine{214 \textcolor{comment}{}    vector<Manager::Municipality> \mbox{\hyperlink{class_manager_a4fd100451f77a43f4546a41c758539f8}{TopkMunicipalities}}(\textcolor{keywordtype}{int} n); \textcolor{comment}{//2.3}}
+\DoxyCodeLine{222 \textcolor{comment}{}    vector<Manager::District> \mbox{\hyperlink{class_manager_ae830463ad9bdf49d7019accaa6a0a557}{TopkDistricts}}(\textcolor{keywordtype}{int} n); \textcolor{comment}{//2.3}}
+\DoxyCodeLine{230 \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{class_manager_af3683a17d108b2cbb54454ba250f620d}{FindMaxFlowinStation}}(\textcolor{keywordtype}{string} dest);  \textcolor{comment}{//2.4}}
+\DoxyCodeLine{239 \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{class_manager_a48b1d0c467c1e4e90e90e4f213830a14}{MinCostMaxFlow}}(\textcolor{keywordtype}{string} source,\textcolor{keywordtype}{string} dest); \textcolor{comment}{//3.1}}
+\DoxyCodeLine{249 \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{class_manager_afa0ddf27337b484a9f14fe805ade2823}{BlackListed}}(vector<pair<string,string>> blacklists,\textcolor{keywordtype}{string} source,\textcolor{keywordtype}{string} target); \textcolor{comment}{//4.1}}
+\DoxyCodeLine{258 \textcolor{comment}{}    vector<Graph::AfectedStation> \mbox{\hyperlink{class_manager_a03ff8e2581878f07d00a1ea0b99e19b9}{Report\_On\_Stations\_After\_Failure}}(\textcolor{keywordtype}{int} top, vector<pair<string, string>> blacklists);}
+\DoxyCodeLine{259 }
+\DoxyCodeLine{260 }
+\DoxyCodeLine{261 \};}
+\DoxyCodeLine{262 }
+
+\end{DoxyCode}

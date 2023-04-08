@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['afectedstation_171',['AfectedStation',['../structGraph_1_1AfectedStation.html',1,'Graph']]]
+  ['afectedstation_0',['AfectedStation',['../struct_graph_1_1_afected_station.html',1,'Graph']]]
 ];

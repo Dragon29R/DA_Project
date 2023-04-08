@@ -3,4 +3,4 @@ project(Projeto)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Projeto main.cpp VertexEdge.h VertexEdge.cpp UFDS.cpp UFDS.h MutablePriorityQueue.h Heap.cpp Heap.h Graph.cpp Graph.h Manager.h Manager.cpp)
+add_executable(Projeto main.cpp VertexEdge.h VertexEdge.cpp MutablePriorityQueue.h Graph.cpp Graph.h Manager.h Manager.cpp)

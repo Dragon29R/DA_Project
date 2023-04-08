@@ -1,0 +1,44 @@
+\hypertarget{_graph_8h_source}{}\doxysection{Graph.\+h}
+\mbox{\hyperlink{_graph_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <queue>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <limits>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <algorithm>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_mutable_priority_queue_8h}{MutablePriorityQueue.h}}"{}}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_vertex_edge_8h}{VertexEdge.h}}"{}}}
+\DoxyCodeLine{12 \textcolor{keyword}{class }\mbox{\hyperlink{class_graph}{Graph}} \{}
+\DoxyCodeLine{13 \textcolor{keyword}{public}:}
+\DoxyCodeLine{17     \textcolor{keyword}{struct }\mbox{\hyperlink{struct_graph_1_1_afected_station}{AfectedStation}}\{}
+\DoxyCodeLine{18         \mbox{\hyperlink{class_vertex}{Vertex}}* \mbox{\hyperlink{struct_graph_1_1_afected_station_adbd18ec4ddcf59f1377416cf5efcf6a8}{station}}; }
+\DoxyCodeLine{19         \textcolor{keywordtype}{double} \mbox{\hyperlink{struct_graph_1_1_afected_station_af06e961813babba4ae9c5e30d5342f31}{numTrainsBefore}}; }
+\DoxyCodeLine{20         \textcolor{keywordtype}{double} \mbox{\hyperlink{struct_graph_1_1_afected_station_ad45b93493a4e038cbf8bb24f1563e61d}{numTrainsAfter}}; }
+\DoxyCodeLine{21     \};}
+\DoxyCodeLine{25     \mbox{\hyperlink{class_graph_a902c5b3eacb66d60752525ab23297a95}{\string~Graph}}();}
+\DoxyCodeLine{32     \mbox{\hyperlink{class_vertex}{Vertex}} *\mbox{\hyperlink{class_graph_a089f7fc73ea9976295d387846ad36c69}{findVertex}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&\textcolor{keywordtype}{id}) \textcolor{keyword}{const};}
+\DoxyCodeLine{38     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_ad354c018724ef3f137a0b8554089105e}{addVertex}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&\textcolor{keywordtype}{id});}
+\DoxyCodeLine{47     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_a516f4487d70f4b15e413447afa8c2310}{addEdge}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&sourc, \textcolor{keyword}{const} \textcolor{keywordtype}{int} \&dest, \textcolor{keywordtype}{double} w);}
+\DoxyCodeLine{57     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_a8a226e1949c24946eb56a0c25dd6dcdb}{addBidirectionalEdge}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&sourc, \textcolor{keyword}{const} \textcolor{keywordtype}{int} \&dest, \textcolor{keywordtype}{double} w, \textcolor{keywordtype}{string} service);}
+\DoxyCodeLine{62     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_abb5e0517e2979c54eebdafc2a9875e8f}{getNumVertex}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{67     std::vector<Vertex *> \mbox{\hyperlink{class_graph_a619ac583094079134074658e29463c0e}{getVertexSet}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{74     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_a77280644f6af669143dff86778541a0d}{findVertexName}}(\textcolor{keyword}{const} \textcolor{keywordtype}{string} name);}
+\DoxyCodeLine{81     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_a697561b2a2c1b25147b1750b250c1fdf}{removeVertex}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&\textcolor{keywordtype}{id});}
+\DoxyCodeLine{88     vector<Vertex *> \mbox{\hyperlink{class_graph_a7cdfbd3b7241ee7a9e6caab34e6857a1}{getStationsOnMunicipality}}(\textcolor{keywordtype}{string} muni);}
+\DoxyCodeLine{95     vector<Vertex *> \mbox{\hyperlink{class_graph_a0c370a136aab1839b375a5aeb1d2b7cf}{getStationsOnDistrict}}(\textcolor{keywordtype}{string} district);}
+\DoxyCodeLine{102     vector<Vertex *> \mbox{\hyperlink{class_graph_a8025f1f7dccb065ff80dc42a6b222617}{getStationsOnTown}}(\textcolor{keywordtype}{string} town);}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{108     std::vector<Vertex *> \mbox{\hyperlink{class_graph_aa9b0a6d8ad43c5eabaca5a7140bcc8b6}{vertexSet}};    \textcolor{comment}{// vertex set}}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110     \textcolor{keywordtype}{double} ** \mbox{\hyperlink{class_graph_a9e61864da69191c1896a25a708d1a02d}{distMatrix}} = \textcolor{keyword}{nullptr};   \textcolor{comment}{// dist matrix for Floyd-\/Warshall}}
+\DoxyCodeLine{111     \textcolor{keywordtype}{int} **\mbox{\hyperlink{class_graph_a3ae09699c3616af3ebfcb1eb045f2b62}{pathMatrix}} = \textcolor{keyword}{nullptr};   \textcolor{comment}{// path matrix for Floyd-\/Warshall}}
+\DoxyCodeLine{118 \textcolor{comment}{}    \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_a7dfcef08a9286cf144902cd7e56940ee}{findVertexIdx}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&\textcolor{keywordtype}{id}) \textcolor{keyword}{const};}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120 }
+\DoxyCodeLine{121 \};}
+\DoxyCodeLine{128 \textcolor{keywordtype}{void} \mbox{\hyperlink{_graph_8h_ad56527992afe31a371065e795da57d25}{deleteMatrix}}(\textcolor{keywordtype}{int} **m, \textcolor{keywordtype}{int} n);}
+\DoxyCodeLine{135 \textcolor{keywordtype}{void} \mbox{\hyperlink{_graph_8h_ad56527992afe31a371065e795da57d25}{deleteMatrix}}(\textcolor{keywordtype}{double} **m, \textcolor{keywordtype}{int} n);}
+
+\end{DoxyCode}

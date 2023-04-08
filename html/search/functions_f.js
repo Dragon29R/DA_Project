@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ufds_308',['UFDS',['../classUFDS.html#a9daac3830c0769f08aceb6236f407248',1,'UFDS']]]
+  ['vertex_0',['Vertex',['../class_vertex.html#af2d4681f3cb6deeeed264950bf2d4a9e',1,'Vertex']]]
 ];
